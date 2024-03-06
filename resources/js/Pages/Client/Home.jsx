@@ -9,8 +9,9 @@ const Home = () => {
     return (
         <ClientLayout>
             <Head title="Trang chủ" />
+            
             <div className="w-full grid grid-cols-4 gap-4 items-start">
-                <NavCategory />
+                <NavCategory isHide={false} />
                 <SliderImages />
             </div>
             {/* service */}

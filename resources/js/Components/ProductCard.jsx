@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "@inertiajs/react";
 
 const ProductCard = () => {
     return (
         <div className="w-full rounded-lg">
             <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-                <a href="">
+                <Link href={route("product-detail")}>
                     <img
                         className="w-full h-[200px] p-4 object-contain rounded-t-lg"
                         src="https://img.lazcdn.com/g/p/a63e8931ab32a237f711c97e779fdae4.jpg_960x960q80.jpg_.webp"
                         alt="product image"
                     />
-                </a>
+                </Link>
                 <div className="px-5 pb-5 mt-4">
                     <div className="flex items-center mt-2.5 mb-5">
                         <div className="flex items-center space-x-1 rtl:space-x-reverse">

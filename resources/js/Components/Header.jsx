@@ -7,9 +7,9 @@ const Header = () => {
         <header className="w-full shadow-lg sticky top-0 bg-white z-10">
             <div className="w-full max-w-dt my-0 mx-auto h-[80px] flex justify-between items-center px-2 gap-10">
                 <div className="w-1/3 flex items-center justify-center">
-                    <a href="/" className="font-bold text-3xl">
+                    <Link href="/" className="font-bold text-3xl">
                         LOGO
-                    </a>
+                    </Link>
                 </div>
                 <form className="w-full ">
                     <label
@@ -48,35 +48,35 @@ const Header = () => {
                 <ul className="flex items-center justify-center gap-6 font-semibold ">
                     <li>
                         <Link
-                            href="/about"
+                            href="/"
                             className="px-2 hover:text-blue-700 transition-all"
                         >
                             Trang chủ
                         </Link>
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            href={route("about")}
                             className="px-2 hover:text-blue-700 transition-all"
                         >
                             Về chúng tôi
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
+                        <Link
                             href="#"
                             className="px-2 hover:text-blue-700 transition-all"
                         >
                             Sản phẩm
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
+                        <Link
                             href="#"
                             className="px-2 hover:text-blue-700 transition-all"
                         >
                             Liên hệ
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>

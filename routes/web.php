@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +27,10 @@ use Inertia\Inertia;
 // });
 
 Route::prefix('')->group(function () {
-    Route::get('', function () {
-        return Inertia::render('Client/Home');
-    });
-    Route::get('/about', function () {
+    Route::get('', [HomeController::class, 'index'])->name('home');
+    Route::get('/san-pham-1', [ProductController::class, 'productDetailPage'])->name('product-detail');
+
+    Route::get('/ve-chung-toi', function () {
         return Inertia::render('Client/About');
     })->name('about');
 });
