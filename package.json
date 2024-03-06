@@ -1,0 +1,36 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "start": "php artisan serve",
+        "build": "vite build",
+        "controller": "php artisan make:controller",
+        "model": "php artisan make:model",
+        "migration": "php artisan make:migration",
+        "migrate": "php artisan migrate",
+        "refresh": "php artisan migrate:refresh",
+        "request": "php artisan make:request",
+        "dropDB": "php artisan db:wipe"
+    },
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.5.1",
+        "@headlessui/react": "^1.4.2",
+        "@inertiajs/react": "^1.0.0",
+        "@tailwindcss/forms": "^0.5.3",
+        "@vitejs/plugin-react": "^4.2.0",
+        "autoprefixer": "^10.4.18",
+        "axios": "^1.6.7",
+        "laravel-vite-plugin": "^1.0.0",
+        "postcss": "^8.4.35",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "tailwindcss": "^3.4.1",
+        "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.2.1",
+        "react-redux": "^9.1.0",
+        "react-router-dom": "^6.22.2"
+    }
+}
