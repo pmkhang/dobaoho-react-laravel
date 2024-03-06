@@ -5,7 +5,7 @@ import Header from "@/Components/Header";
 const ClientLayout = ({ children }) => {
     return (
         <div className="bg-gray-200">
-            <div class="w-full bg-blue-500 h-[40px] flex items-center justify-center text-white font-bold">
+            <div className="w-full bg-blue-500 h-[40px] flex items-center justify-center text-white font-bold">
                 Something content
             </div>
             <Header />

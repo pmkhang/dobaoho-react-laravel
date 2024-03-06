@@ -13,7 +13,7 @@ const SliderImages = () => {
         pauseOnHover: true,
     };
     return (
-        <div className="w-full flex items-center justify-center col-span-3 rounded-xl shadow-lg">
+        <div className="w-full flex items-center justify-center col-span-3 rounded-xl shadow-lg max-tl:mt-6">
             <Splide options={splideOptions}>
                 <SplideSlide className="rounded-lg">
                     <img

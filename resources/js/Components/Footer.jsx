@@ -2,14 +2,14 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <footer className="w-full min-h-fit bg-blue-700 text-white py-10">
+        <footer className="w-full min-h-fit bg-blue-700 text-white py-10 max-tl:px-4">
             <a
                 href="#"
                 className="block max-w-dt mx-auto my-0 px-2 font-bold text-4xl"
             >
                 LOGO
             </a>
-            <div className="max-w-dt mx-auto my-0 px-2 grid grid-cols-4 ">
+            <div className="max-w-dt mx-auto my-0 px-2 grid grid-cols-4 max-tl:grid-cols-2 max-mb:grid-cols-1">
                 <div className="flex flex-col">
                     <h3 className="font-bold uppercase text-2xl mt-10">
                         Thông tin liên lạc
@@ -26,12 +26,22 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div className="text-white flex flex-col">
-                    <h3 className="font-bold uppercase text-2xl mt-10">Công ty</h3>
+                    <h3 className="font-bold uppercase text-2xl mt-10">
+                        Công ty
+                    </h3>
                     <ul className="flex flex-col text-lg mt-4">
-                        <li className="flex items-center gap-2 my-2">Giới thiệu</li>
-                        <li className="flex items-center gap-2 my-2">Khách hàng</li>
-                        <li className="flex items-center gap-2 my-2">Tuyển dụng</li>
-                        <li className="flex items-center gap-2 my-2">Liên hệ</li>
+                        <li className="flex items-center gap-2 my-2">
+                            Giới thiệu
+                        </li>
+                        <li className="flex items-center gap-2 my-2">
+                            Khách hàng
+                        </li>
+                        <li className="flex items-center gap-2 my-2">
+                            Tuyển dụng
+                        </li>
+                        <li className="flex items-center gap-2 my-2">
+                            Liên hệ
+                        </li>
                     </ul>
                 </div>
                 <div className="text-white flex flex-col">

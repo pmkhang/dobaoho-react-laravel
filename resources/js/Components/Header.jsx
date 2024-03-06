@@ -1,24 +1,30 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import { Link } from "@inertiajs/react";
 
 const Header = () => {
     return (
         <header className="w-full shadow-lg sticky top-0 bg-white z-10">
-            <div className="w-full max-w-dt my-0 mx-auto h-[80px] flex justify-between items-center px-2 gap-10">
-                <div className="w-1/3 flex items-center justify-center">
+            <div className="w-full max-w-dt my-0 mx-auto h-fit py-4 flex justify-between items-center px-2 gap-10">
+                <div className="w-1/3 max-mb:w-full flex items-center justify-center max-mb:justify-start max-mb:px-4">
                     <Link href="/" className="font-bold text-3xl">
                         LOGO
                     </Link>
                 </div>
-                <form className="w-full ">
-                    <label
-                        htmlFor="search"
-                        className="mb-2 text-sm font-medium text-gray-900 sr-only "
-                    >
-                        Search
-                    </label>
-                    <div className="flex gap-2">
+                <ul className="flex items-center gap-2 min-mb:hidden">
+                    <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                        <button className="flex min-mb:hidden items-center justify-center transition-all font-medium text-lg">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                    <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                        <i className="fa-solid fa-cart-shopping text-xl text-blue-600"></i>
+                    </li>
+                    <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                        <i className="fa-solid fa-circle-user text-xl text-blue-600"></i>
+                    </li>
+                </ul>
+                <form className="w-full max-mb:hidden">
+                    <div className="flex gap-2 max-tl:px-4">
                         <input
                             type="search"
                             id="search"
@@ -31,21 +37,19 @@ const Header = () => {
                         </button>
                     </div>
                 </form>
-                <div className="w-1/3 flex justify-end">
+                <div className="w-1/3 flex justify-end max-tl:hidden">
                     <ul className="flex items-center gap-2">
                         <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                             <i className="fa-solid fa-cart-shopping text-xl text-blue-600"></i>
-                            <span>Giỏ hàng</span>
                         </li>
                         <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                             <i className="fa-solid fa-circle-user text-xl text-blue-600"></i>
-                            <span>Tài khoản</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <nav className="w-full max-w-dt my-0 mx-auto h-fit pb-3">
-                <ul className="flex items-center justify-center gap-6 font-semibold ">
+            <nav className="w-full max-w-dt my-0 mx-auto  h-fit max-tl:px-4 max-tl:pb-3 max-tl:flex max-mb:hidden">
+                {/* <ul className="flex items-center justify-center max-tl:justify-start gap-6 font-semibold px-4">
                     <li>
                         <Link
                             href="/"
@@ -78,7 +82,17 @@ const Header = () => {
                             Liên hệ
                         </Link>
                     </li>
-                </ul>
+                </ul> */}
+                <div className="flex-1 justify-end min-tl:hidden max-tl:flex">
+                    <ul className="flex items-center gap-2">
+                        <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                            <i className="fa-solid fa-cart-shopping text-xl text-blue-600"></i>
+                        </li>
+                        <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                            <i className="fa-solid fa-circle-user text-xl text-blue-600"></i>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </header>
     );

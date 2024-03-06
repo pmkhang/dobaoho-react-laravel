@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 const ProductCard = () => {
     return (
         <div className="w-full rounded-lg">
-            <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+            <div className="w-full  bg-white border border-gray-200 rounded-lg shadow">
                 <Link href={route("product-detail")}>
                     <img
                         className="w-full h-[200px] p-4 object-contain rounded-t-lg"
