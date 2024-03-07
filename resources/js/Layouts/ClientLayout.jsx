@@ -1,10 +1,13 @@
 import React from "react";
-import Footer from "@/Components/Footer";
-import Header from "@/Components/Header";
+import Footer from "@/Components/client/partials/Footer";
+import Header from "@/Components/client/partials/Header";
+import { Head } from "@inertiajs/react";
 
-const ClientLayout = ({ children }) => {
+const ClientLayout = ({ children, title }) => {
     return (
         <div className="bg-gray-200">
+            <Head title={title} />
+
             <div className="w-full bg-blue-500 h-[40px] flex items-center justify-center text-white font-bold">
                 Something content
             </div>

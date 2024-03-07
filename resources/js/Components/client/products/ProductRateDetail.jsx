@@ -18,7 +18,7 @@ const CustommerRate = () => {
                         <i className="fa-solid fa-star text-yellow-500"></i>
                         <i className="fa-solid fa-star text-yellow-500"></i>
                         <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
+                        <i className="fa-solid fa-star text-black"></i>
                     </div>
                 </div>
                 <span className="text-lg">
