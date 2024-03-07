@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -37,5 +41,21 @@ Route::prefix('')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
+    });
+
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/the-loai-san-pham', 'index')->name('category');
+    });
+    Route::controller(AdminProductController::class)->group(function () {
+        Route::get('/san-pham', 'index')->name('product');
+    });
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/thanh-vien', 'index')->name('user');
+    });
+    Route::controller(CartController::class)->group(function () {
+        Route::get('/don-hang', 'index')->name('cart');
+    });
 });
