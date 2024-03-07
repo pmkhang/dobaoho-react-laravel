@@ -2,6 +2,8 @@ import Header from "@/Components/admin/partials/Header";
 import React from "react";
 import { Head } from "@inertiajs/react";
 import Sidebar from "@/Components/admin/partials/Sidebar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminLayout = ({ children, title }) => {
     return (
@@ -14,6 +16,7 @@ const AdminLayout = ({ children, title }) => {
                     {children}
                 </main>
             </div>
+            <ToastContainer position="bottom-right" />
         </>
     );
 };

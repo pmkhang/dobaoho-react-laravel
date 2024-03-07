@@ -42,20 +42,22 @@ Route::prefix('')->group(function () {
 
 Route::prefix('admin')->group(function () {
 
-    Route::controller(DashboardController::class)->group(function () {
-        Route::get('/dashboard', 'index')->name('dashboard');
+    Route::prefix('/dashboard')->controller(DashboardController::class)->group(function () {
+        Route::get('', 'index')->name('dashboard');
     });
 
-    Route::controller(CategoryController::class)->group(function () {
-        Route::get('/the-loai-san-pham', 'index')->name('category');
+    Route::prefix('/the-loai-san-pham')->controller(CategoryController::class)->group(function () {
+        Route::get('', 'index')->name('category');
+        Route::get('/them-the-loai-moi', 'create')->name('createCategory');
+        Route::post('/them-the-loai-moi', 'store')->name('storeCategory');
     });
-    Route::controller(AdminProductController::class)->group(function () {
-        Route::get('/san-pham', 'index')->name('product');
+    Route::prefix('/san-pham')->controller(AdminProductController::class)->group(function () {
+        Route::get('', 'index')->name('product');
     });
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/thanh-vien', 'index')->name('user');
+    Route::prefix('/thanh-vien')->controller(UserController::class)->group(function () {
+        Route::get('', 'index')->name('user');
     });
-    Route::controller(CartController::class)->group(function () {
-        Route::get('/don-hang', 'index')->name('cart');
+    Route::prefix('/don-hang')->controller(CartController::class)->group(function () {
+        Route::get('', 'index')->name('cart');
     });
 });

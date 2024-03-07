@@ -12,4 +12,9 @@ class CartController extends Controller
     {
         return Inertia::render('Admin/Cart');
     }
+
+    public function create()
+    {
+        return Inertia::render('Admin/CartCreate');
+    }
 }
