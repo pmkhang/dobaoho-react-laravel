@@ -10,7 +10,6 @@ const Category = ({ categories, message, status }) => {
         delRoute: null,
         showModal: false,
     });
-
     useEffect(() => {
         if (status) {
             toast.success(message);
@@ -24,7 +23,7 @@ const Category = ({ categories, message, status }) => {
                 <h3 className="text-3xl font-bold uppercase">
                     Thể loại sản phẩm
                 </h3>
-                <div className="mt-8">
+                <div className="flex justify-end">
                     <Link
                         href={route("createCategory")}
                         className="mt-3 py-2 px-4 bg-green-700 text-white rounded-full "
