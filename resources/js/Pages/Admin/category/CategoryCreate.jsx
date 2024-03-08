@@ -2,10 +2,9 @@ import Button from "@/Components/admin/components/Button";
 import InputText from "@/Components/admin/components/InputText";
 import Selector from "@/Components/admin/components/Selector";
 import AdminLayout from "@/Layouts/AdminLayout";
-import axios from "axios";
-import React, { useEffect } from "react";
+import RecursiveCategory from "@/Utils/RecursiveCategory";
 import { Link, useForm } from "@inertiajs/react";
-import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const CategoryCreate = ({ categories }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -13,6 +12,9 @@ const CategoryCreate = ({ categories }) => {
         parent_id: "",
         status: "",
     });
+
+    const recurCategories =
+        categories.length > 0 ? RecursiveCategory(categories) : [];
 
     const status = [
         { id: 1, name: "Hoạt động" },
@@ -77,7 +79,7 @@ const CategoryCreate = ({ categories }) => {
                         value={data.parent_id}
                         onChange={(e) => setData("parent_id", e.target.value)}
                         message={errors.parent_id}
-                        options={categories}
+                        options={recurCategories}
                     />
                 </div>
                 <Button

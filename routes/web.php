@@ -41,6 +41,9 @@ Route::prefix('')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
+    Route::get('', function () {
+        return redirect()->route('dashboard');
+    });
 
     Route::prefix('/dashboard')->controller(DashboardController::class)->group(function () {
         Route::get('', 'index')->name('dashboard');
@@ -50,6 +53,9 @@ Route::prefix('admin')->group(function () {
         Route::get('', 'index')->name('category');
         Route::get('/them-the-loai-moi', 'create')->name('createCategory');
         Route::post('/them-the-loai-moi', 'store')->name('storeCategory');
+        Route::get('/{id}', 'edit')->name('editCategory');
+        Route::post('/{id}', 'update')->name('updateCategory');
+        Route::get('/{id}/xoa', 'destroy')->name('destroyCategory');
     });
     Route::prefix('/san-pham')->controller(AdminProductController::class)->group(function () {
         Route::get('', 'index')->name('product');

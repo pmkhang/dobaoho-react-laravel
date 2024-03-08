@@ -1,9 +1,23 @@
-import React, { useEffect } from "react";
+import ModalDelConfirm from "@/Components/admin/components/ModalDelConfirm";
 import AdminLayout from "@/Layouts/AdminLayout";
-import Button from "@/Components/admin/components/Button";
 import { Link } from "@inertiajs/react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-const Category = ({ categories }) => {
+const Category = ({ categories, message, status }) => {
+    const [delCategoryData, setDelCategoryData] = useState({
+        name: "",
+        delRoute: null,
+        showModal: false,
+    });
+
+    useEffect(() => {
+        if (status) {
+            toast.success(message);
+        } else {
+            toast.error(message);
+        }
+    }, []);
     return (
         <AdminLayout title={"Thể loại sản phẩm"}>
             <div className="flex flex-col">
@@ -49,14 +63,16 @@ const Category = ({ categories }) => {
                                     }`}
                                 >
                                     <th className="flex-1 px-6 py-2 font-bold whitespace-nowrap ">
-                                        {index + 1}
+                                        {index + 1 < 10
+                                            ? `0${index + 1}.`
+                                            : `${index + 1}.`}
                                     </th>
                                     <td className="flex-1 px-6 py-2  font-bold">
                                         {i?.name}
                                     </td>
                                     <td className="flex-1 px-6 py-2  font-bold">
-                                        {categories.find(
-                                            (j) => j.id === i.parent_id
+                                        {categories?.find(
+                                            (j) => j?.id === i?.parent_id
                                         )?.name || "--"}
                                     </td>
                                     <td
@@ -72,14 +88,26 @@ const Category = ({ categories }) => {
                                     </td>
                                     <td className="flex-1 px-6 py-2 flex items-center gap-4">
                                         <Link
-                                            href="#"
+                                            href={route("editCategory", i?.id)}
                                             className="text-blue-500"
                                         >
                                             Sửa
                                         </Link>
-                                        <Link href="#" className="text-red-500">
+                                        <button
+                                            onClick={() => {
+                                                setDelCategoryData({
+                                                    name: i?.name,
+                                                    delRoute: route(
+                                                        "destroyCategory",
+                                                        i?.id
+                                                    ),
+                                                    showModal: true,
+                                                });
+                                            }}
+                                            className="text-red-500 cursor-pointer"
+                                        >
                                             Xoá
-                                        </Link>
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
@@ -99,13 +127,20 @@ const Category = ({ categories }) => {
                                     Trạng thái
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Action
+                                    Hành động
                                 </th>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
+            {delCategoryData?.showModal && (
+                <ModalDelConfirm
+                    content={"Thể loại " + delCategoryData.name + " này"}
+                    delRoute={delCategoryData?.delRoute}
+                    setDelCategoryData={setDelCategoryData}
+                />
+            )}
         </AdminLayout>
     );
 };

@@ -10,6 +10,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Admin/User');
+        return Inertia::render('Admin/user/User');
     }
 }

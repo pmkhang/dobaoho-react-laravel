@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $table = 'yachts';
+    protected $table = 'products';
     public $incrementing = false;
     protected $guarded = [];
     public function category()

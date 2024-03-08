@@ -7,17 +7,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AdminLayout = ({ children, title }) => {
     return (
-        <>
+        <div className="relative">
             <Head title={title} />
             <Header />
-            <div className="flex items-start gap-4 p-2">
+            <div className="flex items-start gap-4 p-2 ">
                 <Sidebar />
                 <main className="h-[calc(100vh-120px)] rounded-xl flex-1 p-4 mr-2 overflow-y-scroll">
                     {children}
                 </main>
             </div>
             <ToastContainer position="bottom-right" />
-        </>
+        </div>
     );
 };
 

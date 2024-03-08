@@ -10,11 +10,11 @@ class CartController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Admin/Cart');
+        return Inertia::render('Admin/cart/Cart');
     }
 
     public function create()
     {
-        return Inertia::render('Admin/CartCreate');
+        return Inertia::render('Admin/cart/CartCreate');
     }
 }
