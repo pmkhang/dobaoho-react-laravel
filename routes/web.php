@@ -66,6 +66,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/{id}', 'update')->name('updateProduct');
         Route::get('/{id}/xoa', 'destroy')->name('destroyProduct');
         Route::get('/{id}/xoa-anh', 'deleteImage')->name('deleteImage');
+        Route::get('/da-xoa', 'productsDeleted')->name('productsDeleted');
+        Route::get('/{id}/khoi-phuc', 'restoreProduct')->name('restoreProduct');
     });
 
     Route::prefix('/thanh-vien')->controller(UserController::class)->group(function () {

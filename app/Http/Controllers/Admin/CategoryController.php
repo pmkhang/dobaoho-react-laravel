@@ -25,6 +25,8 @@ class CategoryController extends Controller
             'message' => session('message')
         ]);
     }
+
+
     public function create()
     {
         $categories = Category::select('id', 'name', 'parent_id')

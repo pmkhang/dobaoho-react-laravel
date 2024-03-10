@@ -1,29 +1,31 @@
+import ModalDelConfirm from "@/Components/admin/components/ModalDelConfirm";
 import AdminLayout from "@/Layouts/AdminLayout";
-import React, { useEffect } from "react";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const User = ({ status, message, users }) => {
+const ProductDeleted = ({ products, categories, status, message }) => {
+    const { get } = useForm();
     useEffect(() => {
         if (status) {
             toast.success(message);
         } else {
             toast.error(message);
         }
-    }, []);
+    }, [status, message]);
     return (
-        <AdminLayout title="Thành viên">
+        <AdminLayout title="Sản phẩm đã xoá">
             <div className="flex flex-col">
                 <h3 className="text-3xl font-bold uppercase">
-                    Quản lý thành viên
+                    Sản phẩm đã xoá
                 </h3>
-                <div className="flex justify-end gap-3">
+                <div className="flex justify-start gap-3">
                     <Link
-                        href={route("createUser")}
-                        className="mt-3 py-2 px-4 bg-green-700 text-white rounded-full "
+                        href={route("product")}
+                        className="mt-3 py-2 px-4 bg-gray-700 text-white rounded-full "
                     >
-                        <i className="fa-solid fa-plus mr-2"></i>
-                        Thêm thành viên mới
+                        <i className="fa-solid fa-arrow-left mr-3"></i>
+                        Quay lại
                     </Link>
                 </div>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
@@ -37,86 +39,76 @@ const User = ({ status, message, users }) => {
                                     scope="col"
                                     className="w-28 text-center px-6 py-3"
                                 >
-                                    Avatar
+                                    Hình
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Tên thành viên
+                                    Tên sản phẩm
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Email
+                                    Thể loại
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Số điện thoại
+                                    Giá
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Cấp thành viên
+                                    Đánh giá sao
                                 </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
+                                {/* <th scope="col" className="flex-1 px-6 py-3">
                                     Trạng thái
-                                </th>
+                                </th> */}
                                 <th scope="col" className="flex-1 px-6 py-3">
                                     Hành động
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((i, index) => (
+                            {products.map((i, index) => (
                                 <tr
                                     key={i?.id}
                                     className={`flex items-center text-base ${
                                         index % 2 == 0 ? "" : "bg-gray-300"
                                     }`}
                                 >
-                                    <th
-                                        scope="col"
-                                        className="w-16 px-6 py-2 font-bold whitespace-nowrap "
-                                    >
+                                    <th className="w-16 px-6 py-2 font-bold whitespace-nowrap ">
                                         {index + 1 < 10
                                             ? `0${index + 1}.`
                                             : `${index + 1}.`}
                                     </th>
-                                    <td
-                                        scope="col"
-                                        className="w-28  px-6 py-2 "
-                                    >
+                                    <td className="w-28  px-6 py-2 ">
                                         <img
-                                            src={i?.avatar}
-                                            alt={i?.avatar}
+                                            src={i?.product_images[0]?.image}
+                                            alt={i?.product_images[0]?.id}
                                             className="block w-[60px] h-[60px] object-cover rounded-xl"
                                         />
                                     </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2  font-bold"
-                                    >
+                                    <td className="flex-1 px-6 py-2  font-bold">
                                         {i?.name}
                                     </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2  font-bold"
-                                    >
-                                        {`${i?.email.substring(0, 17)}${
-                                            i?.email.length > 17 ? "..." : ""
-                                        }`}
+                                    <td className="flex-1 px-6 py-2  font-bold">
+                                        {categories?.find(
+                                            (j) => j?.id === i?.category_id
+                                        )?.name || "--"}
                                     </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2  font-bold"
-                                    >
-                                        {i?.phone}
+                                    <td className="flex-1 px-6 py-2  font-bold">
+                                        {i?.price}
                                     </td>
-                                    <td
-                                        scope="col"
-                                        className={`flex-1 px-6 py-2  font-bold ${
-                                            i?.role === 1
-                                                ? "text-red-600"
-                                                : "text-blue-600"
-                                        }`}
-                                    >
-                                        {i?.role === 1 ? "Admin" : "Người dùng"}
+                                    <td className="flex-1 px-6 py-2  font-bold">
+                                        {[...Array(i?.rate_avg)].map((_, j) => (
+                                            <i
+                                                key={j}
+                                                className="fa-solid fa-star text-yellow-500"
+                                            ></i>
+                                        ))}
+                                        {[...Array(5 - i?.rate_avg)].map(
+                                            (_, j) => (
+                                                <i
+                                                    key={j}
+                                                    className="fa-solid fa-star text-black-500"
+                                                ></i>
+                                            )
+                                        )}
                                     </td>
-                                    <td
-                                        scope="col"
+                                    {/* <td
                                         className={`flex-1 px-6 py-2 font-bold ${
                                             i?.status === 1
                                                 ? "text-green-600"
@@ -126,31 +118,20 @@ const User = ({ status, message, users }) => {
                                         {i?.status === 1
                                             ? "Đang hoạt động"
                                             : "Không hoạt động"}
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2 flex items-center gap-4"
-                                    >
-                                        <Link
-                                            // href={route("editUser", i?.id)}
-                                            className="text-blue-500"
-                                        >
-                                            Sửa
-                                        </Link>
+                                    </td> */}
+                                    <td className="flex-1 px-6 py-2 flex items-center gap-4">
                                         <button
-                                            // onClick={() => {
-                                            //     setDelProductData({
-                                            //         name: i?.name,
-                                            //         delRoute: route(
-                                            //             "destroyProduct",
-                                            //             i?.id
-                                            //         ),
-                                            //         showModal: true,
-                                            //     });
-                                            // }}
-                                            className="text-red-500 cursor-pointer"
+                                            className="text-blue-500"
+                                            onClick={() =>
+                                                get(
+                                                    route(
+                                                        "restoreProduct",
+                                                        i?.id
+                                                    )
+                                                )
+                                            }
                                         >
-                                            Xoá
+                                            Khôi phục
                                         </button>
                                     </td>
                                 </tr>
@@ -165,23 +146,23 @@ const User = ({ status, message, users }) => {
                                     scope="col"
                                     className="w-28 text-center px-6 py-3"
                                 >
-                                    Avatar
+                                    Hình
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Tên thành viên
+                                    Tên sản phẩm
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Email
+                                    Thể loại
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Số điện thoại
+                                    Giá
                                 </th>
                                 <th scope="col" className="flex-1 px-6 py-3">
-                                    Cấp thành viên
+                                    Đánh giá sao
                                 </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
+                                {/* <th scope="col" className="flex-1 px-6 py-3">
                                     Trạng thái
-                                </th>
+                                </th> */}
                                 <th scope="col" className="flex-1 px-6 py-3">
                                     Hành động
                                 </th>
@@ -190,15 +171,8 @@ const User = ({ status, message, users }) => {
                     </table>
                 </div>
             </div>
-            {/* {delProductData?.showModal && (
-                <ModalDelConfirm
-                    content={"Sản phẩm " + delProductData.name + " này"}
-                    delRoute={delProductData?.delRoute}
-                    setDelCategoryData={setDelProductData}
-                />
-            )} */}
         </AdminLayout>
     );
 };
 
-export default User;
+export default ProductDeleted;

@@ -23,7 +23,13 @@ const Product = ({ status, message, products, categories }) => {
                 <h3 className="text-3xl font-bold uppercase">
                     Quản lý sản phẩm
                 </h3>
-                <div className="flex justify-end">
+                <div className="flex justify-end gap-3">
+                    <Link
+                        href={route("productsDeleted")}
+                        className="mt-3 py-2 px-4 bg-gray-700 text-white rounded-full "
+                    >
+                        Xem sản phẩm đã xoá
+                    </Link>
                     <Link
                         href={route("createProduct")}
                         className="mt-3 py-2 px-4 bg-green-700 text-white rounded-full "

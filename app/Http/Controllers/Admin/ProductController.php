@@ -18,11 +18,8 @@ class ProductController extends Controller
         $products = Product::select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
             ->where('status', '>', 0)
             ->orderBy('created_at', 'DESC')
-            ->with(['productImages' => function ($query) {
-                $query->select('image', 'product_id')->limit(1);
-            }])
+            ->with('productImages')
             ->get();
-
         $categories = Category::select('id', 'name', 'parent_id', 'status')
             ->where('status', '>', 0)
             ->get();
@@ -153,17 +150,32 @@ class ProductController extends Controller
         ]);
     }
 
-    public function productDeleted()
+    public function productsDeleted()
     {
-        $products = Product::select('id', 'name', 'category_id', 'price', 'status', 'desc')
+        $products = Product::select('id', 'name', 'category_id', 'price', 'status', 'desc', 'rate_avg')
             ->where('status', 0)
             ->orderBy('created_at', 'DESC')
-            ->with(['productImages' => function ($query) {
-                $query->select('image', 'product_id')->limit(1);
-            }])
+            ->with('productImages')
+            ->get();
+        $categories = Category::select('id', 'name', 'parent_id', 'status')
+            ->where('status', '>', 0)
             ->get();
         return Inertia::render('Admin/product/ProductDeleted', [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories,
+            'status' => session('status'),
+            'message' => session('message'),
+        ]);
+    }
+
+    public function restoreProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->status = 1;
+        $product->save();
+        return redirect()->back()->with([
+            'status' => true,
+            'message' => 'Khôi phục sản phẩm thành công'
         ]);
     }
 }
