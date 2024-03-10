@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->tinyInteger('rate');
-            $table->unsignedBigInteger('product_id');
+            $table->string('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });

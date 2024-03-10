@@ -23,9 +23,7 @@ const CategoryCreate = ({ categories }) => {
 
     useEffect(() => {
         return () => {
-            reset("name");
-            reset("parent_id");
-            reset("status");
+            Object.keys(data).forEach((key) => reset(key));
         };
     }, []);
 
