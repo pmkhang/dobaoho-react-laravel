@@ -1,9 +1,15 @@
 import AdminLayout from "@/Layouts/AdminLayout";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "@inertiajs/react";
 import { toast } from "react-toastify";
+import ModalDelConfirm from "@/Components/admin/components/ModalDelConfirm";
 
 const User = ({ status, message, users }) => {
+    const [delUserData, setDelUserData] = useState({
+        name: "",
+        delRoute: null,
+        showModal: false,
+    });
     useEffect(() => {
         if (status) {
             toast.success(message);
@@ -132,22 +138,22 @@ const User = ({ status, message, users }) => {
                                         className="flex-1 px-6 py-2 flex items-center gap-4"
                                     >
                                         <Link
-                                            // href={route("editUser", i?.id)}
+                                            href={route("editUser", i?.id)}
                                             className="text-blue-500"
                                         >
                                             Sửa
                                         </Link>
                                         <button
-                                            // onClick={() => {
-                                            //     setDelProductData({
-                                            //         name: i?.name,
-                                            //         delRoute: route(
-                                            //             "destroyProduct",
-                                            //             i?.id
-                                            //         ),
-                                            //         showModal: true,
-                                            //     });
-                                            // }}
+                                            onClick={() => {
+                                                setDelUserData({
+                                                    name: i?.name,
+                                                    delRoute: route(
+                                                        "destroyUser",
+                                                        i?.id
+                                                    ),
+                                                    showModal: true,
+                                                });
+                                            }}
                                             className="text-red-500 cursor-pointer"
                                         >
                                             Xoá
@@ -190,13 +196,13 @@ const User = ({ status, message, users }) => {
                     </table>
                 </div>
             </div>
-            {/* {delProductData?.showModal && (
+            {delUserData?.showModal && (
                 <ModalDelConfirm
-                    content={"Sản phẩm " + delProductData.name + " này"}
-                    delRoute={delProductData?.delRoute}
-                    setDelCategoryData={setDelProductData}
+                    content={"Sản phẩm " + delUserData.name + " này"}
+                    delRoute={delUserData?.delRoute}
+                    setDelCategoryData={setDelUserData}
                 />
-            )} */}
+            )}
         </AdminLayout>
     );
 };

@@ -54,9 +54,9 @@ const UserCreate = () => {
         post(route("storeUser"));
     };
     return (
-        <AdminLayout title={"Tạo sản phẩm mới"}>
+        <AdminLayout title={"Thêm thành viên mới"}>
             <h3 className="text-3xl font-bold uppercase">
-                Thêm thể loại sản phẩm mới
+                Thêm thành viên mới
             </h3>
             <div className="mt-8">
                 <Link
