@@ -8,9 +8,9 @@ import ClientLayout from "@/Layouts/ClientLayout";
 import React from "react";
 import { Head } from "@inertiajs/react";
 
-const ProductDetail = () => {
+const ProductDetail = ({ auth }) => {
     return (
-        <ClientLayout title="Sản phẩm">
+        <ClientLayout title="Sản phẩm" authen={auth.user}>
             <NavCategory isHide={true} />
             <div className="min-h-[1000px] bg-white mt-4 rounded-xl">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start">

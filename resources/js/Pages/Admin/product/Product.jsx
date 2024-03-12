@@ -1,4 +1,4 @@
-import ModalDelConfirm from "@/Components/admin/components/ModalDelConfirm";
+import ModalDelConfirm from "@/Components/ModalDelConfirm";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";

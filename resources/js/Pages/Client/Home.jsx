@@ -4,9 +4,9 @@ import NavCategory from "@/Components/client/partials/NavCategory";
 import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import SliderImages from "@/Components/client/partials/SliderImages";
 
-const Home = ({ categories }) => {
+const Home = ({ categories, auth }) => {
     return (
-        <ClientLayout title="Trang chủ">
+        <ClientLayout title="Trang chủ" authen={auth.user}>
             <SliderImages />
             {/* service */}
             <div className="w-full mt-6 grid grid-cols-4 gap-4 max-tl:px-4 max-mb:grid-cols-1">
@@ -47,7 +47,7 @@ const Home = ({ categories }) => {
                     ))}
                 </div>
             </div>
-            
+
             <div className="w-full mt-12 min-h-[200px] max-tl:px-4">
                 <div className="flex items-center justify-between">
                     <h2 className="uppercase font-bold text-3xl">

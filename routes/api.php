@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('createAdmin', function () {
+    $data = [
+        'id' => 'Admin01',
+        'name' => 'admin',
+        'email' => 'admin@gmail.com',
+        'password' => bcrypt('Admin@123'),
+        'phone' => '0000000000',
+        'address' => '......',
+        'avatar' => asset('uploads/avatar.png'),
+        'role' => 1,
+        'status' => 1,
+    ];
+    User::create($data);
+    return response()->json([
+        'status' => 'success',
+        'email' => $data['email'],
+        'password' => 'Admin@123'
+    ]);
 });

@@ -1,6 +1,6 @@
-import Button from "@/Components/admin/components/Button";
-import InputText from "@/Components/admin/components/InputText";
-import Selector from "@/Components/admin/components/Selector";
+import Button from "@/Components/Button";
+import InputText from "@/Components/InputText";
+import Selector from "@/Components/Selector";
 import AdminLayout from "@/Layouts/AdminLayout";
 import RecursiveCategory from "@/Utils/RecursiveCategory";
 import { Link, useForm } from "@inertiajs/react";
@@ -20,7 +20,7 @@ const CategoryEdit = ({ categories, category, status, message }) => {
             toast.error(message);
         }
     }, [status, message]);
-    
+
     const recurCategories =
         categories?.length > 0 ? RecursiveCategory(categories) : [];
 

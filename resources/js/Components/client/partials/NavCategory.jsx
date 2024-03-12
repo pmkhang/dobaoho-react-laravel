@@ -14,7 +14,6 @@ const NavCategory = ({ isHide, categories }) => {
             };
         }
     }, []);
-
     return (
         <div className="py-2 rounded-xl shadow-lg bg-blue-600">
             <h2
@@ -33,7 +32,7 @@ const NavCategory = ({ isHide, categories }) => {
                                 className="px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
                             >
                                 <span>{i?.name}</span>
-                                <i class="fa-solid fa-caret-right text-lg"></i>
+                                <i className="fa-solid fa-caret-right text-lg"></i>
                             </a>
                         </li>
                     ))}

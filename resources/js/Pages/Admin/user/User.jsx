@@ -2,7 +2,7 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import React, { useEffect, useState } from "react";
 import { Link } from "@inertiajs/react";
 import { toast } from "react-toastify";
-import ModalDelConfirm from "@/Components/admin/components/ModalDelConfirm";
+import ModalDelConfirm from "@/Components/ModalDelConfirm";
 
 const User = ({ status, message, users }) => {
     const [delUserData, setDelUserData] = useState({
