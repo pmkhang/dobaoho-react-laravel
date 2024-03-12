@@ -62,18 +62,16 @@ const NavCategory = ({ isHide, categories }) => {
                         <ul
                             className={`${
                                 !isTabletScreen &&
-                                "absolute top-0 right-[-340px] w-full rounded-xl py-2 shadow-lg transition-all"
+                                "absolute top-0 left-[102%] min-w-[250px] rounded-xl py-2 shadow-lg transition-all"
                             } bg-blue-500`}
                         >
                             {category.children.map((child) => (
                                 <li key={child.id}>
                                     <Link
                                         href="#"
-                                        className="px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
+                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
                                     >
-                                        <span className="pl-4">
-                                            {child.name}
-                                        </span>
+                                        <span>{child.name}</span>
                                     </Link>
                                 </li>
                             ))}
