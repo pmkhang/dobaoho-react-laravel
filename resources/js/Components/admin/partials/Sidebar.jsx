@@ -14,14 +14,14 @@ const Sidebar = () => {
             name: "Sản phẩm",
         },
         {
-            route: route("cart"),
-            icon: <i className="fa-solid fa-truck-fast"></i>,
-            name: "Đơn hàng",
-        },
-        {
             route: route("user"),
             icon: <i className="fa-solid fa-users"></i>,
             name: "Thành viên",
+        },
+        {
+            route: route("cart"),
+            icon: <i className="fa-solid fa-truck-fast"></i>,
+            name: "Đơn hàng",
         },
     ];
     return (
@@ -31,31 +31,31 @@ const Sidebar = () => {
                     <li>
                         <Link
                             href={route("dashboard")}
-                            className="flex items-center justify-between py-2 px-4 bg-gray-100 rounded-lg hover:bg-gray-700 hover:text-white transition-all"
+                            className="flex items-center justify-between px-4 py-2 transition-all bg-gray-100 rounded-lg hover:bg-gray-700 hover:text-white"
                         >
                             <span className="flex items-center gap-2">
                                 <i className="fa-solid fa-gauge-high"></i>
                                 Dashboard
                             </span>
-                            <i className="fa-solid fa-caret-right text-xl"></i>
+                            <i className="text-xl fa-solid fa-caret-right"></i>
                         </Link>
                     </li>
                     <li>
-                        <h3 className="text-lg uppercase font-semibold">
+                        <h3 className="text-lg font-semibold uppercase">
                             Quản lý:
                         </h3>
-                        <ul className="mt-2 flex flex-col gap-4">
+                        <ul className="flex flex-col gap-4 mt-2">
                             {magnetment.map((i, index) => (
                                 <li key={index}>
                                     <Link
                                         href={i.route}
-                                        className="flex items-center justify-between py-2 px-4 bg-gray-100 rounded-lg font-medium hover:bg-gray-700 hover:text-white transition-all"
+                                        className="flex items-center justify-between px-4 py-2 font-medium transition-all bg-gray-100 rounded-lg hover:bg-gray-700 hover:text-white"
                                     >
                                         <span className="flex items-center gap-2">
                                             {i.icon}
                                             {i.name}
                                         </span>
-                                        <i className="fa-solid fa-caret-right text-xl"></i>
+                                        <i className="text-xl fa-solid fa-caret-right"></i>
                                     </Link>
                                 </li>
                             ))}

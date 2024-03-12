@@ -7,12 +7,9 @@ import SliderImages from "@/Components/client/partials/SliderImages";
 const Home = ({ categories }) => {
     return (
         <ClientLayout title="Trang chủ">
-            <div className="w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start">
-                <NavCategory isHide={false} categories={categories} />
-                <SliderImages />
-            </div>
+            <SliderImages />
             {/* service */}
-            <div className="w-full mt-10 grid grid-cols-4 gap-4 max-tl:px-4 max-mb:grid-cols-1">
+            <div className="w-full mt-6 grid grid-cols-4 gap-4 max-tl:px-4 max-mb:grid-cols-1">
                 {[...Array(4)].map((_, i) => (
                     <div
                         key={i}
@@ -22,8 +19,15 @@ const Home = ({ categories }) => {
                     </div>
                 ))}
             </div>
-            <HomeGridProduct title={"Hàng bán chạy"} />
-            <HomeGridProduct title={"Sản phẩm nổi bật"} />
+            <div className="w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6">
+                <div className="col-span-1">
+                    <NavCategory isHide={false} categories={categories} />
+                </div>
+                <div className="col-span-3">
+                    <HomeGridProduct title={"Hàng bán chạy"} />
+                    <HomeGridProduct title={"Sản phẩm nổi bật"} />
+                </div>
+            </div>
 
             <div className="w-full mt-12 min-h-[200px] max-tl:px-4">
                 <div className="flex items-center justify-between">
@@ -43,6 +47,7 @@ const Home = ({ categories }) => {
                     ))}
                 </div>
             </div>
+            
             <div className="w-full mt-12 min-h-[200px] max-tl:px-4">
                 <div className="flex items-center justify-between">
                     <h2 className="uppercase font-bold text-3xl">

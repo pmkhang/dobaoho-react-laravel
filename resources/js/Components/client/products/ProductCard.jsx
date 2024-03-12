@@ -4,10 +4,10 @@ import { Link } from "@inertiajs/react";
 const ProductCard = () => {
     return (
         <div className="w-full rounded-lg">
-            <div className="w-full  bg-white border border-gray-200 rounded-lg shadow">
+            <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
                 <Link href={route("product-detail")}>
                     <img
-                        className="w-full h-[200px] p-4 object-contain rounded-t-lg"
+                        className="w-full h-[150px] p-4 object-contain rounded-t-lg"
                         src="https://img.lazcdn.com/g/p/a63e8931ab32a237f711c97e779fdae4.jpg_960x960q80.jpg_.webp"
                         alt="product image"
                     />
@@ -29,10 +29,10 @@ const ProductCard = () => {
                         <h5 className="min-h-[84px] font-semibold tracking-tight text-gray-900 ">
                             {`${"Phản quang Không thấm nước Trọng lượng nhẹ Đạp xe Cảnh báo Công việc ban đêm".substring(
                                 0,
-                                92
+                                60
                             )}${
                                 "Phản quang Không thấm nước Trọng lượng nhẹ Đạp xe Cảnh báo Công việc ban đêm"
-                                    .length > 92
+                                    .length > 60
                                     ? "..."
                                     : ""
                             }`}
