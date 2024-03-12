@@ -1,4 +1,4 @@
-const RecursiveCategory2 = (categories, parent = 0, result = []) => {
+const RecursiveCategory2 = (categories, parent = "0", result = []) => {
     const children = categories.filter(
         (category) => category.parent_id === parent
     );
