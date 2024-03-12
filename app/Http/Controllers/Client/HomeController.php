@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $categories = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
-            ->orderBy('created_at', 'DESC')
+            // ->orderBy('created_at', 'DESC')
             ->get();
             
         return Inertia::render('Client/Home', [

@@ -2,6 +2,8 @@ import React from "react";
 import Footer from "@/Components/client/partials/Footer";
 import Header from "@/Components/client/partials/Header";
 import { Head } from "@inertiajs/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ClientLayout = ({ children, title }) => {
     return (
@@ -15,6 +17,8 @@ const ClientLayout = ({ children, title }) => {
             <main className="max-w-dt my-0 mx-auto p-2 h-fit my-4">
                 {children}
             </main>
+            <ToastContainer position="bottom-right" />
+
             <Footer />
         </div>
     );

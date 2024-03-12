@@ -24,7 +24,6 @@ const Register = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
         post(route("register"));
     };
 
@@ -112,6 +111,7 @@ const Register = () => {
                     <Link
                         href={route("login")}
                         className="text-sm text-blue-600 hover:underline"
+                        disabled={processing}
                     >
                         Đăng nhập tại đây
                     </Link>

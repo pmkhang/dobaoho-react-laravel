@@ -55,7 +55,8 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => 'Đăng nhập thất bại. Bạn đã sai email hoặc mật khẩu !',
+                'status' => true,
+                'message' => 'Email không tồn tại hoặc sai mật khẩu !',
             ]);
         }
 

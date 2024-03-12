@@ -1,6 +1,6 @@
 import InputText from "@/Components/InputText";
 import ClientLayout from "@/Layouts/ClientLayout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/Components/Button";
 import Checkbox from "@/Components/Checkbox";
 import { Link, useForm } from "@inertiajs/react";
@@ -13,6 +13,7 @@ const Login = ({ status, message }) => {
         remember: false,
     });
 
+
     useEffect(() => {
         return () => {
             Object.keys(data).forEach((key) => reset(key));
@@ -22,14 +23,15 @@ const Login = ({ status, message }) => {
     useEffect(() => {
         if (status) {
             toast.success(message);
+        } else if (errors.status) {
+            toast.error(errors.message);
         } else {
             toast.error(message);
         }
-    }, []);
+    }, [errors.status, errors.message, status, message]);
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
         post(route("login"));
     };
 
@@ -43,6 +45,11 @@ const Login = ({ status, message }) => {
                     className="w-1/3 flex flex-col mx-auto gap-6 mt-8"
                     onSubmit={submit}
                 >
+                    {errors.message && (
+                        <span className="text-base text-red-500 font-bold text-center">
+                            {errors.message}
+                        </span>
+                    )}
                     <InputText
                         label="Email"
                         id="email"
@@ -77,6 +84,7 @@ const Login = ({ status, message }) => {
                             Bạn quên mật khẩu ?
                         </Link>
                     </div>
+
                     <Button text={"Đăng nhập"} className={"mt-3"} />
                 </form>
                 <div className="w-full flex gap-3 items-center justify-center mt-4">
@@ -84,6 +92,7 @@ const Login = ({ status, message }) => {
                     <Link
                         href={route("register")}
                         className="text-sm text-blue-600 hover:underline"
+                        disabled={processing}
                     >
                         Đăng ký tại đây
                     </Link>
