@@ -40,7 +40,7 @@ const Login = ({ status, message }) => {
                     Đăng nhập
                 </h3>
                 <form
-                    className="w-1/3 flex flex-col mx-auto gap-4 mt-8"
+                    className="w-1/3 flex flex-col mx-auto gap-6 mt-8"
                     onSubmit={submit}
                 >
                     <InputText

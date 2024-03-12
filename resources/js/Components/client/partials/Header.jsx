@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
-const Header = ({ authen }) => {
+const Header = () => {
+    const user = usePage().props.auth.user;
     return (
         <header className="w-full shadow-lg sticky top-0 bg-white z-10">
             <div className="w-full max-w-dt my-0 mx-auto h-fit py-4 flex justify-between items-center px-2 gap-10">
@@ -42,7 +43,7 @@ const Header = ({ authen }) => {
                         <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                             <i className="fa-solid fa-cart-shopping text-xl text-blue-600"></i>
                         </li>
-                        {authen ? (
+                        {user ? (
                             <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                                 <i className="fa-solid fa-circle-user text-xl text-blue-600"></i>
                             </li>
@@ -71,7 +72,7 @@ const Header = ({ authen }) => {
                         <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                             <i className="fa-solid fa-cart-shopping text-xl text-blue-600"></i>
                         </li>
-                        {authen ? (
+                        {user ? (
                             <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                                 <i className="fa-solid fa-circle-user text-xl text-blue-600"></i>
                             </li>

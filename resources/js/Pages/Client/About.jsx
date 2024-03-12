@@ -1,9 +1,9 @@
 import ClientLayout from "@/Layouts/ClientLayout";
 import React from "react";
 
-const About = ({ auth }) => {
+const About = () => {
     return (
-        <ClientLayout title={"Về chúng tôi"} authen={auth.user}>
+        <ClientLayout title={"Về chúng tôi"} >
             About
         </ClientLayout>
     );
