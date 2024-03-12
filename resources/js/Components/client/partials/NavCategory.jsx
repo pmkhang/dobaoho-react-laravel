@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
+import RecursiveCategory2 from "@/Utils/RecursiveCategory2";
 
 const NavCategory = ({ isHide, categories }) => {
     const [isHideNav, setIsHideNav] = useState(isHide);
     const [isTabletScreen, setIsTabletScreen] = useState(isHide);
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [dbCategories] = useState(RecursiveCategory2(categories));
 
     useEffect(() => {
         const handleResize = () => {
@@ -56,7 +58,6 @@ const NavCategory = ({ isHide, categories }) => {
     const childrenCategories = (category) => {
         return (
             <>
-                {tabletScreenCategories(category)}
                 {category?.children.length > 0 &&
                     hoveredItem === category?.id && (
                         <ul
@@ -99,6 +100,7 @@ const NavCategory = ({ isHide, categories }) => {
                             isTabletScreen || setHoveredItem(null)
                         }
                     >
+                        {tabletScreenCategories(category)}
                         {childrenCategories(category)}
                     </li>
                 ))}
@@ -115,7 +117,7 @@ const NavCategory = ({ isHide, categories }) => {
                 <i className="fa-solid fa-bars"></i>
                 <span>Danh mục sản phẩm</span>
             </h2>
-            {dataCategories(categories)}
+            {dataCategories(dbCategories)}
         </div>
     );
 };

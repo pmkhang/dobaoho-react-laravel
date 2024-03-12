@@ -12,6 +12,21 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
+
+    private function convertSlug(string $string): string
+    {
+        $str = strtolower($string);
+        $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
+        $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
+        $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
+        $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
+        $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
+        $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
+        $str = preg_replace("/(đ)/", 'd', $str);
+        $str = preg_replace("/( )/", '-', $str);
+        return $str;
+    }
+
     public function index()
     {
         $categories = Category::select('id', 'name', 'parent_id', 'status')
@@ -47,13 +62,17 @@ class CategoryController extends Controller
             'status.required' => 'Trường này là bắt buộc',
         ]);
 
-        $category = new Category();
-        $category->name = $request->name;
+        $data = [
+            'id' => $this->convertSlug($request->name),
+            'name' => $request->name,
+            'status' => $request->status,
+            'parent_id' => 0,
+        ];
+
         if (!empty($request->parent_id)) {
-            $category->parent_id = $request->parent_id;
+            $data['parent_id'] = $request->parent_id;
         }
-        $category->status = $request->status;
-        $category->save();
+        $category = Category::create($data);
 
         return redirect()->route('category')->with([
             'status' => true,
@@ -78,24 +97,33 @@ class CategoryController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $category = Category::findOrFail($id);
-        $oldParentID = $category->parent_id;
-        $category->name = $request->name;
         if ($category->id == $request->parent_id) {
             return redirect()->route('editCategory', ['id' => $id])->with([
                 'status' => false,
                 'message' => 'Không thể chọn thể loại cấp trên bằng chính thể loại đó'
             ]);
-        } elseif ($request->has('parent_id')) {
-            $category->parent_id = $request->parent_id;
-        } else {
-            $category->parent_id = null;
+        }
+        $data = [
+            'id' => $this->convertSlug($request->name),
+            'name' => $request->name,
+            'status' => $request->status,
+            'parent_id' => 0
+        ];
+        if ($request->has('parent_id')) {
+            $data['parent_id'] = $request->parent_id;
+        }
+        $category->update($data);
+        
+        $categories = Category::select('id', 'name', 'parent_id')->where('parent_id', $id)->get();
+        foreach ($categories as $cate) {
+            $cate->update([
+                'parent_id' => $data['id']
+            ]);
         }
 
-        $category->status = $request->status;
-        $category->save();
         return redirect()->route('category')->with([
             'status' => true,
-            'message' => "Đã cập nhật $category->name thành công"
+            'message' => "Đã cập nhật thành công"
         ]);
     }
 

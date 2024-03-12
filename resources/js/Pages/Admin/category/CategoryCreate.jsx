@@ -13,9 +13,7 @@ const CategoryCreate = ({ categories }) => {
         status: "",
     });
 
-    const recurCategories =
-        categories.length > 0 ? RecursiveCategory(categories) : [];
-
+    const recurCategories = RecursiveCategory(categories);
     const status = [
         { id: 1, name: "Hoạt động" },
         { id: 2, name: "Không hoạt động" },

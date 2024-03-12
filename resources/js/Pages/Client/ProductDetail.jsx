@@ -6,12 +6,13 @@ import ProductInfoDetail from "@/Components/client/products/ProductInfoDetail";
 import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
 import React from "react";
-import { Head } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 
-const ProductDetail = () => {
+const ProductDetail = ({ categories }) => {
     return (
         <ClientLayout title="Sản phẩm">
-            <NavCategory isHide={true} />
+            <NavCategory isHide={true} categories={categories} />
+
             <div className="min-h-[1000px] bg-white mt-4 rounded-xl">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start">
                     <ProductImageDetail />

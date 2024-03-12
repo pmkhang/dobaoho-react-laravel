@@ -1,4 +1,4 @@
-const RecursiveCategory = (categories, parent = 0, str = "", result = []) => {
+const recursiveCategory = (categories, parent = "0", str = "", result = []) => {
     const children = categories.filter(
         (category) => category.parent_id === parent
     );
@@ -8,9 +8,9 @@ const RecursiveCategory = (categories, parent = 0, str = "", result = []) => {
             name: `${str}${category.name}`,
         };
         result.push(newCategory);
-        RecursiveCategory(categories, category.id, `${str}-- `, result);
+        recursiveCategory(categories, category.id, `${str}-- `, result);
     }
     return result;
 };
 
-export default RecursiveCategory;
+export default recursiveCategory;

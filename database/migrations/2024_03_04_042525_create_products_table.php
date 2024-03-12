@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('price', 13);
             $table->tinyInteger('rate_avg')->default(0);
             $table->tinyInteger('status')->default(1)->comment("1: Active, 2: Inactive, 3: Deleted");
-            $table->unsignedBigInteger('category_id');
+            $table->string('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });

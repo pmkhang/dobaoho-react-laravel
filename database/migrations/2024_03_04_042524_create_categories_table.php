@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
             $table->string('name');
             $table->tinyInteger('status')->default(1)->comment("1: Active, 2: Inactive");
-            $table->tinyInteger('parent_id')->default(0);
+            $table->string('parent_id')->default(0);
             $table->timestamps();
         });
     }
