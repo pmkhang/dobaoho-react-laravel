@@ -7,6 +7,7 @@ import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
 import React from "react";
 import { usePage } from "@inertiajs/react";
+import ProductRate from "@/Components/client/products/ProductRate";
 
 const ProductDetail = ({ categories }) => {
     return (
@@ -18,10 +19,13 @@ const ProductDetail = ({ categories }) => {
                     <ProductImageDetail />
                     <ProductInfoDetail />
                     <ProductDescDetail />
+                    <ProductRate />
                     <ProductRateDetail />
                 </div>
             </div>
-            <HomeGridProduct title={"Sản phẩm liên quan"} />
+            <div className="mt-10">
+                <HomeGridProduct title={"Sản phẩm liên quan"} cols="5" />
+            </div>
         </ClientLayout>
     );
 };

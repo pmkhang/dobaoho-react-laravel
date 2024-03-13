@@ -1,12 +1,8 @@
 import { Button as FlowbiteButton } from "flowbite-react";
-const Button = ({
-    color = "blue",
-    text,
-    className,
-    ...props
-}) => {
+const Button = ({ color = "blue", text, className, ...props }) => {
     return (
         <FlowbiteButton
+            type="submit"
             className={`w-full ${className}`}
             color={color}
             {...props}

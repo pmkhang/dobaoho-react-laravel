@@ -1,50 +1,53 @@
 import React from "react";
+import { Avatar, Blockquote, Rating } from "flowbite-react";
 
 const CustommerRate = () => {
     return (
-        <div className="my-4 flex gap-4 py-4">
-            <img
-                className="w-[60px] h-[60px] rounded-full object-contain border-2"
-                src="https://img.lazcdn.com/g/p/a63e8931ab32a237f711c97e779fdae4.jpg_960x960q80.jpg_.webp"
-                alt="avatar-user"
-            />
-            <div className="flex flex-col ">
-                <strong className="text-lg">Tên khách hàng: </strong>
-                <i>Thời gian</i>
-                <div className="flex gap-2">
-                    <span>Đánh giá:</span>
-                    <div className="flex items-center space-x-1 rtl:space-x-reverse">
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-black"></i>
-                    </div>
+        <figure className="w-full border-2 rounded-lg p-4">
+            <figcaption className="flex items-center space-x-3">
+                <Avatar
+                    rounded
+                    size="xs"
+                    img="https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                    alt="profile picture"
+                />
+                <div className="flex items-center divide-x-2 divide-gray-300">
+                    <cite className="pr-3 font-medium text-gray-900 ">
+                        Custommer name
+                    </cite>
+                    <cite className="pl-3 text-sm text-gray-500 dark:text-gray-400">
+                        Times
+                    </cite>
                 </div>
-                <span className="text-lg">
-                    Tiêu đề:
-                    <strong>Lorem ipsum dolor sit amet</strong>
-                </span>
-                <span className="text-lg">
-                    Nội dung:
-                    <strong>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Illo a debitis quaerat doloribus, beatae animi
-                        consectetur expedita! Earum.
-                    </strong>
-                </span>
+            </figcaption>
+            <div className="my-4 flex items-center">
+                <Rating size="sm">
+                    <Rating.Star />
+                    <Rating.Star />
+                    <Rating.Star />
+                    <Rating.Star />
+                    <Rating.Star filled={false} />
+                </Rating>
             </div>
-        </div>
+
+            <Blockquote>
+                <p className="text-base font-semibold text-gray-900 ">
+                    "Flowbite is just awesome. It contains tons of predesigned
+                    components and pages starting from login screen to complex
+                    dashboard. Perfect choice for your next SaaS application."
+                </p>
+            </Blockquote>
+        </figure>
     );
 };
 const ProductRateDetail = () => {
     return (
         <div className="col-span-5 mt-10 px-4">
-            <h3 className="text-3xl font-bold">Đánh giá sản phẩm:</h3>
-
-            {[...Array(5)].map((_, i) => (
-                <CustommerRate key={i} />
-            ))}
+            <div className="flex flex-col gap-4 my-4">
+                {[...Array(5)].map((_, i) => (
+                    <CustommerRate key={i} />
+                ))}
+            </div>
         </div>
     );
 };
