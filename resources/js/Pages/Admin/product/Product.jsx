@@ -1,11 +1,12 @@
 import ModalDelConfirm from "@/Components/ModalDelConfirm";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Link } from "@inertiajs/react";
+import { Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Product = ({ status, message, products, categories }) => {
-    const [delProductData, setDelProductData] = useState({
+    const [openModal, setOpentModal] = useState({
         name: "",
         delRoute: null,
         showModal: false,
@@ -17,6 +18,18 @@ const Product = ({ status, message, products, categories }) => {
             toast.error(message);
         }
     }, []);
+
+    const tableColumns = [
+        { label: "No.", className: "bg-gray-500 text-white" },
+        { label: "Hình", className: "bg-gray-500 text-white" },
+        { label: "Tên sản phẩm", className: "bg-gray-500 text-white" },
+        { label: "Thể loại", className: "bg-gray-500 text-white" },
+        { label: "Giá", className: "bg-gray-500 text-white" },
+        { label: "Đánh giá", className: "bg-gray-500 text-white" },
+        { label: "Trạng thái", className: "bg-gray-500 text-white" },
+        { label: "Hành động", className: "bg-gray-500 text-white" },
+    ];
+
     return (
         <AdminLayout title="Sản phẩm">
             <div className="flex flex-col">
@@ -38,71 +51,41 @@ const Product = ({ status, message, products, categories }) => {
                         Thêm sản phẩm mới
                     </Link>
                 </div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
-                    <table className="w-full text-sm text-left text-gray-500">
-                        <thead className="text-base text-white uppercase bg-gray-700 ">
-                            <tr className="flex items-center">
-                                <th scope="col" className="w-16 px-6 py-3">
-                                    No.
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="w-28 text-center px-6 py-3"
+                <div className="overflow-x-auto mt-8">
+                    <Table>
+                        <Table.Head>
+                            {tableColumns.map((i) => (
+                                <Table.HeadCell
+                                    key={i.label}
+                                    className={i.className}
                                 >
-                                    Hình
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Tên sản phẩm
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Thể loại
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Giá
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Đánh giá sao
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Trạng thái
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Hành động
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                    {i.label}
+                                </Table.HeadCell>
+                            ))}
+                        </Table.Head>
+                        <Table.Body>
                             {products.map((i, index) => (
-                                <tr
-                                    key={i?.id}
-                                    className={`flex items-center text-base ${
-                                        index % 2 == 0 ? "" : "bg-gray-300"
-                                    }`}
-                                >
-                                    <th className="w-16 px-6 py-2 font-bold whitespace-nowrap ">
+                                <Table.Row key={i.id} className="bg-white">
+                                    <Table.Cell>
                                         {index + 1 < 10
                                             ? `0${index + 1}.`
                                             : `${index + 1}.`}
-                                    </th>
-                                    <td className="w-28  px-6 py-2 ">
+                                    </Table.Cell>
+                                    <Table.Cell>
                                         <img
                                             src={i?.product_images[0]?.image}
                                             alt={i?.product_images[0]?.id}
-                                            className="block w-[60px] h-[60px] object-cover rounded-xl"
+                                            className="block w-[40px] h-[40px] object-cover rounded-xl"
                                         />
-                                    </td>
-                                    <td className="flex-1 px-6 py-2  font-bold">
-                                        {i?.name}
-                                    </td>
-                                    <td className="flex-1 px-6 py-2  font-bold">
+                                    </Table.Cell>
+                                    <Table.Cell>{i?.name}</Table.Cell>
+                                    <Table.Cell>
                                         {categories?.find(
                                             (j) => j?.id === i?.category_id
                                         )?.name || "--"}
-                                    </td>
-                                    <td className="flex-1 px-6 py-2  font-bold">
-                                        {i?.price}
-                                    </td>
-                                    <td className="flex-1 px-6 py-2  font-bold">
+                                    </Table.Cell>
+                                    <Table.Cell>{i?.price}</Table.Cell>
+                                    <Table.Cell>
                                         {[...Array(i?.rate_avg)].map((_, j) => (
                                             <i
                                                 key={j}
@@ -117,85 +100,60 @@ const Product = ({ status, message, products, categories }) => {
                                                 ></i>
                                             )
                                         )}
-                                    </td>
-                                    <td
-                                        className={`flex-1 px-6 py-2 font-bold ${
-                                            i?.status === 1
-                                                ? "text-green-600"
-                                                : "text-red-600"
-                                        }`}
-                                    >
-                                        {i?.status === 1
-                                            ? "Đang hoạt động"
-                                            : "Không hoạt động"}
-                                    </td>
-                                    <td className="flex-1 px-6 py-2 flex items-center gap-4">
-                                        <Link
-                                            href={route("editProduct", i?.id)}
-                                            className="text-blue-500"
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <span
+                                            className={`${
+                                                i?.status === 1
+                                                    ? "text-green-600"
+                                                    : "text-red-600"
+                                            }`}
                                         >
-                                            Sửa
-                                        </Link>
-                                        <button
-                                            onClick={() => {
-                                                setDelProductData({
-                                                    name: i?.name,
-                                                    delRoute: route(
-                                                        "destroyProduct",
-                                                        i?.id
-                                                    ),
-                                                    showModal: true,
-                                                });
-                                            }}
-                                            className="text-red-500 cursor-pointer"
-                                        >
-                                            Xoá
-                                        </button>
-                                    </td>
-                                </tr>
+                                            {i?.status === 1
+                                                ? "Đang hoạt động"
+                                                : "Không hoạt động"}
+                                        </span>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <div className="flex items-center gap-4">
+                                            <Link
+                                                href={route(
+                                                    "editProduct",
+                                                    i?.id
+                                                )}
+                                                className="text-blue-500 px-2 py-1"
+                                            >
+                                                Sửa
+                                            </Link>
+                                            <button
+                                                onClick={() => {
+                                                    setOpentModal({
+                                                        name: i?.name,
+                                                        delRoute: route(
+                                                            "destroyProduct",
+                                                            i?.id
+                                                        ),
+                                                        showModal: true,
+                                                    });
+                                                }}
+                                                className="text-red-500 px-2 py-1"
+                                            >
+                                                Xoá
+                                            </button>
+                                        </div>
+                                    </Table.Cell>
+                                </Table.Row>
                             ))}
-                        </tbody>
-                        <tfoot className="text-base bg-gray-500 text-white">
-                            <tr className="flex items-center">
-                                <th scope="col" className="w-16 px-6 py-3">
-                                    No.
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="w-28 text-center px-6 py-3"
-                                >
-                                    Hình
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Tên sản phẩm
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Thể loại
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Giá
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Đánh giá sao
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Trạng thái
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Hành động
-                                </th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                        </Table.Body>
+                    </Table>
                 </div>
             </div>
-            {delProductData?.showModal && (
-                <ModalDelConfirm
-                    content={"Sản phẩm " + delProductData.name + " này"}
-                    delRoute={delProductData?.delRoute}
-                    setDelCategoryData={setDelProductData}
-                />
-            )}
+            <ModalDelConfirm
+                content={"Sản phẩm " + openModal.name + " này"}
+                delRoute={openModal?.delRoute}
+                openModal={openModal?.showModal}
+                setOpentModal={setOpentModal}
+            />
         </AdminLayout>
     );
 };

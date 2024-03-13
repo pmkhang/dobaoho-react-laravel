@@ -45,7 +45,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('', function () {
             return redirect()->route('dashboard');
-        });
+        })->name('admin');
 
         Route::prefix('/dashboard')->controller(DashboardController::class)->group(function () {
             Route::get('', 'index')->name('dashboard');

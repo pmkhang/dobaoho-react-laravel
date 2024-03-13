@@ -1,11 +1,12 @@
-import AdminLayout from "@/Layouts/AdminLayout";
-import React, { useEffect, useState } from "react";
-import { Link } from "@inertiajs/react";
-import { toast } from "react-toastify";
 import ModalDelConfirm from "@/Components/ModalDelConfirm";
+import AdminLayout from "@/Layouts/AdminLayout";
+import { Link } from "@inertiajs/react";
+import { Table } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const User = ({ status, message, users }) => {
-    const [delUserData, setDelUserData] = useState({
+    const [openModal, setOpentModal] = useState({
         name: "",
         delRoute: null,
         showModal: false,
@@ -17,6 +18,18 @@ const User = ({ status, message, users }) => {
             toast.error(message);
         }
     }, []);
+
+    const tableColumns = [
+        { label: "No.", className: "bg-gray-500 text-white" },
+        { label: "Avatar", className: "bg-gray-500 text-white" },
+        { label: "Tên thành viên", className: "bg-gray-500 text-white" },
+        { label: "Email", className: "bg-gray-500 text-white" },
+        { label: "Số điện thoại", className: "bg-gray-500 text-white" },
+        { label: "Cấp thành viên", className: "bg-gray-500 text-white" },
+        { label: "Trạng thái", className: "bg-gray-500 text-white" },
+        { label: "Hành động", className: "bg-gray-500 text-white" },
+    ];
+
     return (
         <AdminLayout title="Thành viên">
             <div className="flex flex-col">
@@ -32,177 +45,103 @@ const User = ({ status, message, users }) => {
                         Thêm thành viên mới
                     </Link>
                 </div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
-                    <table className="w-full text-sm text-left text-gray-500">
-                        <thead className="text-base text-white uppercase bg-gray-700 ">
-                            <tr className="flex items-center">
-                                <th scope="col" className="w-16 px-6 py-3">
-                                    No.
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="w-28 text-center px-6 py-3"
+                <div className="overflow-x-auto mt-8">
+                    <Table>
+                        <Table.Head>
+                            {tableColumns.map((i) => (
+                                <Table.HeadCell
+                                    key={i.label}
+                                    className={i.className}
                                 >
-                                    Avatar
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Tên thành viên
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Email
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Số điện thoại
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Cấp thành viên
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Trạng thái
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Hành động
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                    {i.label}
+                                </Table.HeadCell>
+                            ))}
+                        </Table.Head>
+                        <Table.Body className="divide-y">
                             {users.map((i, index) => (
-                                <tr
-                                    key={i?.id}
-                                    className={`flex items-center text-base ${
-                                        index % 2 == 0 ? "" : "bg-gray-300"
-                                    }`}
-                                >
-                                    <th
-                                        scope="col"
-                                        className="w-16 px-6 py-2 font-bold whitespace-nowrap "
-                                    >
+                                <Table.Row key={i.id} className="bg-white">
+                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 ">
                                         {index + 1 < 10
                                             ? `0${index + 1}.`
                                             : `${index + 1}.`}
-                                    </th>
-                                    <td
-                                        scope="col"
-                                        className="w-28  px-6 py-2 "
-                                    >
+                                    </Table.Cell>
+                                    <Table.Cell>
                                         <img
                                             src={i?.avatar}
                                             alt={i?.avatar}
                                             className="block w-[60px] h-[60px] object-cover rounded-xl"
                                         />
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2  font-bold"
-                                    >
-                                        {i?.name}
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2  font-bold"
-                                    >
+                                    </Table.Cell>
+                                    <Table.Cell>{i?.name}</Table.Cell>
+                                    <Table.Cell>
                                         {`${i?.email.substring(0, 17)}${
                                             i?.email.length > 17 ? "..." : ""
                                         }`}
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2  font-bold"
-                                    >
-                                        {i?.phone}
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className={`flex-1 px-6 py-2  font-bold ${
-                                            i?.role === 1
-                                                ? "text-red-600"
-                                                : "text-blue-600"
-                                        }`}
-                                    >
-                                        {i?.role === 1 ? "Admin" : "Người dùng"}
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className={`flex-1 px-6 py-2 font-bold ${
-                                            i?.status === 1
-                                                ? "text-green-600"
-                                                : "text-red-600"
-                                        }`}
-                                    >
-                                        {i?.status === 1
-                                            ? "Đang hoạt động"
-                                            : "Không hoạt động"}
-                                    </td>
-                                    <td
-                                        scope="col"
-                                        className="flex-1 px-6 py-2 flex items-center gap-4"
-                                    >
-                                        <Link
-                                            href={route("editUser", i?.id)}
-                                            className="text-blue-500"
+                                    </Table.Cell>
+                                    <Table.Cell>{i?.phone}</Table.Cell>
+                                    <Table.Cell>
+                                        <span
+                                            className={`${
+                                                i?.role === 1
+                                                    ? "text-red-600"
+                                                    : "text-blue-600"
+                                            }`}
                                         >
-                                            Sửa
-                                        </Link>
-                                        <button
-                                            onClick={() => {
-                                                setDelUserData({
-                                                    name: i?.name,
-                                                    delRoute: route(
-                                                        "destroyUser",
-                                                        i?.id
-                                                    ),
-                                                    showModal: true,
-                                                });
-                                            }}
-                                            className="text-red-500 cursor-pointer"
+                                            {i?.role === 1
+                                                ? "Admin"
+                                                : "Người dùng"}
+                                        </span>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <span
+                                            className={`${
+                                                i?.status === 1
+                                                    ? "text-green-600"
+                                                    : "text-red-600"
+                                            }`}
                                         >
-                                            Xoá
-                                        </button>
-                                    </td>
-                                </tr>
+                                            {i?.status === 1
+                                                ? "Đang hoạt động"
+                                                : "Không hoạt động"}
+                                        </span>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <div className="flex items-center gap-4">
+                                            <Link
+                                                href={route("editUser", i?.id)}
+                                                className="text-blue-500 px-2 py-1"
+                                            >
+                                                Sửa
+                                            </Link>
+                                            <button
+                                                onClick={() => {
+                                                    setOpentModal({
+                                                        name: i?.name,
+                                                        delRoute: route(
+                                                            "destroyUser",
+                                                            i?.id
+                                                        ),
+                                                        showModal: true,
+                                                    });
+                                                }}
+                                                className="text-red-500 px-2 py-1"
+                                            >
+                                                Xoá
+                                            </button>
+                                        </div>
+                                    </Table.Cell>
+                                </Table.Row>
                             ))}
-                        </tbody>
-                        <tfoot className="text-base bg-gray-500 text-white">
-                            <tr className="flex items-center">
-                                <th scope="col" className="w-16 px-6 py-3">
-                                    No.
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="w-28 text-center px-6 py-3"
-                                >
-                                    Avatar
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Tên thành viên
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Email
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Số điện thoại
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Cấp thành viên
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Trạng thái
-                                </th>
-                                <th scope="col" className="flex-1 px-6 py-3">
-                                    Hành động
-                                </th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                        </Table.Body>
+                    </Table>
                 </div>
             </div>
-            {delUserData?.showModal && (
-                <ModalDelConfirm
-                    content={"Sản phẩm " + delUserData.name + " này"}
-                    delRoute={delUserData?.delRoute}
-                    setDelCategoryData={setDelUserData}
-                />
-            )}
+            <ModalDelConfirm
+                content={"Thành viên " + openModal.name}
+                delRoute={openModal?.delRoute}
+                openModal={openModal?.showModal}
+                setOpentModal={setOpentModal}
+            />
         </AdminLayout>
     );
 };

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->tinyInteger('rate_avg')->default(0);
             $table->tinyInteger('status')->default(1)->comment("1: Active, 2: Inactive, 3: Deleted");
             $table->string('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

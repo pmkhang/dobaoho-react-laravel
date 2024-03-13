@@ -23,22 +23,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-                function ($attribute, $value, $fail) {
-                    if (
-                        $this->input('status') == 0 &&
-                        DB::table('categories')
-                        ->where('name', $value)
-                        ->where('status', 0)
-                        ->exists()
-                    ) {
-                        $fail('Tên đã tồn tại.');
-                    }
-                },
-            ],
+            'name' => 'required|unique:categories,name',
             'status' => 'required',
         ];
     }

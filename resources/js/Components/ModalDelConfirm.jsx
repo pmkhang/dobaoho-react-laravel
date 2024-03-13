@@ -1,53 +1,64 @@
 import React from "react";
-import Button from "./Button";
-import { Link, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
-const ModalDelConfirm = ({ content, delRoute, setDelCategoryData }) => {
+import { Button, Modal } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+
+const ModalDelConfirm = ({ content, delRoute, setOpentModal, openModal }) => {
     const { get } = useForm();
     const submitDel = (e) => {
         e.preventDefault();
         get(delRoute);
     };
     return (
-        <div
-            className="absolute h-[100vh] top-0  right-0 left-0 bg-black bg-opacity-40 flex items-center justify-center"
-            onClick={() => {
-                setDelCategoryData({
+        <Modal
+            show={openModal}
+            size="md"
+            onClose={() =>
+                setOpentModal({
                     showModal: false,
-                });
-            }}
+                })
+            }
+            popup
         >
-            <div
-                className="w-1/4 min-h-[200px] bg-white rounded-lg p-4 mb-[100px]"
-                onClick={(e) => {
-                    e.stopPropagation();
-                }}
-            >
-                <h3 className="text-center text-2xl mt-4 font-bold uppercase text-red-800">
-                    Bạn có chắc muốn xoá ?
-                </h3>
-                <h3 className="text-center text-xl mt-4 font-bold">
-                    {content} ?
-                </h3>
-                <div className="flex items-center gap-3 mt-8">
-                    <Button
-                        text={"Huỷ"}
-                        className={"bg-gray-500"}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setDelCategoryData({
-                                showModal: false,
-                            });
-                        }}
-                    />
-                    <Button
-                        text={"Xoá"}
-                        className={"bg-red-800"}
-                        onClick={submitDel}
-                    />
+            <Modal.Header />
+            <Modal.Body>
+                <div className="text-center">
+                    <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                    <h3 className="text-3xl font-bold mb-3 text-gray-500">
+                        Bạn có chắc muốn xoá ?
+                    </h3>
+                    <p className="mb-5 text-xl font-normal text-gray-500">
+                        {content}
+                    </p>
+                    <div className="flex justify-center gap-4">
+                        <Button
+                            color="failure"
+                            onClick={(e) => {
+                                submitDel(e);
+                                setOpentModal({
+                                    showModal: false,
+                                });
+                            }}
+                            className="w-full"
+                        >
+                            Xoá
+                        </Button>
+                        <Button
+                            color="gray"
+                            onClick={() =>
+                                setOpentModal({
+                                    showModal: false,
+                                })
+                            }
+                            className="w-full"
+                        >
+                            Huỷ
+                        </Button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </Modal.Body>
+        </Modal>
     );
 };
 

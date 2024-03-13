@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required|string|unique:categories,name,' . $this->id,
             'desc' => 'required|string',
-            'category_id' => 'required|integer',
+            'category_id' => 'required',
             'price' => 'required|numeric',
             'status' => 'required|integer',
 

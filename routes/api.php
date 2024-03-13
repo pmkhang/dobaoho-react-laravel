@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\ProductController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,5 @@ Route::get('createAdmin', function () {
         'password' => 'Admin@123'
     ]);
 });
+
+Route::get('product-test', [ProductController::class, 'getProductsByCategory']);

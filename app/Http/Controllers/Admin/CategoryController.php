@@ -53,15 +53,6 @@ class CategoryController extends Controller
     }
     public function store(StoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:categories,name',
-            'status' => 'required',
-        ], [
-            'name.required' => 'Trường này là bắt buộc',
-            'name.unique' => 'Tên thể loại này đã tồn tại',
-            'status.required' => 'Trường này là bắt buộc',
-        ]);
-
         $data = [
             'id' => $this->convertSlug($request->name),
             'name' => $request->name,
@@ -107,20 +98,16 @@ class CategoryController extends Controller
             'id' => $this->convertSlug($request->name),
             'name' => $request->name,
             'status' => $request->status,
-            'parent_id' => 0
+            'parent_id' => $request->parent_id ?? 0
         ];
-        if ($request->has('parent_id')) {
-            $data['parent_id'] = $request->parent_id;
-        }
         $category->update($data);
-        
-        $categories = Category::select('id', 'name', 'parent_id')->where('parent_id', $id)->get();
-        foreach ($categories as $cate) {
-            $cate->update([
-                'parent_id' => $data['id']
+        $newCategoryId = $data['id'];
+        $products = Product::where('category_id', $id)->get();
+        foreach ($products as $product) {
+            $product->update([
+                'category_id' => $newCategoryId
             ]);
         }
-
         return redirect()->route('category')->with([
             'status' => true,
             'message' => "Đã cập nhật thành công"
