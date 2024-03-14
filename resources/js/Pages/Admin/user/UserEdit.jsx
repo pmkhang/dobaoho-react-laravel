@@ -54,7 +54,6 @@ const UserEdit = ({ user }) => {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(data);
         post(route("updateUser", user.id));
     };
     return (

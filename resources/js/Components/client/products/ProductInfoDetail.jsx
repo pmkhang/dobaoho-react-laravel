@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useForm } from "@inertiajs/react";
 
 const ProductInfoDetail = ({ name, price }) => {
     const [activeButton, setActiveButton] = useState(null);
@@ -7,6 +8,7 @@ const ProductInfoDetail = ({ name, price }) => {
     const handleClick = (index) => {
         setActiveButton(index);
     };
+
     return (
         <div className="w-full min-h-[480px] col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 p-4">
             <h5 className="font-semibold tracking-tight text-gray-900 text-3xl">
@@ -50,7 +52,9 @@ const ProductInfoDetail = ({ name, price }) => {
                                     ? "ring-4 ring-orange-400"
                                     : ""
                             }`}
-                            onClick={() => handleClick(i)}
+                            onClick={() => {
+                                handleClick(i);
+                            }}
                         >
                             Loại {i + 1}
                         </button>

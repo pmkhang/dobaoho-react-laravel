@@ -77,7 +77,9 @@ const Selector = forwardRef(
                     ref={select}
                     {...props}
                 >
-                    <option value="">- {optionPlaceHolder} -</option>
+                    {optionPlaceHolder && (
+                        <option value="">- {optionPlaceHolder} -</option>
+                    )}
                     {options?.map((i) => (
                         <option key={i?.id} value={i?.id}>
                             {i?.name}
@@ -85,7 +87,9 @@ const Selector = forwardRef(
                     ))}
                 </select>
                 {message && (
-                    <span className="absolute text-base text-red-500 bottom-[-24px]">{message}</span>
+                    <span className="absolute text-base text-red-500 bottom-[-24px]">
+                        {message}
+                    </span>
                 )}
             </div>
         );

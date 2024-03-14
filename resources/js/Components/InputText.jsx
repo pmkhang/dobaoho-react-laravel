@@ -8,7 +8,7 @@ const InputText = ({
     ...props
 }) => {
     return (
-        <div className="w-full flex flex-col gap-2 relative">
+        <div className="w-full flex flex-col gap-1 relative">
             <label htmlFor={name} className="block font-bold text-gray-900">
                 {label}
                 {required && <i className="text-red-500"> *</i>}
