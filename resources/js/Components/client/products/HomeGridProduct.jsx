@@ -1,26 +1,34 @@
 import React from "react";
 import ProductCard from "./ProductCard";
+import { Link } from "@inertiajs/react";
 
-const HomeGridProduct = ({ title, cols = 4 }) => {
+const HomeGridProduct = ({ title, cols = 4, id, products }) => {
     return (
-        <div className="w-full min-h-[200px] max-tl:px-4 mb-8 max-tl:mt-8">
+        <div className="w-full min-h-[200px] max-tl:px-4 max-tl:mt-8">
             <div className="flex items-center justify-between">
                 <h2 className="uppercase font-bold text-3xl">{title}</h2>
-                <a href="" className="underline max-mb:hidden">
+                <Link href={`#${id}`} className="underline max-mb:hidden">
                     Xem tất cả
-                </a>
+                </Link>
             </div>
             <div
                 className={`w-full mt-4 grid grid-cols-${cols} gap-4 max-tl:grid-cols-3 max-mb:grid-cols-1`}
             >
-                {[...Array(8)].map((_, i) => (
-                    <ProductCard key={i} />
+                {products?.map((i) => (
+                    <ProductCard
+                        key={i?.id}
+                        id={i?.id}
+                        rate_avg={i?.rate_avg}
+                        name={i?.name}
+                        price={i?.price}
+                        img={i?.product_images[0]?.image}
+                    />
                 ))}
             </div>
-            <div className="mt-3 text-end">
-                <a href="#" className="underline p-2 min-mb:hidden">
+            <div className="text-end min-mb:hidden">
+                <Link href={`#${id}`} className="underline p-2 ">
                     Xem tất cả
-                </a>
+                </Link>
             </div>
         </div>
     );

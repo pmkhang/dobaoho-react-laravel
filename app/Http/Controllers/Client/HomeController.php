@@ -15,8 +15,16 @@ class HomeController extends Controller
             ->select('id', 'name', 'parent_id')
             ->get();
             
+        $products = Category::where('status', '>', 0)
+            ->select('id', 'name', 'parent_id')
+            ->with(['products' => function ($query) {
+                $query->with('productImages')->take(8);
+            }])
+            ->get();
+
         return Inertia::render('Client/Home', [
-            'categories' => $categories
+            'categories' => $categories,
+            'products' => $products
         ]);
     }
 }

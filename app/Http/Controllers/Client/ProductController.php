@@ -10,21 +10,32 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function productDetailPage()
+    public function productDetailPage($id)
     {
         $categories = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
             ->get();
+
+        $product = Product::where('status', '>', 0)
+            ->select('id', 'name', 'category_id', 'price', 'status', 'desc', 'rate_avg')
+            ->with('productImages')
+            ->with('category')
+            ->with('productFeedbacks')
+            ->findOrFail($id);
+
+        $productsByCategory = Category::where('status', '>', 0)
+            ->select('id', 'name', 'parent_id')
+            ->with(['products' => function ($query) use ($id) {
+                $query->where('id', '!=', $id)
+                    ->with('productImages')
+                    ->take(10);
+            }])
+            ->findOrFail($product->category_id);
+
         return Inertia::render('Client/ProductDetail', [
-            'categories' => $categories
+            'categories' => $categories,
+            'product' => $product,
+            'productsByCategory' => $productsByCategory
         ]);
-    }
-    public function getProductsByCategory()
-    {
-        $categories = Category::where('status', '>', 0)
-            ->with(['products' => function ($query) {
-                $query->limit(10);
-            }])->get();
-        dd($categories->toArray());
     }
 }

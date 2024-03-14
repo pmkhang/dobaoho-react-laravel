@@ -27,7 +27,10 @@ const User = ({ status, message, users }) => {
         { label: "Số điện thoại", className: "bg-gray-500 text-white" },
         { label: "Cấp thành viên", className: "bg-gray-500 text-white" },
         { label: "Trạng thái", className: "bg-gray-500 text-white" },
-        { label: "Hành động", className: "bg-gray-500 text-white" },
+        {
+            label: "Hành động",
+            className: "bg-gray-500 text-white text-center pr-20",
+        },
     ];
 
     return (
@@ -46,7 +49,7 @@ const User = ({ status, message, users }) => {
                     </Link>
                 </div>
                 <div className="overflow-x-auto mt-8">
-                    <Table>
+                    <Table hoverable>
                         <Table.Head>
                             {tableColumns.map((i) => (
                                 <Table.HeadCell
@@ -59,7 +62,14 @@ const User = ({ status, message, users }) => {
                         </Table.Head>
                         <Table.Body className="divide-y">
                             {users.map((i, index) => (
-                                <Table.Row key={i.id} className="bg-white">
+                                <Table.Row
+                                    key={i.id}
+                                    className={`${
+                                        index % 2 === 0
+                                            ? "bg-white"
+                                            : "bg-slate-200"
+                                    }`}
+                                >
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 ">
                                         {index + 1 < 10
                                             ? `0${index + 1}.`
@@ -69,11 +79,13 @@ const User = ({ status, message, users }) => {
                                         <img
                                             src={i?.avatar}
                                             alt={i?.avatar}
-                                            className="block w-[60px] h-[60px] object-cover rounded-xl"
+                                            className="block w-[30px] h-[30px] object-cover rounded-xl"
                                         />
                                     </Table.Cell>
-                                    <Table.Cell>{i?.name}</Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell className="font-bold">
+                                        {i?.name}
+                                    </Table.Cell>
+                                    <Table.Cell className="font-bold">
                                         {`${i?.email.substring(0, 17)}${
                                             i?.email.length > 17 ? "..." : ""
                                         }`}
@@ -108,8 +120,14 @@ const User = ({ status, message, users }) => {
                                     <Table.Cell>
                                         <div className="flex items-center gap-4">
                                             <Link
+                                                // href={route("editUser", i?.id)}
+                                                className="text-blue-500 px-2 py-1 underline"
+                                            >
+                                                Chi tiết
+                                            </Link>
+                                            <Link
                                                 href={route("editUser", i?.id)}
-                                                className="text-blue-500 px-2 py-1"
+                                                className="text-blue-500 px-2 py-1 underline"
                                             >
                                                 Sửa
                                             </Link>
@@ -124,7 +142,7 @@ const User = ({ status, message, users }) => {
                                                         showModal: true,
                                                     });
                                                 }}
-                                                className="text-red-500 px-2 py-1"
+                                                className="text-red-500 px-2 py-1 underline"
                                             >
                                                 Xoá
                                             </button>

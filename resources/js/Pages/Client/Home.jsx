@@ -4,7 +4,7 @@ import NavCategory from "@/Components/client/partials/NavCategory";
 import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import SliderImages from "@/Components/client/partials/SliderImages";
 
-const Home = ({ categories }) => {
+const Home = ({ categories, products }) => {
     return (
         <ClientLayout title="Trang chủ">
             <SliderImages />
@@ -21,11 +21,20 @@ const Home = ({ categories }) => {
             </div>
             <div className="w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6">
                 <div className="col-span-1">
-                    <NavCategory isHide={false} categories={categories} />
+                    <NavCategory
+                        isHide={false}
+                        categories={categories}
+                    />
                 </div>
-                <div className="col-span-3">
-                    <HomeGridProduct title={"Hàng bán chạy"} />
-                    <HomeGridProduct title={"Sản phẩm nổi bật"} />
+                <div className="col-span-3 p-8 flex flex-col gap-6 rounded-xl bg-white">
+                    {products?.map((i) => (
+                        <HomeGridProduct
+                            key={i?.id}
+                            title={i?.name}
+                            id={i?.id}
+                            products={i?.products}
+                        />
+                    ))}
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Blockquote, Rating } from "flowbite-react";
 
-const CustommerRate = () => {
+const CustommerRate = ({ productFeedbacks }) => {
     return (
         <figure className="w-full border-2 rounded-lg p-4">
             <figcaption className="flex items-center space-x-3">

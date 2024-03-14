@@ -1,6 +1,6 @@
 import React from "react";
 import { Rating } from "flowbite-react";
-const ProductRate = () => {
+const ProductRate = ({ rate_avg }) => {
     return (
         <div className="col-span-5 mt-10 px-4">
             <h3 className="text-3xl font-bold mb-10">Đánh giá sản phẩm:</h3>
@@ -18,7 +18,7 @@ const ProductRate = () => {
             <p className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                 1,745 tổng số đánh giá
             </p>
-            <Rating.Advanced percentFilled={70} className="mb-2">
+            <Rating.Advanced percentFilled={100} className="mb-2">
                 5 sao
             </Rating.Advanced>
             <Rating.Advanced percentFilled={17} className="mb-2">

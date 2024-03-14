@@ -40,4 +40,4 @@ Route::get('createAdmin', function () {
     ]);
 });
 
-Route::get('product-test', [ProductController::class, 'getProductsByCategory']);
+

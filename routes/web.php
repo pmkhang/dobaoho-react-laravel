@@ -33,8 +33,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // });
 
 Route::prefix('')->group(function () {
+
     Route::get('', [HomeController::class, 'index'])->name('home');
-    Route::get('/san-pham-1', [ProductController::class, 'productDetailPage'])->name('product-detail');
+    Route::get('/san-pham/{id}', [ProductController::class, 'productDetailPage'])->name('product-detail');
     Route::get('/ve-chung-toi', function () {
         return Inertia::render('Client/About');
     })->name('about');

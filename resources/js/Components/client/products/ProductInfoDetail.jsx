@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ProductInfoDetail = () => {
+const ProductInfoDetail = ({ name, price }) => {
     const [activeButton, setActiveButton] = useState(null);
     const [quantity, setQuantity] = useState(1);
 
@@ -10,8 +10,7 @@ const ProductInfoDetail = () => {
     return (
         <div className="w-full min-h-[480px] col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 p-4">
             <h5 className="font-semibold tracking-tight text-gray-900 text-3xl">
-                Phản quang Không thấm nước Trọng lượng nhẹ Đạp xe Cảnh báo Công
-                việc ban đêm
+                {name}
             </h5>
             <div className="flex items-center gap-3 mt-2.5 mb-5">
                 <div className="flex items-center ">
@@ -37,7 +36,7 @@ const ProductInfoDetail = () => {
             </div>
             <div className=" p-3 bg-gray-100">
                 <strong className="text-3xl text-blue-600">
-                    Giá: 50.000 đ
+                    Giá: {price} đ
                 </strong>
             </div>
             <div className="mt-5">

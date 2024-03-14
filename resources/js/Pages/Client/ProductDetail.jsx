@@ -6,25 +6,34 @@ import ProductInfoDetail from "@/Components/client/products/ProductInfoDetail";
 import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
 import React from "react";
-import { usePage } from "@inertiajs/react";
 import ProductRate from "@/Components/client/products/ProductRate";
 
-const ProductDetail = ({ categories }) => {
+const ProductDetail = ({ categories, product, productsByCategory }) => {
     return (
-        <ClientLayout title="Sản phẩm">
+        <ClientLayout title={product?.name}>
             <NavCategory isHide={true} categories={categories} />
-
             <div className="min-h-[1000px] bg-white mt-4 rounded-xl">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start">
-                    <ProductImageDetail />
-                    <ProductInfoDetail />
-                    <ProductDescDetail />
-                    <ProductRate />
-                    <ProductRateDetail />
+                    <ProductImageDetail images={product?.product_images} />
+                    <ProductInfoDetail
+                        name={product?.name}
+                        price={product?.price}
+                    />
+                    <ProductDescDetail desc={product?.desc} />
+                    <ProductRate rate_avg={product?.rate_avg} />
+                    <ProductRateDetail
+                        productFeedbacks={product?.product_feedbacks}
+                    />
                 </div>
             </div>
             <div className="mt-10">
-                <HomeGridProduct title={"Sản phẩm liên quan"} cols="5" />
+                <HomeGridProduct
+                    key={productsByCategory?.id}
+                    title={"Sản phẩm liên quan"}
+                    id={productsByCategory?.id}
+                    products={productsByCategory?.products}
+                    cols={5}
+                />
             </div>
         </ClientLayout>
     );

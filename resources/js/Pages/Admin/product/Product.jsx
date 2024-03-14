@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/react";
 import { Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Rating } from "flowbite-react";
 
 const Product = ({ status, message, products, categories }) => {
     const [openModal, setOpentModal] = useState({
@@ -27,7 +28,10 @@ const Product = ({ status, message, products, categories }) => {
         { label: "Giá", className: "bg-gray-500 text-white" },
         { label: "Đánh giá", className: "bg-gray-500 text-white" },
         { label: "Trạng thái", className: "bg-gray-500 text-white" },
-        { label: "Hành động", className: "bg-gray-500 text-white" },
+        {
+            label: "Hành động",
+            className: "bg-gray-500 text-white text-center pr-24",
+        },
     ];
 
     return (
@@ -86,20 +90,21 @@ const Product = ({ status, message, products, categories }) => {
                                     </Table.Cell>
                                     <Table.Cell>{i?.price}</Table.Cell>
                                     <Table.Cell>
-                                        {[...Array(i?.rate_avg)].map((_, j) => (
-                                            <i
-                                                key={j}
-                                                className="fa-solid fa-star text-yellow-500"
-                                            ></i>
-                                        ))}
-                                        {[...Array(5 - i?.rate_avg)].map(
-                                            (_, j) => (
-                                                <i
-                                                    key={j}
-                                                    className="fa-solid fa-star text-black-500"
-                                                ></i>
-                                            )
-                                        )}
+                                        <Rating>
+                                            {[...Array(i?.rate_avg)].map(
+                                                (_, j) => (
+                                                    <Rating.Star key={j} />
+                                                )
+                                            )}
+                                            {[...Array(5 - i?.rate_avg)].map(
+                                                (_, j) => (
+                                                    <Rating.Star
+                                                        filled={false}
+                                                        key={j}
+                                                    />
+                                                )
+                                            )}
+                                        </Rating>
                                     </Table.Cell>
                                     <Table.Cell>
                                         <span
@@ -117,11 +122,17 @@ const Product = ({ status, message, products, categories }) => {
                                     <Table.Cell>
                                         <div className="flex items-center gap-4">
                                             <Link
+                                                // href={route("editUser", i?.id)}
+                                                className="text-blue-500 px-2 py-1 underline"
+                                            >
+                                                Chi tiết
+                                            </Link>
+                                            <Link
                                                 href={route(
                                                     "editProduct",
                                                     i?.id
                                                 )}
-                                                className="text-blue-500 px-2 py-1"
+                                                className="text-blue-500 px-2 py-1 underline"
                                             >
                                                 Sửa
                                             </Link>
@@ -136,7 +147,7 @@ const Product = ({ status, message, products, categories }) => {
                                                         showModal: true,
                                                     });
                                                 }}
-                                                className="text-red-500 px-2 py-1"
+                                                className="text-red-500 px-2 py-1 underline"
                                             >
                                                 Xoá
                                             </button>
