@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\CartProducts;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -14,17 +17,25 @@ class HomeController extends Controller
         $categories = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
             ->get();
-            
+
         $products = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
             ->with(['products' => function ($query) {
-                $query->with('productImages')->take(8);
+                $query->where('status', 1)->with('productImages')->take(8);
             }])
             ->get();
 
+        $countProductCart = "";
+        if (Auth::check()) {
+            $countProductCart = Cart::where('user_id', Auth::user()->id)
+                ->where('status', 1)
+                ->count();
+        }
+
         return Inertia::render('Client/Home', [
             'categories' => $categories,
-            'products' => $products
+            'products' => $products,
+            'countProductCart' => $countProductCart
         ]);
     }
 }

@@ -1,3 +1,4 @@
+import Button from "@/Components/Button";
 import InputText from "@/Components/InputText";
 import ModalDelConfirm from "@/Components/ModalDelConfirm";
 import Selector from "@/Components/Selector";
@@ -5,8 +6,8 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import recursiveCategory from "@/Utils/RecursiveCategory";
 import paginationTheme from "@/Utils/paginationTheme";
 import { Link, useForm } from "@inertiajs/react";
-import { Pagination, Rating, Table, Popover } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { Pagination, Rating, Table } from "flowbite-react";
+import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 
 const tableColumns = [
@@ -44,17 +45,14 @@ const tableColumns = [
         className: "bg-gray-500 text-white text-center pr-24",
     },
 ];
-
 const dataStatusProduct = [
     { id: 1, name: "Hoạt động" },
     { id: 2, name: "Không hoạt động" },
 ];
-
 const orderBy = [
     { id: "ASC", name: "Thấp đến cao" },
     { id: "DESC", name: "Cao đến thấp" },
 ];
-
 const limitProducts = [
     { id: 10, name: 10 },
     { id: 20, name: 20 },
@@ -66,15 +64,14 @@ const limitProducts = [
 ];
 
 const Product = ({ status, message, products, queries, categories }) => {
+    const nameInputRef = useRef(null);
+    const { statusProduct, category_id, rate_avg, price, limit, name } =
+        queries;
     const [openModal, setOpentModal] = useState({
         name: "",
         delRoute: null,
         showModal: false,
     });
-    const { get } = useForm();
-    const { statusProduct, category_id, rate_avg, price, limit, name } =
-        queries;
-
     const [dataQuery, setDataQuery] = useState({
         limit,
         page: products?.current_page,
@@ -84,10 +81,9 @@ const Product = ({ status, message, products, queries, categories }) => {
         price,
         name,
     });
-    const [startIndex] = useState((products.current_page - 1) * limit + 1);
     const selectors = [
         {
-            label: "SL Sản phẩm",
+            label: "SL",
             value: dataQuery.limit,
             onChange: (e) => {
                 get(
@@ -156,6 +152,13 @@ const Product = ({ status, message, products, queries, categories }) => {
             options: dataStatusProduct,
         },
     ];
+    useEffect(() => {
+        nameInputRef.current.focus();
+    }, []);
+    const [startIndex] = useState((products.current_page - 1) * limit + 1);
+    const [isWaiting, setIsWaiting] = useState(false);
+
+    const { get } = useForm();
 
     const onPageChange = (page) => {
         get(route("product", { ...dataQuery, page }));
@@ -171,9 +174,12 @@ const Product = ({ status, message, products, queries, categories }) => {
 
     const handleInputChange = (event) => {
         setDataQuery((prev) => ({ ...prev, name: event.target.value }));
-        get(route("product", { ...dataQuery, name: event.target.value }));
     };
-    console.log(products);
+    const submit = (e) => {
+        e.preventDefault();
+        get(route("product", dataQuery));
+    };
+
     return (
         <AdminLayout title="Sản phẩm">
             <div className="flex flex-col">
@@ -198,16 +204,27 @@ const Product = ({ status, message, products, queries, categories }) => {
                         </Link>
                     </div>
                 </div>
-                <div className="flex items-center gap-4 mt-8">
+                <form
+                    className="w-1/3 flex items-center gap-3 mt-3"
+                    onSubmit={submit}
+                >
                     <InputText
                         label="Tìm tên hoặc Id sản phẩm"
                         placeholder="Nhập tên hoặc ID"
                         id="name"
                         name="name"
                         value={dataQuery?.name}
-                        className="mt-1 block w-full"
+                        className="mt-1 outline-none"
                         onChange={handleInputChange}
+                        inputRef={nameInputRef}
+                        req={true}
                     />
+                    <Button
+                        text={<i className="fa-solid fa-magnifying-glass"></i>}
+                        className={"mt-8 w-[50px] py-1 bg-blue-900"}
+                    />
+                </form>
+                <div className="flex items-center gap-4 mt-8">
                     {selectors.map((selector, index) => (
                         <Selector
                             key={index}
@@ -216,9 +233,19 @@ const Product = ({ status, message, products, queries, categories }) => {
                             value={selector.value}
                             onChange={selector.onChange}
                             options={selector.options}
+                            className={selector?.className}
                         />
                     ))}
+
+                    <Button
+                        text={<i className="fa-solid fa-x"></i>}
+                        className={"mt-8 w-[50px] py-1 bg-gray-900"}
+                        onClick={() => {
+                            get(route("product", { ...dataQuery, name: "" }));
+                        }}
+                    />
                 </div>
+
                 <div className="overflow-x-auto mt-8">
                     <Table striped hoverable>
                         <Table.Head>

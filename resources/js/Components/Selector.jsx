@@ -67,13 +67,13 @@ const Selector = forwardRef(
         }, []);
 
         return (
-            <div className="w-full flex flex-col gap-2 relative">
+            <div className={"w-full flex flex-col gap-2 relative " + className}>
                 <label htmlFor={name} className="block font-bold text-gray-900">
                     {label}
                     {required && <i className="text-red-500"> *</i>}
                 </label>
                 <select
-                    className="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    className={`bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 ${className}`}
                     ref={select}
                     {...props}
                 >

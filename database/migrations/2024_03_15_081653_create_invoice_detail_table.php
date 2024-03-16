@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart_detail', function (Blueprint $table) {
+        Schema::create('invoice_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->string('cart_id');
+            $table->string('invoice_id');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('carts');
-            $table->integer('quantity');
-            $table->string('price');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cart_detail');
+        Schema::dropIfExists('invoice_detail');
     }
 };

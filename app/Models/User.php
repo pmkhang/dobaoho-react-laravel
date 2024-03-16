@@ -22,4 +22,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
     public $incrementing = false;
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

@@ -167,9 +167,9 @@ class ProductController extends Controller
     public function deleteImage($id)
     {
         $image = ProductImages::findOrFail($id);
-        $file_old_url = public_path('uploads/' . basename($image->image));
-        if (file_exists($file_old_url)) {
-            unlink($file_old_url);
+        $file_old_path = public_path('uploads/' . basename($image->image));
+        if (file_exists($file_old_path)) {
+            unlink($file_old_path);
         }
         $image->delete();
         return redirect()->back()->with([

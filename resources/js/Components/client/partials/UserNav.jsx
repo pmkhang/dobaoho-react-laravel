@@ -9,12 +9,12 @@ const UserNav = ({ user }) => {
         post(route("logout"));
     };
     return (
-        <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+        <li className=" transition-all cursor-pointer text-white flex items-center gap-2 rounded-lg bg-blue-600">
             <Dropdown
                 label=""
                 dismissOnClick={false}
                 renderTrigger={() => (
-                    <i className="fa-solid fa-circle-user text-xl text-blue-600"></i>
+                        <i className="fa-solid fa-user text-lg py-2 px-4"></i>
                 )}
             >
                 <Dropdown.Header>

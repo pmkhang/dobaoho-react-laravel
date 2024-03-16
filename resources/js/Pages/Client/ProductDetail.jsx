@@ -18,6 +18,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                     <ProductInfoDetail
                         name={product?.name}
                         price={product?.price}
+                        productId={product?.id}
                     />
                     <ProductDescDetail desc={product?.desc} />
                     <ProductRate rate_avg={product?.rate_avg} />

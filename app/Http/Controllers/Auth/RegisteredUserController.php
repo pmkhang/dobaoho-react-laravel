@@ -14,6 +14,7 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\Cart;
 
 class RegisteredUserController extends Controller
 {
@@ -22,7 +23,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register',[
+        return Inertia::render('Auth/Register', [
             'status' => session('status'),
             'message' => session('message'),
         ]);

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\CartController as ClientCartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,13 @@ Route::prefix('')->group(function () {
     Route::get('/ve-chung-toi', function () {
         return Inertia::render('Client/About');
     })->name('about');
+
+    Route::middleware('auth')->group(function () {
+        Route::prefix('/gio-hang')->controller(ClientCartController::class)->group(function () {
+            Route::get('', 'index')->name('clientCart');
+            Route::post('/them-san-pham', 'store')->name('addProductToCart');
+        });
+    });
 });
 
 Route::prefix('admin')
@@ -82,7 +90,7 @@ Route::prefix('admin')
             Route::get('/{id}/xoa', 'destroy')->name('destroyUser');
         });
 
-        Route::prefix('/don-hang')->controller(CartController::class)->group(function () {
+        Route::prefix('/don-hang')->controller(CategoryController::class)->group(function () {
             Route::get('', 'index')->name('cart');
         });
     });

@@ -9,6 +9,13 @@ class Cart extends Model
 {
     use HasFactory;
     protected $table = 'carts';
-    public $incrementing = false;
     protected $guarded = [];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
 }

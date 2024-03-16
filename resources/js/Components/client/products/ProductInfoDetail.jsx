@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useForm } from "@inertiajs/react";
+import Button from "@/Components/Button";
+import { toast } from "react-toastify";
 
-const ProductInfoDetail = ({ name, price }) => {
+const ProductInfoDetail = ({ name, price, productId }) => {
     const [activeButton, setActiveButton] = useState(null);
     const [quantity, setQuantity] = useState(1);
-
+    const { post, setData } = useForm({
+        product_id: productId,
+        quantity: 1,
+    });
     const handleClick = (index) => {
         setActiveButton(index);
     };
+    const addToCart = () => {
+        post(route("addProductToCart"));
+        toast.success("Thêm vào giỏ hàng thành công");
+    };
+    useEffect(() => {
+        setData("quantity", quantity);
+    }, [quantity]);
 
     return (
         <div className="w-full min-h-[480px] col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 p-4">
@@ -45,9 +57,9 @@ const ProductInfoDetail = ({ name, price }) => {
                 <strong className="text-xl">Phân loại:</strong>
                 <div className="grid grid-cols-6 max-mb:grid-cols-3 mt-2 gap-3">
                     {[...Array(10)].map((_, i) => (
-                        <button
+                        <Button
                             key={i}
-                            className={`w-full h-10 bg-blue-500 flex items-center cursor-pointer justify-center text-white rounded-lg ${
+                            className={`focus:ring-4 focus:ring-orange-400 ${
                                 activeButton === i
                                     ? "ring-4 ring-orange-400"
                                     : ""
@@ -55,9 +67,8 @@ const ProductInfoDetail = ({ name, price }) => {
                             onClick={() => {
                                 handleClick(i);
                             }}
-                        >
-                            Loại {i + 1}
-                        </button>
+                            text={"Loại " + (i + 1)}
+                        />
                     ))}
                 </div>
             </div>
@@ -86,12 +97,12 @@ const ProductInfoDetail = ({ name, price }) => {
                 </div>
             </div>
             <div className="mt-5 flex gap-4 max-mb:flex-col">
-                <button className="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center">
-                    Thêm vào giỏ hàng
-                </button>
-                <button className="w-full text-white border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                    Mua ngay
-                </button>
+                <Button
+                    onClick={addToCart}
+                    text={"Thêm vào giỏ hàng"}
+                    outline
+                />
+                <Button text={"Mua ngay"} />
             </div>
         </div>
     );
