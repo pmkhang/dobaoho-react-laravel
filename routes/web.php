@@ -45,6 +45,7 @@ Route::prefix('')->group(function () {
         Route::prefix('/gio-hang')->controller(ClientCartController::class)->group(function () {
             Route::get('', 'index')->name('clientCart');
             Route::post('/them-san-pham', 'store')->name('addProductToCart');
+            Route::post('/{id}/cap-nhat-so-luong', 'updateQuantity')->name('updateQuantity');
         });
     });
 });

@@ -18,7 +18,7 @@ class CartController extends Controller
         $countProductCart = Cart::where('user_id', Auth::user()->id)
             ->where('status', 1)
             ->count();
-            
+
         $cartProducts = Cart::where('user_id', Auth::user()->id)
             ->where('status', 1)
             ->with(['products' => function ($query) {
@@ -52,6 +52,30 @@ class CartController extends Controller
                 "status" => 1
             ];
             Cart::create($dataCartDetail);
+        }
+    }
+    public function checkout()
+    {
+
+        return Inertia::render('Client/Checkout');
+    }
+
+    public function updateQuantity(Request $request, $id)
+    {
+        $cartProducts = Cart::findOrFail($id);
+
+        if ($request->has('quantity')) {
+            $cartProducts->update(["quantity" => $request->quantity]);
+        }
+        if ($request->has('plus')) {
+            $cartProducts->increment('quantity', $request->plus);
+        }
+        if ($request->has('minus')) {
+            if ($request->minus == "0") {
+                $cartProducts->delete();
+            } else {
+                $cartProducts->update(['quantity' => $request->minus]);
+            }
         }
     }
 }

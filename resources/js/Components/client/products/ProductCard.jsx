@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 import { Rating } from "flowbite-react";
+import formatCurrency from "@/Utils/formatCurrency";
 
 const ProductCard = ({ id, img, rate_avg, name, price }) => {
     return (
@@ -36,7 +37,7 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                     </Link>
                     <div className="flex flex-col gap-3 items-start">
                         <span className="text-lg font-bold text-blue-800">
-                            Giá: {price} đ
+                            Giá: {formatCurrency(+price)}
                         </span>
                     </div>
                 </div>

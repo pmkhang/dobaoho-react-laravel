@@ -4,6 +4,7 @@ import ModalDelConfirm from "@/Components/ModalDelConfirm";
 import Selector from "@/Components/Selector";
 import AdminLayout from "@/Layouts/AdminLayout";
 import recursiveCategory from "@/Utils/RecursiveCategory";
+import formatCurrency from "@/Utils/formatCurrency";
 import paginationTheme from "@/Utils/paginationTheme";
 import { Link, useForm } from "@inertiajs/react";
 import { Pagination, Rating, Table } from "flowbite-react";
@@ -277,7 +278,9 @@ const Product = ({ status, message, products, queries, categories }) => {
                                     </Table.Cell>
                                     <Table.Cell>{i?.name}</Table.Cell>
                                     <Table.Cell>{i?.category?.name}</Table.Cell>
-                                    <Table.Cell>{i?.price}</Table.Cell>
+                                    <Table.Cell>
+                                        {formatCurrency(+i?.price)}
+                                    </Table.Cell>
                                     <Table.Cell>
                                         <Rating>
                                             {[...Array(i?.rate_avg)].map(

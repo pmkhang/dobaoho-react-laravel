@@ -3,22 +3,34 @@ import { Table, Checkbox } from "flowbite-react";
 import { Link, useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import Button from "@/Components/Button";
+import formatCurrency from "@/Utils/formatCurrency";
 
-const getAllIdCart = (cartProducts) => {
-    const arrID = cartProducts.map((item) => item.id);
-    return arrID;
-};
+function calculateTotalPrice(items) {
+    const totalPrice = items?.reduce(function (total, item) {
+        return total + item?.quantity * item?.products[0]?.price;
+    }, 0);
+    return totalPrice;
+}
 
 const Cart = ({ cartProducts }) => {
+    console.log();
+    const allCartId = cartProducts?.map((item) => item?.id);
     const [isCheckedAll, setIsCheckedAll] = useState(false);
     const [checkedItems, setCheckedItems] = useState(
         Array(cartProducts.length).fill({ checked: false })
     );
-    const allCartId = getAllIdCart(cartProducts);
+    const [quantityItems, setQuantityItems] = useState(
+        cartProducts.map((product) => product.quantity)
+    );
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [alltotalPrice] = useState(calculateTotalPrice(cartProducts));
     const { data, post, setData } = useForm({
         cartId: [],
+        total_price: 0,
     });
-    
+    useEffect(() => {
+        setData("total_price", totalPrice);
+    }, [totalPrice]);
     const handleAllCheckboxChange = (event) => {
         const { checked } = event.target;
         setIsCheckedAll(checked);
@@ -48,10 +60,34 @@ const Cart = ({ cartProducts }) => {
         );
     };
 
+    const handleQuantityChange = (index, event) => {
+        const newQuantityItems = [...quantityItems];
+        const parsedValue = parseInt(event.target.value);
+        newQuantityItems[index] = isNaN(parsedValue) ? 0 : parsedValue;
+        setQuantityItems(newQuantityItems);
+    };
+    const handleClickQuantityChange = (index, operation, id) => {
+        const newQuantityItems = [...quantityItems];
+        const prevNumber = newQuantityItems[index];
+        const newValue = operation === "plus" ? prevNumber + 1 : prevNumber - 1;
+        newQuantityItems[index] = newValue < 0 ? 0 : newValue;
+        setQuantityItems(newQuantityItems);
+        post(
+            route("updateQuantity", {
+                id,
+                [operation]: newValue,
+            })
+        );
+    };
+    const updateQuantity = (e, id, quantity) => {
+        e.preventDefault();
+        post(route("updateQuantity", { id, quantity }));
+    };
     const checkOut = (e) => {
         e.preventDefault();
         console.log(data.cartId);
     };
+
     const tableColumns = [
         {
             label: "Stt",
@@ -80,7 +116,12 @@ const Cart = ({ cartProducts }) => {
                 <Checkbox
                     checked={isCheckedAll}
                     color={"blue"}
-                    onChange={handleAllCheckboxChange}
+                    onChange={(event) => {
+                        handleAllCheckboxChange(event);
+                        event.target.checked
+                            ? setTotalPrice(alltotalPrice)
+                            : setTotalPrice(0);
+                    }}
                 />
             ),
             className: "bg-blue-500 text-white",
@@ -88,66 +129,164 @@ const Cart = ({ cartProducts }) => {
     ];
     return (
         <ClientLayout title={"Giỏ hàng"}>
-            <div className="w-full min-h-[500px] bg-white rounded-lg shadow-lg p-8">
+            <div className="w-full h-fit min-h-[380px] bg-white rounded-lg shadow-lg p-8">
                 <h3 className="text-3xl font-bold mb-6 text-center">
                     Giỏ hàng của tôi
                 </h3>
-                <Table striped hoverable>
-                    <Table.Head>
-                        {tableColumns.map((i) => (
-                            <Table.HeadCell
-                                key={i.label}
-                                className={i.className}
-                            >
-                                {i.label}
-                            </Table.HeadCell>
-                        ))}
-                    </Table.Head>
-                    <Table.Body>
-                        {cartProducts.map((i, index) => (
-                            <Table.Row key={i?.product_id}>
-                                <Table.Cell>{index + 1}</Table.Cell>
-                                <Table.Cell>
-                                    <img
-                                        src={
-                                            i?.products[0]?.product_images[0]
-                                                ?.image
-                                        }
-                                        className="w-16 h-16 object-cover rounded-lg"
-                                    />
-                                </Table.Cell>
-                                <Table.Cell>{i?.products[0]?.name}</Table.Cell>
-                                <Table.Cell>{i?.quantity}</Table.Cell>
-                                <Table.Cell>{i?.products[0]?.price}</Table.Cell>
-                                <Table.Cell>
-                                    {i?.quantity * i?.products[0]?.price}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <Checkbox
-                                        color={"blue"}
-                                        checked={checkedItems[index].checked}
-                                        onChange={(event) => {
-                                            handleCheckboxChange(
-                                                index,
-                                                i?.id,
-                                                event
-                                            );
-                                        }}
-                                    />
-                                </Table.Cell>
-                            </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table>
-                <form
-                    className="flex items-center justify-between mt-10"
-                    onSubmit={checkOut}
-                >
-                    <div className="w-[400%]">
-                        <h3 className="text-xl font-bold">Tổng số tiền: </h3>
+                {cartProducts.length <= 0 && (
+                    <div className="flex items-center justify-center flex-col gap-4 mt-20">
+                        <h4 className="text-3xl font-semibold">
+                            Bạn chưa có thêm sản phẩm nào
+                        </h4>
+                        <Link className="text-blue-500 underline font-bold mt-8">
+                            Danh sách sản phẩm
+                        </Link>
                     </div>
-                    <Button text={"Thanh toán"} />
-                </form>
+                )}
+                {cartProducts.length > 0 && (
+                    <>
+                        <Table striped hoverable>
+                            <Table.Head>
+                                {tableColumns.map((i) => (
+                                    <Table.HeadCell
+                                        key={i.label}
+                                        className={i.className}
+                                    >
+                                        {i.label}
+                                    </Table.HeadCell>
+                                ))}
+                            </Table.Head>
+                            <Table.Body>
+                                {cartProducts.map((i, index) => (
+                                    <Table.Row key={i?.product_id}>
+                                        <Table.Cell>{index + 1}</Table.Cell>
+                                        <Table.Cell>
+                                            <img
+                                                src={
+                                                    i?.products[0]
+                                                        ?.product_images[0]
+                                                        ?.image
+                                                }
+                                                className="w-16 h-16 object-cover rounded-lg"
+                                            />
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {i?.products[0]?.name}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <div className="flex items-center gap-3">
+                                                <span
+                                                    className="flex items-center justify-center p-1.5 border rounded-lg cursor-pointer"
+                                                    onClick={() => {
+                                                        handleClickQuantityChange(
+                                                            index,
+                                                            "minus",
+                                                            i?.id
+                                                        );
+                                                    }}
+                                                >
+                                                    <i className="fa-solid fa-minus"></i>
+                                                </span>
+                                                <form
+                                                    onSubmit={(e) => {
+                                                        updateQuantity(
+                                                            e,
+                                                            i?.id,
+                                                            quantityItems[index]
+                                                        );
+                                                    }}
+                                                >
+                                                    <input
+                                                        type="text"
+                                                        value={
+                                                            quantityItems[index]
+                                                        }
+                                                        onChange={(event) => {
+                                                            handleQuantityChange(
+                                                                index,
+                                                                event
+                                                            );
+                                                        }}
+                                                        className="flex items-center justify-center max-w-20 border-gray-300 rounded-md bg-none"
+                                                        onBlur={(e) => {
+                                                            updateQuantity(
+                                                                e,
+                                                                i?.id,
+                                                                quantityItems[
+                                                                    index
+                                                                ]
+                                                            );
+                                                        }}
+                                                    />
+                                                </form>
+                                                <span
+                                                    className="flex items-center justify-center p-1.5 border rounded-lg cursor-pointer"
+                                                    onClick={() => {
+                                                        handleClickQuantityChange(
+                                                            index,
+                                                            "plus",
+                                                            i?.id
+                                                        );
+                                                    }}
+                                                >
+                                                    <i className="fa-solid fa-plus"></i>
+                                                </span>
+                                            </div>
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {formatCurrency(
+                                                +i?.products[0]?.price
+                                            )}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {formatCurrency(
+                                                +i?.quantity *
+                                                    +i?.products[0]?.price
+                                            )}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <Checkbox
+                                                color={"blue"}
+                                                checked={
+                                                    checkedItems[index].checked
+                                                }
+                                                onChange={(event) => {
+                                                    handleCheckboxChange(
+                                                        index,
+                                                        i?.id,
+                                                        event
+                                                    );
+                                                    const delta =
+                                                        +i?.quantity *
+                                                        +i?.products[0]?.price;
+                                                    setTotalPrice((prev) =>
+                                                        event.target.checked
+                                                            ? prev + delta
+                                                            : prev - delta
+                                                    );
+                                                }}
+                                            />
+                                        </Table.Cell>
+                                    </Table.Row>
+                                ))}
+                            </Table.Body>
+                        </Table>
+                        <form
+                            className="flex items-center justify-between mt-10"
+                            onSubmit={checkOut}
+                        >
+                            <div className="w-[400%]">
+                                <h3 className="text-xl font-bold">
+                                    Tổng giá trị ước tính:{" "}
+                                    <span className="text-blue-800 text-2xl ml-2">
+                                        {formatCurrency(data?.total_price)}
+                                    </span>
+                                </h3>
+                            </div>
+                            <Button text={"Thanh toán"} />
+                        </form>
+                    </>
+                )}
             </div>
         </ClientLayout>
     );

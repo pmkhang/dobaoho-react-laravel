@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useForm } from "@inertiajs/react";
 import Button from "@/Components/Button";
 import { toast } from "react-toastify";
+import formatCurrency from "@/Utils/formatCurrency";
 
 const ProductInfoDetail = ({ name, price, productId }) => {
     const [activeButton, setActiveButton] = useState(null);
@@ -50,7 +51,7 @@ const ProductInfoDetail = ({ name, price, productId }) => {
             </div>
             <div className=" p-3 bg-gray-100">
                 <strong className="text-3xl text-blue-600">
-                    Giá: {price} đ
+                    Giá: {formatCurrency(+price)}
                 </strong>
             </div>
             <div className="mt-5">
