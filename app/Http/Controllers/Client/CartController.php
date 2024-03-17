@@ -26,9 +26,15 @@ class CartController extends Controller
             }])
             ->get();
 
+        $total_price = 0;
+        foreach ($cartProducts as $cartProduct) {
+            $total_price += $cartProduct->products[0]->price * $cartProduct->quantity;
+        }
+
         return Inertia::render('Client/Cart', [
             'countProductCart' => $countProductCart,
-            'cartProducts' => $cartProducts
+            'cartProducts' => $cartProducts,
+            'total_price' => $total_price
         ]);
     }
     public function store(Request $request)
@@ -64,18 +70,19 @@ class CartController extends Controller
     {
         $cartProducts = Cart::findOrFail($id);
 
-        if ($request->has('quantity')) {
+        
+        if (!empty($request->quantity)) {
             $cartProducts->update(["quantity" => $request->quantity]);
         }
-        if ($request->has('plus')) {
-            $cartProducts->increment('quantity', $request->plus);
+        if (!empty($request->plus)) {
+            $cartProducts->update(["quantity" => $request->plus]);
         }
-        if ($request->has('minus')) {
-            if ($request->minus == "0") {
-                $cartProducts->delete();
-            } else {
-                $cartProducts->update(['quantity' => $request->minus]);
-            }
+        if ($request->minus == "0") {
+            $cartProducts->delete();
+        } elseif (!empty($request->minus)) {
+            $cartProducts->update(['quantity' => $request->minus]);
         }
+
+        return redirect()->back();
     }
 }

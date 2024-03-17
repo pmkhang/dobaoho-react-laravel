@@ -5,65 +5,25 @@ import { useEffect, useState } from "react";
 import Button from "@/Components/Button";
 import formatCurrency from "@/Utils/formatCurrency";
 
-function calculateTotalPrice(items) {
-    const totalPrice = items?.reduce(function (total, item) {
-        return total + item?.quantity * item?.products[0]?.price;
-    }, 0);
-    return totalPrice;
-}
-
-const Cart = ({ cartProducts }) => {
-    console.log();
-    const allCartId = cartProducts?.map((item) => item?.id);
-    const [isCheckedAll, setIsCheckedAll] = useState(false);
-    const [checkedItems, setCheckedItems] = useState(
-        Array(cartProducts.length).fill({ checked: false })
-    );
+const Cart = ({ cartProducts, total_price }) => {
     const [quantityItems, setQuantityItems] = useState(
         cartProducts.map((product) => product.quantity)
     );
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [alltotalPrice] = useState(calculateTotalPrice(cartProducts));
     const { data, post, setData } = useForm({
-        cartId: [],
-        total_price: 0,
+        cartId: cartProducts?.map((item) => item?.id),
+        total_price: total_price,
     });
-    useEffect(() => {
-        setData("total_price", totalPrice);
-    }, [totalPrice]);
-    const handleAllCheckboxChange = (event) => {
-        const { checked } = event.target;
-        setIsCheckedAll(checked);
-        const newCheckedItems = checkedItems.map((item) => ({
-            ...item,
-            checked,
-        }));
-        setCheckedItems(newCheckedItems);
-        const cartId = checked ? allCartId : [];
-        setData({ cartId });
-    };
 
-    const handleCheckboxChange = (index, id, event) => {
-        const newCheckedItems = checkedItems.map((item, i) => ({
-            ...item,
-            checked: i === index ? !item.checked : item.checked,
-        }));
-        const allChecked = newCheckedItems.every(({ checked }) => checked);
-        setIsCheckedAll(allChecked);
-        setCheckedItems(newCheckedItems);
-        const { checked } = event.target;
-        setData(
-            "cartId",
-            checked
-                ? [...data.cartId, id || null]
-                : data.cartId.filter((itemId) => itemId !== id)
-        );
-    };
+    useEffect(() => {
+        setData("total_price", total_price);
+    }, [total_price]);
 
     const handleQuantityChange = (index, event) => {
         const newQuantityItems = [...quantityItems];
         const parsedValue = parseInt(event.target.value);
-        newQuantityItems[index] = isNaN(parsedValue) ? 0 : parsedValue;
+        newQuantityItems[index] = isNaN(parsedValue)
+            ? 0
+            : Math.max(parsedValue, 0);
         setQuantityItems(newQuantityItems);
     };
     const handleClickQuantityChange = (index, operation, id) => {
@@ -81,7 +41,16 @@ const Cart = ({ cartProducts }) => {
     };
     const updateQuantity = (e, id, quantity) => {
         e.preventDefault();
-        post(route("updateQuantity", { id, quantity }));
+        if (quantity === 0) {
+            post(
+                route("updateQuantity", {
+                    id,
+                    minus: quantity,
+                })
+            );
+        } else {
+            post(route("updateQuantity", { id, quantity }));
+        }
     };
     const checkOut = (e) => {
         e.preventDefault();
@@ -112,18 +81,7 @@ const Cart = ({ cartProducts }) => {
             className: "bg-blue-500 text-white",
         },
         {
-            label: (
-                <Checkbox
-                    checked={isCheckedAll}
-                    color={"blue"}
-                    onChange={(event) => {
-                        handleAllCheckboxChange(event);
-                        event.target.checked
-                            ? setTotalPrice(alltotalPrice)
-                            : setTotalPrice(0);
-                    }}
-                />
-            ),
+            label: "",
             className: "bg-blue-500 text-white",
         },
     ];
@@ -207,7 +165,7 @@ const Cart = ({ cartProducts }) => {
                                                                 event
                                                             );
                                                         }}
-                                                        className="flex items-center justify-center max-w-20 border-gray-300 rounded-md bg-none"
+                                                        className="flex items-center justify-center max-w-16 border-gray-300 rounded-md bg-none"
                                                         onBlur={(e) => {
                                                             updateQuantity(
                                                                 e,
@@ -216,6 +174,23 @@ const Cart = ({ cartProducts }) => {
                                                                     index
                                                                 ]
                                                             );
+                                                            if (
+                                                                quantityItems[
+                                                                    index
+                                                                ] === 0
+                                                            ) {
+                                                                post(
+                                                                    route(
+                                                                        "updateQuantity",
+                                                                        {
+                                                                            id: i?.id,
+                                                                            minus: quantityItems[
+                                                                                index
+                                                                            ],
+                                                                        }
+                                                                    )
+                                                                );
+                                                            }
                                                         }}
                                                     />
                                                 </form>
@@ -240,32 +215,27 @@ const Cart = ({ cartProducts }) => {
                                         </Table.Cell>
                                         <Table.Cell>
                                             {formatCurrency(
-                                                +i?.quantity *
+                                                i?.quantity *
                                                     +i?.products[0]?.price
                                             )}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Checkbox
-                                                color={"blue"}
-                                                checked={
-                                                    checkedItems[index].checked
-                                                }
-                                                onChange={(event) => {
-                                                    handleCheckboxChange(
-                                                        index,
-                                                        i?.id,
-                                                        event
-                                                    );
-                                                    const delta =
-                                                        +i?.quantity *
-                                                        +i?.products[0]?.price;
-                                                    setTotalPrice((prev) =>
-                                                        event.target.checked
-                                                            ? prev + delta
-                                                            : prev - delta
+                                            <span
+                                                className="text-red-500 font-bold cursor-pointer"
+                                                onClick={() => {
+                                                    post(
+                                                        route(
+                                                            "updateQuantity",
+                                                            {
+                                                                id: i?.id,
+                                                                minus: 0,
+                                                            }
+                                                        )
                                                     );
                                                 }}
-                                            />
+                                            >
+                                                Xoá
+                                            </span>
                                         </Table.Cell>
                                     </Table.Row>
                                 ))}
@@ -283,7 +253,7 @@ const Cart = ({ cartProducts }) => {
                                     </span>
                                 </h3>
                             </div>
-                            <Button text={"Thanh toán"} />
+                            <Button text={"Tiến hành đặt hàng"} />
                         </form>
                     </>
                 )}

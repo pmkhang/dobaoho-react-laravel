@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
             $table->string('status')->default(1)->comment("1: pending, 2: completed");
+            $table->string('price_per_1')->nullable();
             $table->timestamps();
         });
     }
