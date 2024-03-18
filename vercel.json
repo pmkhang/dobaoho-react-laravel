@@ -25,10 +25,10 @@
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        
+
         "DB_CONNECTION": "mysql",
         "DB_HOST": "localhost",
-        "DB_PORT": 3306,
+        "DB_PORT": "3306",
         "DB_DATABASE": "DoBaoHo_DB",
         "DB_USERNAME": "root",
         "DB_PASSWORD": ""
