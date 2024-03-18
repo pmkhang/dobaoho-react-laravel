@@ -5,18 +5,40 @@ import { useEffect, useState } from "react";
 import Button from "@/Components/Button";
 import formatCurrency from "@/Utils/formatCurrency";
 
-const Cart = ({ cartProducts, total_price }) => {
+const tableColumns = [
+    {
+        label: "Stt",
+        className: "bg-blue-500 text-white",
+    },
+    { label: "Hình", className: "bg-blue-500 text-white" },
+    {
+        label: "Tên sản phẩm",
+        className: "bg-blue-500 text-white",
+    },
+    {
+        label: "Số lượng",
+        className: "bg-blue-500 text-white",
+    },
+    {
+        label: "Giá/sản phẩm",
+        className: "bg-blue-500 text-white",
+    },
+    ,
+    {
+        label: "Giá tổng",
+        className: "bg-blue-500 text-white",
+    },
+    {
+        label: "",
+        className: "bg-blue-500 text-white",
+    },
+];
+
+const Cart = ({ cartProducts, total_price, user_id }) => {
     const [quantityItems, setQuantityItems] = useState(
         cartProducts.map((product) => product.quantity)
     );
-    const { data, post, setData } = useForm({
-        cartId: cartProducts?.map((item) => item?.id),
-        total_price: total_price,
-    });
-
-    useEffect(() => {
-        setData("total_price", total_price);
-    }, [total_price]);
+    const { post, get } = useForm();
 
     const handleQuantityChange = (index, event) => {
         const newQuantityItems = [...quantityItems];
@@ -39,6 +61,7 @@ const Cart = ({ cartProducts, total_price }) => {
             })
         );
     };
+
     const updateQuantity = (e, id, quantity) => {
         e.preventDefault();
         if (quantity === 0) {
@@ -52,39 +75,12 @@ const Cart = ({ cartProducts, total_price }) => {
             post(route("updateQuantity", { id, quantity }));
         }
     };
+
     const checkOut = (e) => {
         e.preventDefault();
-        console.log(data.cartId);
+        get(route("checkout", user_id));
     };
 
-    const tableColumns = [
-        {
-            label: "Stt",
-            className: "bg-blue-500 text-white",
-        },
-        { label: "Hình", className: "bg-blue-500 text-white" },
-        {
-            label: "Tên sản phẩm",
-            className: "bg-blue-500 text-white",
-        },
-        {
-            label: "Số lượng",
-            className: "bg-blue-500 text-white",
-        },
-        {
-            label: "Giá/sản phẩm",
-            className: "bg-blue-500 text-white",
-        },
-        ,
-        {
-            label: "Giá tổng",
-            className: "bg-blue-500 text-white",
-        },
-        {
-            label: "",
-            className: "bg-blue-500 text-white",
-        },
-    ];
     return (
         <ClientLayout title={"Giỏ hàng"}>
             <div className="w-full h-fit min-h-[380px] bg-white rounded-lg shadow-lg p-8">
@@ -124,6 +120,9 @@ const Cart = ({ cartProducts, total_price }) => {
                                                     i?.products[0]
                                                         ?.product_images[0]
                                                         ?.image
+                                                }
+                                                alt={
+                                                    "image" + i?.products[0]?.id
                                                 }
                                                 className="w-16 h-16 object-cover rounded-lg"
                                             />
@@ -249,7 +248,7 @@ const Cart = ({ cartProducts, total_price }) => {
                                 <h3 className="text-xl font-bold">
                                     Tổng giá trị ước tính:{" "}
                                     <span className="text-blue-800 text-2xl ml-2">
-                                        {formatCurrency(data?.total_price)}
+                                        {formatCurrency(total_price)}
                                     </span>
                                 </h3>
                             </div>

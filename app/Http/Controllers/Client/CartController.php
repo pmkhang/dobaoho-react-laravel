@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartProducts;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,14 +19,12 @@ class CartController extends Controller
         $countProductCart = Cart::where('user_id', Auth::user()->id)
             ->where('status', 1)
             ->count();
-
         $cartProducts = Cart::where('user_id', Auth::user()->id)
             ->where('status', 1)
             ->with(['products' => function ($query) {
                 $query->with('productImages');
             }])
             ->get();
-
         $total_price = 0;
         foreach ($cartProducts as $cartProduct) {
             $total_price += $cartProduct->products[0]->price * $cartProduct->quantity;
@@ -34,7 +33,8 @@ class CartController extends Controller
         return Inertia::render('Client/Cart', [
             'countProductCart' => $countProductCart,
             'cartProducts' => $cartProducts,
-            'total_price' => $total_price
+            'total_price' => $total_price,
+            'user_id' => Auth::user()->id,
         ]);
     }
     public function store(Request $request)
@@ -60,17 +60,36 @@ class CartController extends Controller
             Cart::create($dataCartDetail);
         }
     }
-    public function checkout()
+    public function checkout($id)
     {
-
-        return Inertia::render('Client/Checkout');
+        if (Auth::user()->id != $id) {
+            return redirect()->route('home');
+        }
+        $countProductCart = Cart::where('user_id', Auth::user()->id)
+            ->where('status', 1)
+            ->count();
+        $cartProducts = Cart::where('user_id', Auth::user()->id)
+            ->where('status', 1)
+            ->with(['products' => function ($query) {
+                $query->with('productImages');
+            }])
+            ->get();
+        $total_price = 0;
+        foreach ($cartProducts as $cartProduct) {
+            $total_price += $cartProduct->products[0]->price * $cartProduct->quantity;
+        }
+        return Inertia::render('Client/Checkout', [
+            'countProductCart' => $countProductCart,
+            'cartProducts' => $cartProducts,
+            'total_price' => $total_price,
+        ]);
     }
 
     public function updateQuantity(Request $request, $id)
     {
         $cartProducts = Cart::findOrFail($id);
 
-        
+
         if (!empty($request->quantity)) {
             $cartProducts->update(["quantity" => $request->quantity]);
         }

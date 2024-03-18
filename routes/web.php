@@ -46,6 +46,7 @@ Route::prefix('')->group(function () {
             Route::get('', 'index')->name('clientCart');
             Route::post('/them-san-pham', 'store')->name('addProductToCart');
             Route::post('/{id}/cap-nhat-so-luong', 'updateQuantity')->name('updateQuantity');
+            Route::get('/check-out/{id}', 'checkout')->name('checkout');
         });
     });
 });

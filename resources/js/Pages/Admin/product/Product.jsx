@@ -157,7 +157,6 @@ const Product = ({ status, message, products, queries, categories }) => {
         nameInputRef.current.focus();
     }, []);
     const [startIndex] = useState((products.current_page - 1) * limit + 1);
-    const [isWaiting, setIsWaiting] = useState(false);
 
     const { get } = useForm();
 
