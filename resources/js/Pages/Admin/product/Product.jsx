@@ -282,12 +282,14 @@ const Product = ({ status, message, products, queries, categories }) => {
                                     </Table.Cell>
                                     <Table.Cell>
                                         <Rating>
-                                            {[...Array(i?.rate_avg)].map(
+                                            {Array.from(
+                                                { length: +i?.rate_avg | 0 },
                                                 (_, j) => (
                                                     <Rating.Star key={j} />
                                                 )
                                             )}
-                                            {[...Array(5 - i?.rate_avg)].map(
+                                            {Array.from(
+                                                { length: 5 - +i?.rate_avg },
                                                 (_, j) => (
                                                     <Rating.Star
                                                         filled={false}
