@@ -34,7 +34,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // });
 
 Route::prefix('')->group(function () {
-
+    Route::redirect('/public', '/');
+    Route::redirect('/cpanel', '/');
     Route::get('', [HomeController::class, 'index'])->name('home');
     Route::get('/san-pham/{id}', [ProductController::class, 'productDetailPage'])->name('product-detail');
     Route::get('/ve-chung-toi', function () {
@@ -48,12 +49,15 @@ Route::prefix('')->group(function () {
             Route::post('/{id}/cap-nhat-so-luong', 'updateQuantity')->name('updateQuantity');
             Route::get('/check-out/{id}', 'checkout')->name('checkout');
         });
+
+        Route::post('gui-feedback', [ProductController::class, 'sendFeedback'])->name('sendFeedback');
     });
 });
 
 Route::prefix('admin')
     ->middleware('checkUserRole')
     ->group(function () {
+
         Route::get('', function () {
             return redirect()->route('dashboard');
         })->name('admin');

@@ -1,14 +1,16 @@
-import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import NavCategory from "@/Components/client/partials/NavCategory";
+import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import ProductDescDetail from "@/Components/client/products/ProductDescDetail";
+import ProductFormFeedback from "@/Components/client/products/ProductFormFeedback";
 import ProductImageDetail from "@/Components/client/products/ProductImageDetail";
 import ProductInfoDetail from "@/Components/client/products/ProductInfoDetail";
+import ProductRate from "@/Components/client/products/ProductRate";
 import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
-import React from "react";
-import ProductRate from "@/Components/client/products/ProductRate";
+import { useState } from "react";
 
 const ProductDetail = ({ categories, product, productsByCategory }) => {
+    const [isShowFormFeedBack, setisShowFormFeedBack] = useState(false);
     return (
         <ClientLayout title={product?.name}>
             <NavCategory isHide={true} categories={categories} />
@@ -22,9 +24,31 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                     />
                     <ProductDescDetail desc={product?.desc} />
                     <ProductRate rate_avg={product?.rate_avg} />
-                    <ProductRateDetail
-                        productFeedbacks={product?.product_feedbacks}
-                    />
+                    <div className="col-span-5 mt-4 px-4 flex gap-4">
+                        <span
+                            className={`p-3 border border-gray-200 border-t-4 border-t-${
+                                !isShowFormFeedBack && "blue"
+                            }-600 rounded-xl cursor-pointer`}
+                            onClick={() => setisShowFormFeedBack(false)}
+                        >
+                            Khách hàng đánh giá
+                        </span>
+                        <span
+                            className={`p-3 border border-gray-200 border-t-4 border-t-${
+                                isShowFormFeedBack && "blue"
+                            }-600 rounded-xl cursor-pointer`}
+                            onClick={() => setisShowFormFeedBack(true)}
+                        >
+                            Hỏi đáp / Phản hồi
+                        </span>
+                    </div>
+                    {isShowFormFeedBack ? (
+                        <ProductFormFeedback productId={product?.id} />
+                    ) : (
+                        <ProductRateDetail
+                            productFeedbacks={product?.product_feedbacks}
+                        />
+                    )}
                 </div>
             </div>
             <div className="mt-10">

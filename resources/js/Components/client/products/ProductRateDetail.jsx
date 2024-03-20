@@ -3,7 +3,7 @@ import { Avatar, Blockquote, Rating } from "flowbite-react";
 
 const CustommerRate = ({ productFeedbacks }) => {
     return (
-        <figure className="w-full border-2 rounded-lg p-4">
+        <figure className="w-full border-t-4 border-t-blue-400 rounded-2xl p-4">
             <figcaption className="flex items-center space-x-3">
                 <Avatar
                     rounded
@@ -42,7 +42,7 @@ const CustommerRate = ({ productFeedbacks }) => {
 };
 const ProductRateDetail = () => {
     return (
-        <div className="col-span-5 mt-10 px-4">
+        <div className="col-span-5 px-4">
             <div className="flex flex-col gap-4 my-4">
                 {[...Array(5)].map((_, i) => (
                     <CustommerRate key={i} />

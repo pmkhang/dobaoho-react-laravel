@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\CartProducts;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductFeedbacks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -49,5 +50,27 @@ class ProductController extends Controller
             'productsByCategory' => $productsByCategory,
             'countProductCart' => $countProductCart
         ]);
+    }
+
+    public function sendFeedback(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|string',
+            'rate' => 'required|numeric',
+            'content' => 'required|string',
+            'title' => 'required|string',
+            'name' => 'required|string'
+        ]);
+        $data = [
+            'product_id' => $request->product_id,
+            'user_id' => $request->user_id,
+            'rate' => $request->rate,
+            'content' => $request->content,
+            'title' => $request->title,
+            'name' => $request->name,
+            'status' => 1
+        ];
+        ProductFeedbacks::create($data);
+        return redirect()->route('product-detail', ['id' => $request->product_id]);
     }
 }
