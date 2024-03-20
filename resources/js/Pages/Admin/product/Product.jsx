@@ -282,12 +282,13 @@ const Product = ({ status, message, products, queries, categories }) => {
                                     </Table.Cell>
                                     <Table.Cell>
                                         <Rating>
-                                            {Array.from(
-                                                { length: +i?.rate_avg | 0 },
-                                                (_, j) => (
-                                                    <Rating.Star key={j} />
-                                                )
-                                            )}
+                                            {+i?.rate_avg > 0 &&
+                                                Array.from(
+                                                    { length: +i?.rate_avg },
+                                                    (_, j) => (
+                                                        <Rating.Star key={j} />
+                                                    )
+                                                )}
                                             {Array.from(
                                                 { length: 5 - +i?.rate_avg },
                                                 (_, j) => (
