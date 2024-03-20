@@ -3,7 +3,6 @@ import CheckoutInfoCustomer from "@/Components/client/cart/CheckoutInfoCustomer"
 import ClientLayout from "@/Layouts/ClientLayout";
 import { useForm } from "@inertiajs/react";
 const Checkout = ({ cartProducts, total_price, auth }) => {
-    // console.log({ cartProducts, total_price });
     const { data, setData, post } = useForm({
         email: auth?.user?.email,
         name: auth?.user?.name,

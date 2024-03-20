@@ -38,7 +38,6 @@ const ProductFormFeedback = ({ productId }) => {
         post(route("sendFeedback"));
         reset();
     };
-    console.log(auth);
 
     return (
         <>
