@@ -1,1 +1,0 @@
-import{j as t}from"./app-D2A8Wiwp.js";import{A as r}from"./AdminLayout-DUmvNeUH.js";import"./ReactToastify-BB6POeen.js";const s=()=>t.jsx(r,{title:"Đơn hàng",children:t.jsx("h3",{className:"text-3xl font-bold uppercase",children:"Cart Page"})});export{s as default};

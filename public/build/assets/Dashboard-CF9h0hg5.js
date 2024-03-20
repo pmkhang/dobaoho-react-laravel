@@ -1,1 +1,0 @@
-import{j as a}from"./app-D2A8Wiwp.js";import{A as r}from"./AdminLayout-DUmvNeUH.js";import"./ReactToastify-BB6POeen.js";const e=()=>a.jsx(r,{title:"Dashboard",children:a.jsx("h3",{className:"text-3xl font-bold uppercase",children:"Dashboard Page"})});export{e as default};
