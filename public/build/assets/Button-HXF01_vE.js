@@ -1,0 +1,1 @@
+import{j as e}from"./app-D2A8Wiwp.js";import{B as m}from"./ToggleSwitch-DBlUdIHg.js";const a=({color:t="blue",text:s,className:o,...r})=>e.jsx(m,{type:"submit",className:`w-full ${o}`,color:t,...r,children:s});export{a as B};

@@ -1,0 +1,1 @@
+import{j as t}from"./app-D2A8Wiwp.js";import{C as o}from"./ClientLayout-B4SaEB3g.js";import"./ToggleSwitch-DBlUdIHg.js";import"./ReactToastify-BB6POeen.js";const s=()=>t.jsx(o,{title:"Về chúng tôi",children:"About"});export{s as default};
