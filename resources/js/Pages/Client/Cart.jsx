@@ -36,43 +36,44 @@ const tableColumns = [
 
 const Cart = ({ cartProducts, total_price, user_id }) => {
     const [quantityItems, setQuantityItems] = useState(
-        cartProducts.map((product) => product.quantity)
+        cartProducts.map((product) => +product.quantity)
     );
     const { post, get } = useForm();
 
     const handleQuantityChange = (index, event) => {
         const newQuantityItems = [...quantityItems];
         const parsedValue = parseInt(event.target.value);
-        newQuantityItems[index] = isNaN(parsedValue)
+        newQuantityItems[index] = isNaN(+parsedValue)
             ? 0
-            : Math.max(parsedValue, 0);
+            : +Math.max(+parsedValue, 0);
         setQuantityItems(newQuantityItems);
     };
     const handleClickQuantityChange = (index, operation, id) => {
         const newQuantityItems = [...quantityItems];
-        const prevNumber = newQuantityItems[index];
-        const newValue = operation == "plus" ? prevNumber + 1 : prevNumber - 1;
-        newQuantityItems[index] = newValue < 0 ? 0 : newValue;
+        const prevNumber = +newQuantityItems[index];
+        const newValue =
+            operation == "plus" ? +prevNumber + 1 : +prevNumber - 1;
+        newQuantityItems[index] = +newValue < 0 ? 0 : +newValue;
         setQuantityItems(newQuantityItems);
         post(
             route("updateQuantity", {
                 id,
-                [operation]: newValue,
+                [operation]: +newValue,
             })
         );
     };
 
     const updateQuantity = (e, id, quantity) => {
         e.preventDefault();
-        if (quantity == 0) {
+        if (+quantity == 0) {
             post(
                 route("updateQuantity", {
                     id,
-                    minus: quantity,
+                    minus: +quantity,
                 })
             );
         } else {
-            post(route("updateQuantity", { id, quantity }));
+            post(route("updateQuantity", { id, quantity: +quantity }));
         }
     };
 
@@ -156,7 +157,9 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                                                     <input
                                                         type="text"
                                                         value={
-                                                            quantityItems[index]
+                                                            +quantityItems[
+                                                                index
+                                                            ]
                                                         }
                                                         onChange={(event) => {
                                                             handleQuantityChange(
@@ -169,12 +172,12 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                                                             updateQuantity(
                                                                 e,
                                                                 i?.id,
-                                                                quantityItems[
+                                                                +quantityItems[
                                                                     index
                                                                 ]
                                                             );
                                                             if (
-                                                                quantityItems[
+                                                                +quantityItems[
                                                                     index
                                                                 ] == 0
                                                             ) {
@@ -183,7 +186,7 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                                                                         "updateQuantity",
                                                                         {
                                                                             id: i?.id,
-                                                                            minus: quantityItems[
+                                                                            minus: +quantityItems[
                                                                                 index
                                                                             ],
                                                                         }

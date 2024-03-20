@@ -17,10 +17,11 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                 <div className="p-4">
                     <div className="flex items-center">
                         <Rating>
-                            {[...Array(rate_avg)].map((_, j) => (
-                                <Rating.Star key={j} />
-                            ))}
-                            {[...Array(5 - rate_avg)].map((_, j) => (
+                            {rate_avg > 0 &&
+                                Array.from({ length: rate_avg }, (_, j) => (
+                                    <Rating.Star key={j} />
+                                ))}
+                            {Array.from({ length: 5 - rate_avg }, (_, j) => (
                                 <Rating.Star filled={false} key={j} />
                             ))}
                         </Rating>
