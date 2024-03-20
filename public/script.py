@@ -25,3 +25,4 @@ def compress_files_and_folders_except_current_python_file(zip_filename):
 zip_file_path = "../public.zip"
 
 compress_files_and_folders_except_current_python_file(zip_file_path)
+print("done")

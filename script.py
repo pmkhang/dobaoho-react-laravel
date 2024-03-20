@@ -22,3 +22,4 @@ def compress_files_and_folders_except_current_python_file(zip_filename):
 zip_file_path = '../source.zip'
 
 compress_files_and_folders_except_current_python_file(zip_file_path)
+print("done")
