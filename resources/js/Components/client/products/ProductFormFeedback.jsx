@@ -38,10 +38,11 @@ const ProductFormFeedback = ({ productId }) => {
         post(route("sendFeedback"));
         reset();
     };
+    console.log(auth);
 
     return (
         <>
-            {!auth ? (
+            {auth.user == null ? (
                 <div className="col-span-5 px-4 flex flex-col gap-3 w-3/5 py-8">
                     <h3 className="text-xl flex gap-2">
                         <Link
