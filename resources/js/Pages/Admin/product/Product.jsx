@@ -300,12 +300,12 @@ const Product = ({ status, message, products, queries, categories }) => {
                                     <Table.Cell>
                                         <span
                                             className={`${
-                                                i?.status === 1
+                                                i?.status == 1
                                                     ? "text-green-600"
                                                     : "text-red-600"
                                             }`}
                                         >
-                                            {i?.status === 1
+                                            {i?.status == 1
                                                 ? "Đang hoạt động"
                                                 : "Không hoạt động"}
                                         </span>

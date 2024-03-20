@@ -69,7 +69,7 @@ const ProductDeleted = ({ products, categories, status, message }) => {
                                     <Table.Cell>{i?.name}</Table.Cell>
                                     <Table.Cell>
                                         {categories?.find(
-                                            (j) => j?.id === i?.category_id
+                                            (j) => j?.id == i?.category_id
                                         )?.name || "--"}
                                     </Table.Cell>
                                     <Table.Cell>{i?.price}</Table.Cell>

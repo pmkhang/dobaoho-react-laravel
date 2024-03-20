@@ -26,7 +26,7 @@ const NavCategory = ({ isHide, categories }) => {
         const commonClass =
             "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
         const handleClick = () =>
-            setHoveredItem(hoveredItem === category?.id ? null : category?.id);
+            setHoveredItem(hoveredItem == category?.id ? null : category?.id);
 
         return (
             <>
@@ -40,7 +40,7 @@ const NavCategory = ({ isHide, categories }) => {
                 ) : category?.children.length > 0 ? (
                     <span onClick={handleClick} className={`${commonClass}`}>
                         <Link>{category?.name}</Link>
-                        {hoveredItem === category?.id ? (
+                        {hoveredItem == category?.id ? (
                             <i className="fa-solid fa-caret-down text-lg"></i>
                         ) : (
                             <i className="fa-solid fa-caret-right text-lg"></i>
@@ -59,7 +59,7 @@ const NavCategory = ({ isHide, categories }) => {
         return (
             <>
                 {category?.children.length > 0 &&
-                    hoveredItem === category?.id && (
+                    hoveredItem == category?.id && (
                         <ul
                             className={`${
                                 !isTabletScreen &&

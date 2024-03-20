@@ -23,7 +23,7 @@ const UserNav = ({ user }) => {
                         {user?.email}
                     </span>
                 </Dropdown.Header>
-                {user?.role === 1 && (
+                {user?.role == 1 && (
                     <Dropdown.Item icon={HiViewGrid}>
                         <Link href={route("admin")}>Vào trang Admin</Link>
                     </Dropdown.Item>

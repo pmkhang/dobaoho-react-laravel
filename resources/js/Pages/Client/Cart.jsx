@@ -51,7 +51,7 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
     const handleClickQuantityChange = (index, operation, id) => {
         const newQuantityItems = [...quantityItems];
         const prevNumber = newQuantityItems[index];
-        const newValue = operation === "plus" ? prevNumber + 1 : prevNumber - 1;
+        const newValue = operation == "plus" ? prevNumber + 1 : prevNumber - 1;
         newQuantityItems[index] = newValue < 0 ? 0 : newValue;
         setQuantityItems(newQuantityItems);
         post(
@@ -64,7 +64,7 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
 
     const updateQuantity = (e, id, quantity) => {
         e.preventDefault();
-        if (quantity === 0) {
+        if (quantity == 0) {
             post(
                 route("updateQuantity", {
                     id,
@@ -176,7 +176,7 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                                                             if (
                                                                 quantityItems[
                                                                     index
-                                                                ] === 0
+                                                                ] == 0
                                                             ) {
                                                                 post(
                                                                     route(

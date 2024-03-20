@@ -46,7 +46,7 @@ const ProductEdit = ({ product, categories }) => {
                 (_, index) => index !== indexToRemove
             ),
         }));
-        if (data === "images") {
+        if (data == "images") {
             get(route("deleteImage", id));
         }
     };

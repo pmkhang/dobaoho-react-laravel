@@ -61,7 +61,7 @@ const ProductInfoDetail = ({ name, price, productId }) => {
                         <Button
                             key={i}
                             className={`focus:ring-4 focus:ring-orange-400 ${
-                                activeButton === i
+                                activeButton == i
                                     ? "ring-4 ring-orange-400"
                                     : ""
                             }`}

@@ -65,7 +65,7 @@ const User = ({ status, message, users }) => {
                                 <Table.Row
                                     key={i.id}
                                     className={`${
-                                        index % 2 === 0
+                                        index % 2 == 0
                                             ? "bg-white"
                                             : "bg-slate-200"
                                     }`}
@@ -94,12 +94,12 @@ const User = ({ status, message, users }) => {
                                     <Table.Cell>
                                         <span
                                             className={`${
-                                                i?.role === 1
+                                                i?.role == 1
                                                     ? "text-red-600"
                                                     : "text-blue-600"
                                             }`}
                                         >
-                                            {i?.role === 1
+                                            {i?.role == 1
                                                 ? "Admin"
                                                 : "Người dùng"}
                                         </span>
@@ -107,12 +107,12 @@ const User = ({ status, message, users }) => {
                                     <Table.Cell>
                                         <span
                                             className={`${
-                                                i?.status === 1
+                                                i?.status == 1
                                                     ? "text-green-600"
                                                     : "text-red-600"
                                             }`}
                                         >
-                                            {i?.status === 1
+                                            {i?.status == 1
                                                 ? "Đang hoạt động"
                                                 : "Không hoạt động"}
                                         </span>

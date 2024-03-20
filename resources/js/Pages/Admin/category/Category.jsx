@@ -63,18 +63,18 @@ const Category = ({ categories, message, status }) => {
                                     <Table.Cell>{i?.name}</Table.Cell>
                                     <Table.Cell>
                                         {categories?.find(
-                                            (j) => j?.id === i?.parent_id
+                                            (j) => j?.id == i?.parent_id
                                         )?.name || "--"}
                                     </Table.Cell>
                                     <Table.Cell>
                                         <span
                                             className={`flex-1 px-6 py-2 font-bold ${
-                                                i?.status === 1
+                                                i?.status == 1
                                                     ? "text-green-600"
                                                     : "text-red-600"
                                             }`}
                                         >
-                                            {i?.status === 1
+                                            {i?.status == 1
                                                 ? "Đang hoạt động"
                                                 : "Không hoạt động"}
                                         </span>
