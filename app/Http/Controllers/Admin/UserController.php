@@ -11,16 +11,35 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::select('id', 'name', 'email', 'phone', 'role', 'status', 'avatar')
+        $queries = [
+            'limit' => $request->limit ?? 10,
+            'role' => $request->role ?? "",
+            'statusUser' => $request->statusUser ?? "",
+            'search' => $request->search ?? "",
+        ];
+        $query = User::select('id', 'name', 'email', 'phone', 'role', 'status', 'avatar')
             ->where('status', '>', 0)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+            ->orderBy('created_at', 'DESC');
+        if ($queries['role'] != "") {
+            $query = $query->where('role', $queries['role']);
+        }
+        if ($queries['search'] != '') {
+            $query = $query->where('name', 'like', '%' . $queries['search'] . '%')
+                ->orWhere('email', 'like', '%' . $queries['search'] . '%')
+                ->orWhere('phone', 'like', '%' . $queries['search'] . '%')
+                ->orWhere('id', 'like', '%' . $queries['search'] . '%');
+        }
+        if ($queries['statusUser'] != '') {
+            $query = $query->where('status', $queries['statusUser']);
+        }
+        $users = $query->paginate($queries['limit']);
         return Inertia::render('Admin/user/User', [
             'status' => session('status'),
             'message' => session('message'),
-            'users' => $users
+            'users' => $users,
+            'queries' => $queries
         ]);
     }
     public function create()

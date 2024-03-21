@@ -8,7 +8,7 @@ import formatCurrency from "@/Utils/formatCurrency";
 import paginationTheme from "@/Utils/paginationTheme";
 import { Link, useForm } from "@inertiajs/react";
 import { Pagination, Rating, Table } from "flowbite-react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 const tableColumns = [
@@ -47,6 +47,7 @@ const tableColumns = [
     },
 ];
 const dataStatusProduct = [
+    { id: "1", name: "Tất cả" },
     { id: 1, name: "Hoạt động" },
     { id: 2, name: "Không hoạt động" },
 ];
@@ -236,16 +237,14 @@ const Product = ({ status, message, products, queries, categories }) => {
                             className={selector?.className}
                         />
                     ))}
-
                     <Button
                         text={<i className="fa-solid fa-x"></i>}
                         className={"mt-8 w-[50px] py-1 bg-gray-900"}
                         onClick={() => {
-                            get(route("product", { ...dataQuery, name: "" }));
+                            get(route("product"));
                         }}
                     />
                 </div>
-
                 <div className="overflow-x-auto mt-8">
                     <Table striped hoverable>
                         <Table.Head>

@@ -93,10 +93,18 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
+
+        $countProductCart = "";
+        if (Auth::check()) {
+            $countProductCart = Cart::where('user_id', Auth::user()->id)
+                ->where('status', 1)
+                ->count();
+        }
         return Inertia::render('Client/ProductList', [
             'products' => $products,
             'categories' => $categories,
             'category' => $category,
+            'countProductCart' => $countProductCart
         ]);
     }
 }
