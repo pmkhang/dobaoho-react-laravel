@@ -31,7 +31,10 @@ const NavCategory = ({ isHide, categories }) => {
         return (
             <>
                 {!isTabletScreen ? (
-                    <Link className={commonClass}>
+                    <Link
+                        href={route("productListByCategory", category?.id)}
+                        className={commonClass}
+                    >
                         <span>{category?.name}</span>
                         {category?.children.length > 0 && (
                             <i className="fa-solid fa-caret-right text-lg"></i>
@@ -39,7 +42,11 @@ const NavCategory = ({ isHide, categories }) => {
                     </Link>
                 ) : category?.children.length > 0 ? (
                     <span onClick={handleClick} className={`${commonClass}`}>
-                        <Link>{category?.name}</Link>
+                        <Link
+                            href={route("productListByCategory", category?.id)}
+                        >
+                            {category?.name}
+                        </Link>
                         {hoveredItem == category?.id ? (
                             <i className="fa-solid fa-caret-down text-lg"></i>
                         ) : (
@@ -47,7 +54,11 @@ const NavCategory = ({ isHide, categories }) => {
                         )}
                     </span>
                 ) : (
-                    <Link onClick={handleClick} className={commonClass}>
+                    <Link
+                        onClick={handleClick}
+                        className={commonClass}
+                        href={route("productListByCategory", category?.id)}
+                    >
                         <span>{category?.name}</span>
                     </Link>
                 )}
@@ -69,7 +80,7 @@ const NavCategory = ({ isHide, categories }) => {
                             {category.children.map((child) => (
                                 <li key={child.id}>
                                     <Link
-                                        href="#"
+                                        href={route("productListByCategory", category?.id)}
                                         className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
                                     >
                                         <span>{child.name}</span>

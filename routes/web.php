@@ -37,7 +37,6 @@ Route::prefix('')->group(function () {
     Route::redirect('/public', '/');
     Route::redirect('/cpanel', '/');
     Route::get('', [HomeController::class, 'index'])->name('home');
-    Route::get('/san-pham/{id}', [ProductController::class, 'productDetailPage'])->name('product-detail');
     Route::get('/ve-chung-toi', function () {
         return Inertia::render('Client/About');
     })->name('about');
@@ -52,6 +51,13 @@ Route::prefix('')->group(function () {
 
         Route::post('gui-feedback', [ProductController::class, 'sendFeedback'])->name('sendFeedback');
     });
+
+    Route::prefix('/san-pham')
+        ->controller(ProductController::class)
+        ->group(function () {
+            Route::get('/{id}', 'productDetailPage')->name('product-detail');
+            Route::get('the-loai/{category_id}', 'productListByCategory')->name('productListByCategory');
+        });
 });
 
 Route::prefix('admin')

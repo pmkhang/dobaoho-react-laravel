@@ -73,4 +73,30 @@ class ProductController extends Controller
         ProductFeedbacks::create($data);
         return redirect()->route('product-detail', ['id' => $request->product_id]);
     }
+
+    public function productListByCategory(Request $request, $category_id)
+    {
+
+        $categories = Category::where('status', '>', 0)
+            ->select('id', 'name', 'parent_id')
+            ->get();
+        $category = Category::select('id', 'name')->findOrFail($category_id);
+
+        $query = Product::where('status', 1)
+            ->where('category_id', $category_id)
+            ->select('id', 'name', 'category_id', 'price', 'status', 'desc', 'rate_avg')
+            ->with('productImages')
+            ->with('category');
+
+        if ($request->price) {
+            $query = $query->orderBy('price', $request->price);
+        }
+
+        $products = $query->get();
+        return Inertia::render('Client/ProductList', [
+            'products' => $products,
+            'categories' => $categories,
+            'category' => $category,
+        ]);
+    }
 }
