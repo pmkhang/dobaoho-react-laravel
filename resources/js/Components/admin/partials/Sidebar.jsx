@@ -19,7 +19,7 @@ const Sidebar = () => {
             name: "Thành viên",
         },
         {
-            route: route("cart"),
+            route: route("order"),
             icon: <i className="fa-solid fa-truck-fast"></i>,
             name: "Đơn hàng",
         },

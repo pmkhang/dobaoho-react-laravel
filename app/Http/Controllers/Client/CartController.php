@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartProducts;
+use App\Models\Invoice;
+use App\Models\InvoiceDetail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -103,5 +106,50 @@ class CartController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function createInvoice(Request $request, $id)
+    {
+        require_once app_path('Lib/generateIDInvoice.php');
+        $idInvoice = generateIDInvoice();
+
+        $user = User::findOrFail($id);
+        $carts = Cart::where('user_id', $user->id)
+            ->where('status', 1)
+            ->with('products')
+            ->get();
+
+        $totalPrice = 0;
+
+        foreach ($carts as $cart) {
+            $totalPrice += $cart->products[0]->price * $cart->quantity;
+            Cart::find($cart->id)->update([
+                'status' => 2,
+                'price_per_1' => $cart->products[0]->price
+            ]);;
+        }
+
+        $data = [
+            'id' => $idInvoice,
+            'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'user_id' => $user->id,
+            'total_price' => $totalPrice,
+            'request_invoice' => $request->request_invoice,
+            'status' => 1,
+        ];
+        Invoice::create($data);
+
+        foreach ($carts as $cart) {
+            $dataDetail = [
+                'invoice_id' => $idInvoice,
+                'cart_id' => $cart->id,
+            ];
+            InvoiceDetail::create($dataDetail);
+        }
+
+        return redirect()->route('home');
     }
 }

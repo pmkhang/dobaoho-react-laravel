@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CartController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -47,6 +47,7 @@ Route::prefix('')->group(function () {
             Route::post('/them-san-pham', 'store')->name('addProductToCart');
             Route::post('/{id}/cap-nhat-so-luong', 'updateQuantity')->name('updateQuantity');
             Route::get('/check-out/{id}', 'checkout')->name('checkout');
+            Route::post('/check-out/{id}', 'createInvoice')->name('createInvoice');
         });
 
         Route::post('gui-feedback', [ProductController::class, 'sendFeedback'])->name('sendFeedback');
@@ -111,9 +112,11 @@ Route::prefix('admin')
             });
 
         Route::prefix('/don-hang')
-            ->controller(CartController::class)
+            ->controller(OrderController::class)
             ->group(function () {
-                Route::get('', 'index')->name('cart');
+                Route::get('', 'index')->name('order');
+                Route::get('/{id}', 'orderDetail')->name('orderDetail');
+                Route::post('/{id}', 'updateStatus')->name('updateStatus');
             });
     });
 

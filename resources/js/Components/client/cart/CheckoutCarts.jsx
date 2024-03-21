@@ -3,7 +3,7 @@ import formatCurrency from "@/Utils/formatCurrency";
 import Button from "@/Components/Button";
 import { Link } from "@inertiajs/react";
 
-const CheckoutCarts = ({ cartProducts, total_price, post }) => {
+const CheckoutCarts = ({ cartProducts, total_price, post, processing }) => {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
@@ -12,7 +12,7 @@ const CheckoutCarts = ({ cartProducts, total_price, post }) => {
                     href={route("clientCart")}
                     className="text-blue-600 underline"
                 >
-                    Chỉnh sủa đơn hàng
+                    Chỉnh sửa đơn hàng
                 </Link>
             </div>
             <div className="flex flex-col gap-4">
@@ -66,7 +66,7 @@ const CheckoutCarts = ({ cartProducts, total_price, post }) => {
                     {formatCurrency(total_price)}
                 </strong>
             </div>
-            <Button text={"Đặt hàng"} />
+            <Button text={"Đặt hàng"} disabled={processing} />
         </div>
     );
 };

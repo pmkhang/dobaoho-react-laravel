@@ -264,7 +264,6 @@ const Product = ({ status, message, products, queries, categories }) => {
                                         {startIndex + index < 10
                                             ? `0${startIndex + index}`
                                             : startIndex + index}
-                                        {/* {i?.id} */}
                                     </Table.Cell>
                                     <Table.Cell>{i?.id}</Table.Cell>
                                     <Table.Cell>
