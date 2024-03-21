@@ -7,7 +7,10 @@ const HomeGridProduct = ({ title, cols = 4, id, products }) => {
         <div className="w-full min-h-[200px] max-tl:px-4 max-tl:mt-8">
             <div className="flex items-center justify-between">
                 <h2 className="uppercase font-bold text-3xl">{title}</h2>
-                <Link href={`#${id}`} className="underline max-mb:hidden">
+                <Link
+                    href={route("productListByCategory", id)}
+                    className="underline max-mb:hidden"
+                >
                     Xem tất cả
                 </Link>
             </div>

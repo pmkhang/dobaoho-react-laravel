@@ -88,7 +88,7 @@ class ProductController extends Controller
             ->with('productImages')
             ->with('category');
 
-        if ($request->price) {
+        if (in_array($request->price, ['asc', 'ASC'], true) || in_array($request->price, ['desc', 'DESC'], true)) {
             $query = $query->orderBy('price', $request->price);
         }
 

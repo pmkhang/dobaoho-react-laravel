@@ -8,7 +8,6 @@ const Home = ({ categories, products }) => {
     return (
         <ClientLayout title="Trang chủ">
             <SliderImages />
-            {/* service */}
             <div className="w-full mt-6 grid grid-cols-4 gap-4 max-tl:px-4 max-mb:grid-cols-1">
                 {[...Array(4)].map((_, i) => (
                     <div
