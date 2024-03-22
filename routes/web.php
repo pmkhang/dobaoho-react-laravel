@@ -23,7 +23,7 @@ Route::prefix('')->group(function () {
         return Inertia::render('Client/About');
     })->name('about');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('checkLogin')->group(function () {
         Route::prefix('/gio-hang')->controller(ClientCartController::class)->group(function () {
             Route::get('', 'index')->name('clientCart');
             Route::post('/them-san-pham', 'store')->name('addProductToCart');
