@@ -1,9 +1,8 @@
-import ModalDelConfirm from "@/Components/ModalDelConfirm";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Link, useForm } from "@inertiajs/react";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { Table } from "flowbite-react";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const ProductDeleted = ({ products, categories, status, message }) => {
     const { get } = useForm();

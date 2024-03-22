@@ -129,7 +129,6 @@ const User = ({ status, message, users, queries }) => {
         e.preventDefault();
         get(route("user", dataQuery));
     };
-
     return (
         <AdminLayout title="Thành viên">
             <div className="flex flex-col">
@@ -137,6 +136,12 @@ const User = ({ status, message, users, queries }) => {
                     Quản lý thành viên
                 </h3>
                 <div className="flex justify-end gap-3">
+                    <Link
+                        href={route("usersDeleted")}
+                        className="mt-3 py-2 px-4 bg-gray-700 text-white rounded-full "
+                    >
+                        Xem thành viên đã xoá
+                    </Link>
                     <Link
                         href={route("createUser")}
                         className="mt-3 py-2 px-4 bg-green-700 text-white rounded-full "
@@ -258,7 +263,10 @@ const User = ({ status, message, users, queries }) => {
                                     <Table.Cell>
                                         <div className="flex items-center gap-4">
                                             <Link
-                                                href={route("showDetail", i?.id)}
+                                                href={route(
+                                                    "showDetail",
+                                                    i?.id
+                                                )}
                                                 className="text-blue-500 px-2 py-1 underline"
                                             >
                                                 Chi tiết

@@ -175,4 +175,25 @@ class UserController extends Controller
             'invoiceUser' => $invoiceUser
         ]);
     }
+
+    public function usersDeleted()
+    {
+        $users = User::where('status', '0')->get();
+        return Inertia::render('Admin/user/UsersDeleted', [
+            'users' => $users,
+            'status' => session('status'),
+            'message' => session('message'),
+        ]);
+    }
+    
+    public function restoreUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 1;
+        $user->save();
+        return redirect()->back()->with([
+            'status' => true,
+            'message' => 'Khôi phục người dùng thành công'
+        ]);
+    }
 }
