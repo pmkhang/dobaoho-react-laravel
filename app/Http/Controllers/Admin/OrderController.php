@@ -21,6 +21,7 @@ class OrderController extends Controller
         $query = DB::table('invoices')
             ->orderBy('status', "ASC")
             ->orderBy('created_at', "DESC");
+            
         if ($dataQuery['search'] != "") {
             $query = $query->where('id', 'like', '%' . $dataQuery['search'] . '%');
         }

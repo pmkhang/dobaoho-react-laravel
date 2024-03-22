@@ -258,7 +258,7 @@ const User = ({ status, message, users, queries }) => {
                                     <Table.Cell>
                                         <div className="flex items-center gap-4">
                                             <Link
-                                                // href={route("editUser", i?.id)}
+                                                href={route("showDetail", i?.id)}
                                                 className="text-blue-500 px-2 py-1 underline"
                                             >
                                                 Chi tiết

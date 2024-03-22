@@ -109,6 +109,7 @@ Route::prefix('admin')
                 Route::get('/{id}/chinh-sua', 'edit')->name('editUser');
                 Route::post('/{id}', 'update')->name('updateUser');
                 Route::get('/{id}/xoa', 'destroy')->name('destroyUser');
+                Route::get('/{id}', 'showDetail')->name('showDetail');
             });
 
         Route::prefix('/don-hang')

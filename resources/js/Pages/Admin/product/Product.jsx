@@ -188,8 +188,8 @@ const Product = ({ status, message, products, queries, categories }) => {
                     Quản lý sản phẩm
                 </h3>
                 <div className="flex items-center justify-between gap-3">
-                    <div className="flex-1 mt-3 py-2 px-4 flex items-center gap-4"></div>
-                    <div className="flex items-center gap-3 mt-8">
+                    <div className="flex-1 py-2 px-4 flex items-center gap-4"></div>
+                    <div className="flex items-center gap-3">
                         <Link
                             href={route("productsDeleted")}
                             className="mt-3 py-2 px-4 bg-gray-700 text-white rounded-full "

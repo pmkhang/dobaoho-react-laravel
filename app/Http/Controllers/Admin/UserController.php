@@ -7,6 +7,7 @@ use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -157,6 +158,21 @@ class UserController extends Controller
         return redirect()->back()->with([
             'status' => true,
             'message' => 'Xóa người dùng thành công'
+        ]);
+    }
+
+    public function showDetail($id)
+    {
+        $user = User::findOrFail($id);
+        $invoiceUser = DB::table('invoices')
+            ->where('user_id', $id)
+            ->orderBy('status', "ASC")
+            ->orderBy('created_at', "DESC")
+            ->get();
+
+        return Inertia::render('Admin/user/UserDetail', [
+            'user' => $user,
+            'invoiceUser' => $invoiceUser
         ]);
     }
 }
