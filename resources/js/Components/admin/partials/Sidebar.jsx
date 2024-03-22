@@ -48,12 +48,12 @@ const Sidebar = () => {
                             {magnetment.map((i, index) => (
                                 <li key={index}>
                                     <Link
-                                        href={i.route}
+                                        href={i?.route}
                                         className="flex items-center justify-between px-4 py-2 font-medium transition-all bg-gray-100 rounded-lg hover:bg-gray-700 hover:text-white"
                                     >
                                         <span className="flex items-center gap-2">
-                                            {i.icon}
-                                            {i.name}
+                                            {i?.icon}
+                                            {i?.name}
                                         </span>
                                         <i className="text-xl fa-solid fa-caret-right"></i>
                                     </Link>

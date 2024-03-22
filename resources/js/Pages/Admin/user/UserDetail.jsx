@@ -104,9 +104,7 @@ const UserDetail = ({ user, invoiceUser }) => {
                             alt={user?.name + user?.id}
                             className="block w-[200px] h-[200px] rounded-full object-cover shadow-xl mt-16"
                         />
-                        <Link
-                            href={route("editUser", user?.id)}
-                        >
+                        <Link href={route("editUser", user?.id)}>
                             <Button text={"Chỉnh sửa thông tin"} />
                         </Link>
                     </div>
@@ -148,12 +146,12 @@ const UserDetail = ({ user, invoiceUser }) => {
                             </Table.Head>
                             <Table.Body>
                                 {invoiceUser?.map((i, index) => (
-                                    <Table.Row key={i.id}>
+                                    <Table.Row key={i?.id}>
                                         <Table.Cell>{index + 1}</Table.Cell>
-                                        <Table.Cell>{i.id}</Table.Cell>
-                                        <Table.Cell>{i.name}</Table.Cell>
-                                        <Table.Cell>{i.email}</Table.Cell>
-                                        <Table.Cell>{i.phone}</Table.Cell>
+                                        <Table.Cell>{i?.id}</Table.Cell>
+                                        <Table.Cell>{i?.name}</Table.Cell>
+                                        <Table.Cell>{i?.email}</Table.Cell>
+                                        <Table.Cell>{i?.phone}</Table.Cell>
                                         <Table.Cell>
                                             {formatCurrency(+i?.total_price)}
                                         </Table.Cell>

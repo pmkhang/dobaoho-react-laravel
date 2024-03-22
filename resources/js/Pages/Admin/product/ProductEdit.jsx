@@ -192,7 +192,7 @@ const ProductEdit = ({ product, categories }) => {
                                             <i className="fa-solid fa-xmark text-lg"></i>
                                         </span>
                                         <img
-                                            src={i.image}
+                                            src={i?.image}
                                             alt={`Image ${index}`}
                                             className="w-[200px] h-[200px] object-cover rounded-lg"
                                         />

@@ -182,18 +182,18 @@ const OrderDetail = ({ invoice, carts }) => {
                             </Table.Head>
                             <Table.Body>
                                 {carts.map((i, index) => (
-                                    <Table.Row key={i.id}>
+                                    <Table.Row key={i?.id}>
                                         <Table.Cell>{++index}</Table.Cell>
                                         <Table.Cell>
-                                            {i.products[0]?.id}
+                                            {i?.products[0]?.id}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            {i.products[0]?.name}
+                                            {i?.products[0]?.name}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            {i.products[0]?.category?.name}
+                                            {i?.products[0]?.category?.name}
                                         </Table.Cell>
-                                        <Table.Cell>{i.quantity}</Table.Cell>
+                                        <Table.Cell>{i?.quantity}</Table.Cell>
                                         <Table.Cell>
                                             {formatCurrency(+i.price_per_1)}
                                         </Table.Cell>

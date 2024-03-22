@@ -14,8 +14,8 @@ const CartTable = ({
         <Table striped hoverable>
             <Table.Head>
                 {tableColumns.map((i) => (
-                    <Table.HeadCell key={i.label} className={i.className}>
-                        {i.label}
+                    <Table.HeadCell key={i?.label} className={i?.className}>
+                        {i?.label}
                     </Table.HeadCell>
                 ))}
             </Table.Head>

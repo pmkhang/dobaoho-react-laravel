@@ -43,16 +43,16 @@ const ProductDeleted = ({ products, categories, status, message }) => {
                         <Table.Head>
                             {tableColumns.map((i) => (
                                 <Table.HeadCell
-                                    key={i.label}
-                                    className={i.className}
+                                    key={i?.label}
+                                    className={i?.className}
                                 >
-                                    {i.label}
+                                    {i?.label}
                                 </Table.HeadCell>
                             ))}
                         </Table.Head>
                         <Table.Body>
                             {products.map((i, index) => (
-                                <Table.Row key={i.id} className="bg-white">
+                                <Table.Row key={i?.id} className="bg-white">
                                     <Table.Cell>
                                         {index + 1 < 10
                                             ? `0${index + 1}.`

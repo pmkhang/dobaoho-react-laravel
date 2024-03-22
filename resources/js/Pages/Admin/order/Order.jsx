@@ -174,16 +174,16 @@ const Order = ({ invoices, queries }) => {
                         <Table.Head>
                             {tableColumns.map((i) => (
                                 <Table.HeadCell
-                                    key={i.label}
-                                    className={i.className}
+                                    key={i?.label}
+                                    className={i?.className}
                                 >
-                                    {i.label}
+                                    {i?.label}
                                 </Table.HeadCell>
                             ))}
                         </Table.Head>
                         <Table.Body>
                             {invoices?.data?.map((i, index) => (
-                                <Table.Row key={i.id}>
+                                <Table.Row key={i?.id}>
                                     <Table.Cell>
                                         {startIndex + index < 10
                                             ? `0${startIndex + index}`

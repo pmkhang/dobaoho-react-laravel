@@ -250,10 +250,10 @@ const Product = ({ status, message, products, queries, categories }) => {
                         <Table.Head>
                             {tableColumns.map((i) => (
                                 <Table.HeadCell
-                                    key={i.label}
-                                    className={i.className}
+                                    key={i?.label}
+                                    className={i?.className}
                                 >
-                                    {i.label}
+                                    {i?.label}
                                 </Table.HeadCell>
                             ))}
                         </Table.Head>

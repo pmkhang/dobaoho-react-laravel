@@ -43,21 +43,21 @@ const UsersDeleted = ({ users, status, message }) => {
                         <Table.Head>
                             {tableColumns.map((i) => (
                                 <Table.HeadCell
-                                    key={i.label}
-                                    className={i.className}
+                                    key={i?.label}
+                                    className={i?.className}
                                 >
-                                    {i.label}
+                                    {i?.label}
                                 </Table.HeadCell>
                             ))}
                         </Table.Head>
                         <Table.Body>
                             {users.map((i, index) => (
-                                <Table.Row key={i.id}>
+                                <Table.Row key={i?.id}>
                                     <Table.Cell>{index + 1}</Table.Cell>
-                                    <Table.Cell>{i.id}</Table.Cell>
-                                    <Table.Cell>{i.name}</Table.Cell>
-                                    <Table.Cell>{i.email}</Table.Cell>
-                                    <Table.Cell>{i.phone}</Table.Cell>
+                                    <Table.Cell>{i?.id}</Table.Cell>
+                                    <Table.Cell>{i?.name}</Table.Cell>
+                                    <Table.Cell>{i?.email}</Table.Cell>
+                                    <Table.Cell>{i?.phone}</Table.Cell>
                                     <Table.Cell>
                                         <button
                                             className="text-blue-500"

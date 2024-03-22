@@ -19,7 +19,7 @@ const ProductImageDetail = ({ images }) => {
                             className={`w-[60px] h-[60px] p-0.5 object-cover rounded-lg  ${
                                 index == 0 ? "border-2 border-blue-800" : ""
                             }`}
-                            src={i.image}
+                            src={i?.image}
                             alt={i?.id}
                         />
                     </div>

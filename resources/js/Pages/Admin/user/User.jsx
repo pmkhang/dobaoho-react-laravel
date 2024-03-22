@@ -195,17 +195,17 @@ const User = ({ status, message, users, queries }) => {
                         <Table.Head>
                             {tableColumns.map((i) => (
                                 <Table.HeadCell
-                                    key={i.label}
-                                    className={i.className}
+                                    key={i?.label}
+                                    className={i?.className}
                                 >
-                                    {i.label}
+                                    {i?.label}
                                 </Table.HeadCell>
                             ))}
                         </Table.Head>
                         <Table.Body className="divide-y">
                             {users?.data?.map((i, index) => (
                                 <Table.Row
-                                    key={i.id}
+                                    key={i?.id}
                                     className={`${
                                         index % 2 == 0
                                             ? "bg-white"
