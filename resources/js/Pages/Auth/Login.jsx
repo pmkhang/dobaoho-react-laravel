@@ -1,18 +1,17 @@
-import InputText from "@/Components/InputText";
-import ClientLayout from "@/Layouts/ClientLayout";
-import { useEffect, useState } from "react";
 import Button from "@/Components/Button";
 import Checkbox from "@/Components/Checkbox";
+import InputText from "@/Components/InputText";
+import ClientLayout from "@/Layouts/ClientLayout";
 import { Link, useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const Login = ({ status, message }) => {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, get } = useForm({
         email: "",
         password: "",
         remember: false,
     });
-
 
     useEffect(() => {
         return () => {
@@ -96,6 +95,16 @@ const Login = ({ status, message }) => {
                     >
                         Đăng ký tại đây
                     </Link>
+                </div>
+                <div className="w-1/3 mx-auto flex flex-col gap-3 items-center justify-center mt-4">
+                    <h3 className="text-center">Hoặc</h3>
+                    <a
+                        href={route("login.google")}
+                        className="w-full flex items-center font-semibold justify-center gap-3 focus:ring-2 focus:ring-blue-300 text-blue-600 border-2 border-blue-600 py-2 px-3 rounded-lg"
+                    >
+                        <i className="fa-brands fa-google"></i>
+                        <span>Đăng nhập bằng tài khoản Google</span>
+                    </a>
                 </div>
             </div>
         </ClientLayout>

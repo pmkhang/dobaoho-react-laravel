@@ -47,7 +47,6 @@ const tableColumns = [
     },
 ];
 const dataStatusProduct = [
-    { id: "1", name: "Tất cả" },
     { id: 1, name: "Hoạt động" },
     { id: 2, name: "Không hoạt động" },
 ];
@@ -313,12 +312,6 @@ const Product = ({ status, message, products, queries, categories }) => {
                                     </Table.Cell>
                                     <Table.Cell>
                                         <div className="flex items-center gap-4">
-                                            <Link
-                                                // href={route("editUser", i?.id)}
-                                                className="text-blue-500 px-2 py-1 underline"
-                                            >
-                                                Chi tiết
-                                            </Link>
                                             <Link
                                                 href={route(
                                                     "editProduct",

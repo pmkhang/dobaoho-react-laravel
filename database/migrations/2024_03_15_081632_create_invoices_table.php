@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->string('total_price');
-            $table->string('status')->default(1)->comment("1: pending, 2: completed, 3: canceled");
+            $table->bigInteger('total_price');
+            $table->tinyInteger('status')->default(1)->comment("1: pending, 2: completed, 3: canceled");
             $table->string('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->tinyInteger('request_invoice')->comment("1: yes, 2: no");

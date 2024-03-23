@@ -33,6 +33,7 @@
     "dependencies": {
         "@splidejs/react-splide": "^0.7.12",
         "flowbite-react": "^0.7.3",
+        "react-google-button": "^0.7.2",
         "react-quill": "^2.0.0",
         "react-toastify": "^10.0.4"
     }
