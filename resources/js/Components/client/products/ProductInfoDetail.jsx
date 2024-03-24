@@ -3,8 +3,9 @@ import { Link, useForm } from "@inertiajs/react";
 import Button from "@/Components/Button";
 import { toast } from "react-toastify";
 import formatCurrency from "@/Utils/formatCurrency";
+import { Pagination, Rating, Table } from "flowbite-react";
 
-const ProductInfoDetail = ({ name, price, productId }) => {
+const ProductInfoDetail = ({ name, price, productId, rate_avg }) => {
     const [activeButton, setActiveButton] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const { post, setData } = useForm({
@@ -29,15 +30,17 @@ const ProductInfoDetail = ({ name, price, productId }) => {
             </h5>
             <div className="flex items-center gap-3 mt-2.5 mb-5">
                 <div className="flex items-center ">
-                    <div className="flex items-center space-x-1 rtl:space-x-reverse">
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                        <i className="fa-solid fa-star"></i>
-                    </div>
+                    <Rating>
+                        {+rate_avg > 0 &&
+                            Array.from({ length: +rate_avg }, (_, j) => (
+                                <Rating.Star key={j} />
+                            ))}
+                        {Array.from({ length: 5 - +rate_avg }, (_, j) => (
+                            <Rating.Star filled={false} key={j} />
+                        ))}
+                    </Rating>
                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded  ms-3">
-                        4.0
+                        {rate_avg}
                     </span>
                 </div>
                 <div className="border-l-2 px-2">
@@ -54,7 +57,7 @@ const ProductInfoDetail = ({ name, price, productId }) => {
                     Giá: {formatCurrency(+price)}
                 </strong>
             </div>
-            <div className="mt-5">
+            {/* <div className="mt-5">
                 <strong className="text-xl">Phân loại:</strong>
                 <div className="grid grid-cols-6 max-mb:grid-cols-3 mt-2 gap-3">
                     {[...Array(10)].map((_, i) => (
@@ -72,7 +75,7 @@ const ProductInfoDetail = ({ name, price, productId }) => {
                         />
                     ))}
                 </div>
-            </div>
+            </div> */}
             <div className="mt-5">
                 <strong className="text-xl">Số lượng:</strong>
                 <div className="flex items-center mt-3">

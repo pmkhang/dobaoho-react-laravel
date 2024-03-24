@@ -13,7 +13,7 @@
         "request": "php artisan make:request",
         "dropDB": "php artisan db:wipe",
         "middleware": "php artisan make:middleware",
-        "clear": "php artisan cache:clear && php artisan view:clear"
+        "clear": "php artisan cache:clear && php artisan view:clear && vite build"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.5.1",
@@ -33,8 +33,8 @@
     "dependencies": {
         "@splidejs/react-splide": "^0.7.12",
         "flowbite-react": "^0.7.3",
-        "react-google-button": "^0.7.2",
         "react-quill": "^2.0.0",
+        "react-responsive-carousel": "^3.2.23",
         "react-toastify": "^10.0.4"
     }
 }
