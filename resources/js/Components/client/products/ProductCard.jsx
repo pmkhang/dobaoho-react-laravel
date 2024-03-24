@@ -1,7 +1,6 @@
-import React from "react";
+import formatCurrency from "@/Utils/formatCurrency";
 import { Link } from "@inertiajs/react";
 import { Rating } from "flowbite-react";
-import formatCurrency from "@/Utils/formatCurrency";
 
 const ProductCard = ({ id, img, rate_avg, name, price }) => {
     return (
@@ -17,20 +16,20 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                 <div className="p-4">
                     <div className="flex items-center">
                         <Rating>
-                            {rate_avg > 0 &&
-                                Array.from({ length: rate_avg }, (_, j) => (
+                            {+rate_avg > 0 &&
+                                Array.from({ length: +rate_avg }, (_, j) => (
                                     <Rating.Star key={j} />
                                 ))}
-                            {Array.from({ length: 5 - rate_avg }, (_, j) => (
+                            {Array.from({ length: 5 - +rate_avg }, (_, j) => (
                                 <Rating.Star filled={false} key={j} />
                             ))}
                         </Rating>
                         <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2  rounded  ms-3">
-                            4.0
+                            {rate_avg + ".0"}
                         </span>
                     </div>
                     <Link href={route("product-detail", id)}>
-                        <h5 className="min-h-[36px] font-semibold tracking-tight text-gray-900 mt-1">
+                        <h5 className="min-h-[36px] font-semibold tracking-tight text-gray-900 mt-4">
                             {`${name?.substring(0, 30)}${
                                 name?.length > 30 ? "..." : ""
                             }`}
