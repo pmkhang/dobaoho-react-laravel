@@ -6,15 +6,11 @@ import formatCurrency from "@/Utils/formatCurrency";
 import { Pagination, Rating, Table } from "flowbite-react";
 
 const ProductInfoDetail = ({ name, price, productId, rate_avg }) => {
-    const [activeButton, setActiveButton] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const { post, setData } = useForm({
+    const { data, post, setData } = useForm({
         product_id: productId,
         quantity: 1,
     });
-    const handleClick = (index) => {
-        setActiveButton(index);
-    };
     const addToCart = () => {
         post(route("addProductToCart"));
         toast.success("Thêm vào giỏ hàng thành công");

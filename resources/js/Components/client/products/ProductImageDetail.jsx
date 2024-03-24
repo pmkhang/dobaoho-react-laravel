@@ -1,7 +1,6 @@
 import { Carousel } from "flowbite-react";
 
 const ProductImageDetail = ({ images }) => {
-    console.log(images);
     return (
         <div className="w-full flex flex-col col-span-2 max-tl:col-span-5 gap-4  rounded-xl p-4">
             <div className="h-[480px]">

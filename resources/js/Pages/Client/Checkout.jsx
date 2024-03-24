@@ -3,7 +3,7 @@ import CheckoutInfoCustomer from "@/Components/client/cart/CheckoutInfoCustomer"
 import ClientLayout from "@/Layouts/ClientLayout";
 import { useForm } from "@inertiajs/react";
 const Checkout = ({ cartProducts, total_price, auth }) => {
-    const { data, setData, post, processing } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         email: auth?.user?.email,
         name: auth?.user?.name,
         phone: auth?.user?.phone,
@@ -24,7 +24,11 @@ const Checkout = ({ cartProducts, total_price, auth }) => {
                 </h3>
                 <form className="min-h-32 p-4 flex gap-10" onSubmit={submit}>
                     <div className="w-2/5">
-                        <CheckoutInfoCustomer data={data} setData={setData} />
+                        <CheckoutInfoCustomer
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        />
                     </div>
                     <div className="flex-1">
                         <CheckoutCarts

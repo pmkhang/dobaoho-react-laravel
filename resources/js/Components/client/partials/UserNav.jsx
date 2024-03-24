@@ -1,7 +1,6 @@
-import React from "react";
-import { Dropdown } from "flowbite-react";
-import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi";
 import { Link, useForm } from "@inertiajs/react";
+import { Dropdown } from "flowbite-react";
+import { HiLogout, HiViewGrid } from "react-icons/hi";
 
 const UserNav = ({ user }) => {
     const { post } = useForm();
@@ -14,7 +13,7 @@ const UserNav = ({ user }) => {
                 label=""
                 dismissOnClick={false}
                 renderTrigger={() => (
-                        <i className="fa-solid fa-user text-lg py-2 px-4"></i>
+                    <i className="fa-solid fa-user text-lg py-2 px-4"></i>
                 )}
             >
                 <Dropdown.Header>
@@ -28,8 +27,11 @@ const UserNav = ({ user }) => {
                         <Link href={route("admin")}>Vào trang Admin</Link>
                     </Dropdown.Item>
                 )}
-                <Dropdown.Item icon={HiCog}>
+                <Dropdown.Item>
                     <Link href="#">Thông tin cá nhân</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                    <Link href="#">Đơn mua</Link>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item icon={HiLogout} onClick={logout}>

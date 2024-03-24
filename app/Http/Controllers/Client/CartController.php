@@ -113,12 +113,28 @@ class CartController extends Controller
         require_once app_path('Lib/generateIDInvoice.php');
         $idInvoice = generateIDInvoice();
 
+        $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'request_invoice' => 'required|numeric',
+        ], [
+            'required' => 'Trường này không được để trống',
+        ]);
+
         $user = User::findOrFail($id);
+        if (!$user->phone) {
+            $user->phone = $request->phone;
+        }
+        if (!$user->address) {
+            $user->address = $request->address;
+        }
+        $user->save();
         $carts = Cart::where('user_id', $user->id)
             ->where('status', 1)
             ->with('products')
             ->get();
-
         $totalPrice = 0;
 
         foreach ($carts as $cart) {
