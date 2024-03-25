@@ -30,7 +30,6 @@ const ClientLayout = ({ children, title }) => {
             <main className="max-w-dt mx-auto p-2 h-fit my-4 relative">
                 {children}
             </main>
-            <ToastContainer position="bottom-right" />
             <div className="fixed w-full bottom-8 right-8 flex flex-col items-end gap-4">
                 <a href="https://zalo.me/0938505459" target="_blank">
                     <img
@@ -54,6 +53,7 @@ const ClientLayout = ({ children, title }) => {
                 )}
             </div>
             <Footer />
+            <ToastContainer position="bottom-right" />
         </div>
     );
 };

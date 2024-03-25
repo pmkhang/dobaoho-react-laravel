@@ -37,6 +37,8 @@ Route::prefix('')->group(function () {
             ->controller(ClientUserController::class)
             ->group(function () {
                 Route::get('/don-mua', 'showOrders')->name('showOrders');
+                Route::get('/thong-tin-ca-nhan', 'showProfile')->name('showProfile');
+                Route::post('/sua-thong-tin-ca-nhan/{id}', 'editProfile')->name('editProfile');
             });
     });
 

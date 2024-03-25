@@ -1,13 +1,25 @@
-import React from "react";
 import formatCurrency from "@/Utils/formatCurrency";
-import OrderProductitem from "./OrderProductitem";
-import convertToVietnamTime from "@/Utils/convertToVietnamTime";
 import formatDateVN from "@/Utils/formatDateVn";
+import OrderProductitem from "./OrderProductitem";
 
 const OrderItem = ({ invoice }) => {
+    const statusInfo = {
+        1: { text: "Chờ xác nhận", className: "text-yellow-700" },
+        2: {
+            text: "Đã xác nhận và đang giao hàng",
+            className: "text-blue-700",
+        },
+        3: { text: "Đã giao hàng", className: "text-green-700" },
+        4: { text: "Đơn huỷ", className: "text-red-700" },
+    };
+    const status = statusInfo[invoice?.status] || {
+        text: "...",
+        className: "text-gray-700",
+    };
+
     return (
-        <div className="border-y-2 p-2 px-4 flex flex-col gap-4">
-            <div className="flex items-center justify-between">
+        <div className="p-8 flex flex-col gap-4 bg-white rounded-lg shadow-lg">
+            <div className="flex items-center justify-between ">
                 <p className=" flex flex-col gap-1">
                     <span className="text-xl font-bold">
                         Mã đơn hàng: {invoice?.id}
@@ -18,36 +30,22 @@ const OrderItem = ({ invoice }) => {
                 </p>
                 <p className="font-semibold">
                     Trạng thái:{" "}
-                    {invoice?.status == 1 ? (
-                        <span className="font-bold text-xl text-yellow-700">
-                            Chờ xác nhận
-                        </span>
-                    ) : invoice?.status == 2 ? (
-                        <span className="font-bold text-xl text-blue-700">
-                            Đã xác nhận và đang giao hàng
-                        </span>
-                    ) : invoice?.status == 3 ? (
-                        <span className="font-bold text-xl text-green-700">
-                            Đã giao hàng
-                        </span>
-                    ) : (
-                        <span className="font-bold text-xl text-red-700">
-                            Đơn huỷ
-                        </span>
-                    )}
+                    <span className={`font-bold text-xl ${status.className}`}>
+                        {status.text}
+                    </span>
                 </p>
             </div>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-6 border-y-2 py-4">
                 {invoice?.invoice_details?.map((i) => (
                     <OrderProductitem
                         key={i?.id}
-                        products={i?.carts[0].products[0]}
-                        quantity={i?.carts[0].quantity}
-                        price={i?.carts[0].price_per_1}
+                        products={i?.carts[0]?.products[0]}
+                        quantity={i?.carts[0]?.quantity}
+                        price={i?.carts[0]?.price_per_1}
                     />
                 ))}
             </ul>
-            <p className="text-2xl font-bold text-end mt-6 text-blue-600">
+            <p className="text-2xl font-bold text-end  text-blue-600">
                 Tổng đơn hàng: {formatCurrency(+invoice?.total_price)}
             </p>
         </div>

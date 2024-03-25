@@ -55,10 +55,12 @@ const ProductFormFeedback = ({ productId }) => {
                 </div>
             ) : (
                 <form
-                    className="col-span-5 px-4 flex flex-col gap-3 w-3/5 py-8"
+                    className="col-span-5 px-4 flex flex-col gap-3 w-3/5 pb-4"
                     onSubmit={submit}
                 >
-                    <h3 className="text-xl flex gap-2">Đánh giá của bạn: </h3>
+                    <h3 className="text-xl flex gap-2 font-bold">
+                        Đánh giá của bạn:{" "}
+                    </h3>
 
                     <Rating>
                         {filledStars.map((filled, index) => (
@@ -72,7 +74,9 @@ const ProductFormFeedback = ({ productId }) => {
                                 }}
                             />
                         ))}
-                        <span className="ml-2">{countStar} sao</span>
+                        <span className="ml-2 font-semibold">
+                            {countStar} sao
+                        </span>
                     </Rating>
                     <InputText
                         label={"Họ và tên"}

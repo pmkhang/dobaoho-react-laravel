@@ -185,7 +185,7 @@ class UserController extends Controller
             'message' => session('message'),
         ]);
     }
-    
+
     public function restoreUser($id)
     {
         $user = User::findOrFail($id);

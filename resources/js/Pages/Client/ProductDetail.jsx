@@ -27,17 +27,15 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                     <ProductRate rate_avg={product?.rate_avg} />
                     <div className="col-span-5 mt-4 px-4 flex gap-4">
                         <span
-                            className={`p-3 border border-gray-200 border-t-4 border-t-${
-                                !isShowFormFeedBack && "blue"
-                            }-600 rounded-xl cursor-pointer`}
+                            className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer 
+                            ${!isShowFormFeedBack ? "border-t-blue-600" : ""}`}
                             onClick={() => setisShowFormFeedBack(false)}
                         >
                             Khách hàng đánh giá
                         </span>
                         <span
-                            className={`p-3 border border-gray-200 border-t-4 border-t-${
-                                isShowFormFeedBack && "blue"
-                            }-600 rounded-xl cursor-pointer`}
+                            className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer 
+                            ${isShowFormFeedBack ? "border-t-blue-600" : ""}`}
                             onClick={() => setisShowFormFeedBack(true)}
                         >
                             Hỏi đáp / Phản hồi

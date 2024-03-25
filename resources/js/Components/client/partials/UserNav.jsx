@@ -22,15 +22,30 @@ const UserNav = ({ user }) => {
                     </span>
                 </Dropdown.Header>
                 {user?.role == 1 && (
-                    <Dropdown.Item icon={HiViewGrid}>
-                        <Link href={route("admin")}>Vào trang Admin</Link>
+                    <Dropdown.Item>
+                        <Link
+                            href={route("admin")}
+                            className="block w-full text-start"
+                        >
+                            Vào trang Admin
+                        </Link>
                     </Dropdown.Item>
                 )}
                 <Dropdown.Item>
-                    <Link href="#">Thông tin cá nhân</Link>
+                    <Link
+                        href={route("showProfile")}
+                        className="block w-full text-start"
+                    >
+                        Thông tin cá nhân
+                    </Link>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                    <Link href={route("showOrders")}>Đơn mua</Link>
+                    <Link
+                        href={route("showOrders")}
+                        className="block w-full text-start"
+                    >
+                        Đơn mua
+                    </Link>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item icon={HiLogout} onClick={logout}>
