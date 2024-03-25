@@ -5,7 +5,7 @@ const Dashboard = ({ invoices }) => {
     return (
         <AdminLayout title="Dashboard">
             <div className="flex gap-8">
-                <div className="w-1/2 flex flex-col gap-4">
+                <div className="w-full flex flex-col gap-4">
                     <p className="text-xl font-semibold">
                         Đơn đặt hàng đang chờ kiểm duyệt:
                     </p>
@@ -23,6 +23,9 @@ const Dashboard = ({ invoices }) => {
                                 </Table.HeadCell>
                                 <Table.HeadCell className="bg-blue-800 text-white">
                                     Số điện thoại
+                                </Table.HeadCell>
+                                <Table.HeadCell className="bg-blue-800 text-white">
+                                    Email
                                 </Table.HeadCell>
                                 <Table.HeadCell className="bg-blue-800 text-white">
                                     xem chi tiết

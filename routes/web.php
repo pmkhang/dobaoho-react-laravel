@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\CartController as ClientCartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
+use App\Http\Controllers\Client\UserController as ClientUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,8 +32,12 @@ Route::prefix('')->group(function () {
             Route::get('/check-out/{id}', 'checkout')->name('checkout');
             Route::post('/check-out/{id}', 'createInvoice')->name('createInvoice');
         });
-
         Route::post('gui-feedback', [ProductController::class, 'sendFeedback'])->name('sendFeedback');
+        Route::prefix('/thanh-vien')
+            ->controller(ClientUserController::class)
+            ->group(function () {
+                Route::get('/don-mua', 'showOrders')->name('showOrders');
+            });
     });
 
     Route::prefix('/san-pham')

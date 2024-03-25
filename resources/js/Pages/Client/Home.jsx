@@ -18,7 +18,7 @@ const Home = ({ categories, products }) => {
                     </div>
                 ))}
             </div>
-            <div className="w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6">
+            <div className="relative w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6">
                 <div className="col-span-1">
                     <NavCategory isHide={false} categories={categories} />
                 </div>

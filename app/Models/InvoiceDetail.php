@@ -14,4 +14,8 @@ class InvoiceDetail extends Model
     {
         return $this->belongsTo(Invoice::class);
     }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'id', 'cart_id');
+    }
 }

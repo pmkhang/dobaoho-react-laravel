@@ -1,10 +1,9 @@
-import AdminLayout from "@/Layouts/AdminLayout";
-import React from "react";
-import { Table } from "flowbite-react";
-import formatCurrency from "@/Utils/formatCurrency";
-import { Link, useForm } from "@inertiajs/react";
-import Selector from "@/Components/Selector";
 import Button from "@/Components/Button";
+import Selector from "@/Components/Selector";
+import AdminLayout from "@/Layouts/AdminLayout";
+import formatCurrency from "@/Utils/formatCurrency";
+import { useForm } from "@inertiajs/react";
+import { Table } from "flowbite-react";
 
 const optionStatus = [
     {
@@ -176,9 +175,7 @@ const OrderDetail = ({ invoice, carts }) => {
                                 <Table.HeadCell className="bg-gray-600 text-white">
                                     Giá tổng
                                 </Table.HeadCell>
-                                <Table.HeadCell className="bg-gray-600 text-white">
-                                    Xem chi tiết sản phẩm
-                                </Table.HeadCell>
+                                
                             </Table.Head>
                             <Table.Body>
                                 {carts.map((i, index) => (
@@ -201,11 +198,6 @@ const OrderDetail = ({ invoice, carts }) => {
                                             {formatCurrency(
                                                 +i.price_per_1 * +i.quantity
                                             )}
-                                        </Table.Cell>
-                                        <Table.Cell>
-                                            <Link className="text-blue-600 underline">
-                                                Xem chi tiết sản phẩm
-                                            </Link>
                                         </Table.Cell>
                                     </Table.Row>
                                 ))}
