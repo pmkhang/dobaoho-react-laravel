@@ -27,7 +27,7 @@ const ClientLayout = ({ children, title }) => {
                 Something content
             </div>
             <Header />
-            <main className="max-w-dt mx-auto p-2 h-fit my-4 relative">
+            <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit my-4 relative">
                 {children}
             </main>
             <div className="fixed w-full bottom-8 right-8 flex flex-col items-end gap-4">

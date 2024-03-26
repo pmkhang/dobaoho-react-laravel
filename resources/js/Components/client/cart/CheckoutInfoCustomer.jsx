@@ -60,6 +60,21 @@ const CheckoutInfoCustomer = ({ data, setData, errors }) => {
                     onChange={(e) => setData("request_invoice", e.target.value)}
                     options={requsetInvoice}
                 />
+                <div className="w-full flex flex-col gap-1 relative">
+                    <label
+                        htmlFor="message"
+                        className="block font-bold text-gray-900"
+                    >
+                        Lời nhắn
+                    </label>
+                    <textarea
+                        id="message"
+                        rows={6}
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        onChange={(e) => setData("message", e.target.value)}
+                        value={data.message}
+                    ></textarea>
+                </div>
             </div>
         </div>
     );

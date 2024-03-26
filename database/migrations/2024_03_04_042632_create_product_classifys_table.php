@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('product_classifys', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('name');
             $table->string('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('quantity');
-            $table->string('classify');
-            $table->tinyInteger('status')->default(1)->comment("1: pending, 2: completed");
-            $table->integer('price_per_1')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('product_classifys');
     }
 };

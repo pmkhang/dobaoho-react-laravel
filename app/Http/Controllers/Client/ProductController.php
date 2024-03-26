@@ -25,6 +25,7 @@ class ProductController extends Controller
             ->with('productImages')
             ->with('category')
             ->with('productFeedbacks')
+            ->with('productClassifys')
             ->findOrFail($id);
 
         $productsByCategory = Category::where('status', '>', 0)

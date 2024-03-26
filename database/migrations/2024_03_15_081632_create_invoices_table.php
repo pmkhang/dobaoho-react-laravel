@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
+            $table->text('message');
             $table->bigInteger('total_price');
             $table->tinyInteger('status')->default(1)->comment("1: pending, 2: completed, 3: canceled");
             $table->string('user_id');

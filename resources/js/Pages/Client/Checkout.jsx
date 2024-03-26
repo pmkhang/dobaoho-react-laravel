@@ -9,6 +9,7 @@ const Checkout = ({ cartProducts, total_price, auth }) => {
         phone: auth?.user?.phone,
         address: auth?.user?.address,
         request_invoice: 2,
+        message: "",
     });
 
     const submit = (e) => {

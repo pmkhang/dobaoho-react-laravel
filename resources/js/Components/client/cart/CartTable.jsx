@@ -1,6 +1,6 @@
-import React from "react";
 import formatCurrency from "@/Utils/formatCurrency";
-import { Table, Checkbox } from "flowbite-react";
+import { Table } from "flowbite-react";
+import { Link } from "@inertiajs/react";
 
 const CartTable = ({
     cartProducts,
@@ -9,6 +9,7 @@ const CartTable = ({
     updateQuantity,
     handleQuantityChange,
     quantityItems,
+    post,
 }) => {
     return (
         <Table striped hoverable>
@@ -21,16 +22,35 @@ const CartTable = ({
             </Table.Head>
             <Table.Body>
                 {cartProducts.map((i, index) => (
-                    <Table.Row key={i?.product_id}>
+                    <Table.Row key={i?.id}>
                         <Table.Cell>{index + 1}</Table.Cell>
                         <Table.Cell>
-                            <img
-                                src={i?.products[0]?.product_images[0]?.image}
-                                alt={"image" + i?.products[0]?.id}
-                                className="w-16 h-16 object-cover rounded-lg"
-                            />
+                            <Link href={route("product-detail", i?.product_id)}>
+                                <img
+                                    src={
+                                        i?.products[0]?.product_images[0]?.image
+                                    }
+                                    alt={"image" + i?.products[0]?.id}
+                                    className="w-16 h-16 object-cover rounded-lg"
+                                />
+                            </Link>
                         </Table.Cell>
-                        <Table.Cell>{i?.products[0]?.name}</Table.Cell>
+                        <Table.Cell>
+                            <p className="flex flex-col gap-3">
+                                <Link
+                                    href={route(
+                                        "product-detail",
+                                        i?.product_id
+                                    )}
+                                    className="text-base font-bold underline text-blue-600"
+                                >
+                                    {i?.products[0]?.name}
+                                </Link>
+                                {i?.classify && (
+                                    <span>Phân loại: {i?.classify}</span>
+                                )}
+                            </p>
+                        </Table.Cell>
                         <Table.Cell>
                             <div className="flex items-center gap-3">
                                 <span

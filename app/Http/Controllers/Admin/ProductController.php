@@ -7,9 +7,12 @@ use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductClassifys;
 use App\Models\ProductImages;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 use Inertia\Inertia;
+use LengthException;
 
 class ProductController extends Controller
 {
@@ -93,6 +96,19 @@ class ProductController extends Controller
         ];
         $product = Product::create($data);
 
+        if ($request->classifys) {
+            $request->validate([
+                'classifys' => 'array',
+                'classifys.*' => 'string',
+            ]);
+            foreach ($request->classifys as $classify) {
+                ProductClassifys::create([
+                    'product_id' => $id,
+                    'name' => $classify
+                ]);
+            }
+        }
+
         if ($request->hasFile('images')) {
             $images = $request->file('images');
             $data = [];
@@ -116,6 +132,7 @@ class ProductController extends Controller
     {
         $product = Product::select('id', 'name', 'category_id', 'price', 'status', 'desc')
             ->with(['productImages:id,image,product_id'])
+            ->with(['productClassifys:id,name,product_id'])
             ->findOrFail($id);
 
         $categories = Category::select('id', 'name', 'parent_id')
@@ -132,6 +149,7 @@ class ProductController extends Controller
 
     public function update(UpdateRequest $request, $id)
     {
+        $mergeClassify = array_merge($request->classifys, $request->newClassifys);
         $product = Product::findOrFail($id);
         $data = [
             'name' => $request->name,
@@ -141,6 +159,13 @@ class ProductController extends Controller
             'status' => $request->status,
         ];
         $product->update($data);
+        ProductClassifys::where('product_id', $id)->delete();
+        foreach ($mergeClassify as $classify) {
+            ProductClassifys::create([
+                'product_id' => $id,
+                'name' => $classify
+            ]);
+        }
         if ($request->hasFile('newImages')) {
             $request->validate([
                 'newImages' => 'required|array',
@@ -216,6 +241,4 @@ class ProductController extends Controller
             'message' => 'Khôi phục sản phẩm thành công'
         ]);
     }
-
-    
 }

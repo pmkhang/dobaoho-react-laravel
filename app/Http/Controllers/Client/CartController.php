@@ -43,10 +43,15 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        
         $cartProducts = Cart::where('user_id', $user->id)
             ->where('product_id', $request->product_id)
             ->where('status', 1)
+            ->when($request->classify, function ($query) use ($request) {
+                return $query->where('classify', $request->classify);
+            })
             ->first();
+
 
         if ($cartProducts) {
             $dataCartDetail = [
@@ -58,7 +63,8 @@ class CartController extends Controller
                 "product_id" => $request->product_id,
                 "quantity" => $request->quantity,
                 "user_id" => $user->id,
-                "status" => 1
+                "status" => 1,
+                "classify" => $request->classify ?? "",
             ];
             Cart::create($dataCartDetail);
         }
@@ -91,8 +97,6 @@ class CartController extends Controller
     public function updateQuantity(Request $request, $id)
     {
         $cartProducts = Cart::findOrFail($id);
-
-
         if (!empty($request->quantity)) {
             $cartProducts->update(["quantity" => $request->quantity]);
         }
@@ -119,6 +123,7 @@ class CartController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'request_invoice' => 'required|numeric',
+            'message' => 'string'
         ], [
             'required' => 'Trường này không được để trống',
         ]);
@@ -155,6 +160,7 @@ class CartController extends Controller
             'total_price' => $totalPrice,
             'request_invoice' => $request->request_invoice,
             'status' => 1,
+            'message' => $request->message
         ];
         Invoice::create($data);
 

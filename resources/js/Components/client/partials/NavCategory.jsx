@@ -77,13 +77,13 @@ const NavCategory = ({ isHide, categories }) => {
                                 "absolute top-0 left-[102%] min-w-[250px] rounded-xl py-2 shadow-lg transition-all"
                             } bg-blue-500`}
                         >
-                            {category.children.map((child) => (
-                                <li key={child.id}>
+                            {category?.children?.map((child) => (
+                                <li key={child?.id}>
                                     <Link
-                                        href={route("productListByCategory", category?.id)}
+                                        href={route("productListByCategory", child?.id)}
                                         className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
                                     >
-                                        <span>{child.name}</span>
+                                        <span>{child?.name}</span>
                                     </Link>
                                 </li>
                             ))}

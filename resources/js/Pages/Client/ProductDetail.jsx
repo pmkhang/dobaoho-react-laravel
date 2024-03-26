@@ -22,19 +22,20 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                         price={product?.price}
                         productId={product?.id}
                         rate_avg={product?.rate_avg}
+                        classifys={product?.product_classifys}
                     />
                     <ProductDescDetail desc={product?.desc} />
                     <ProductRate rate_avg={product?.rate_avg} />
                     <div className="col-span-5 mt-4 px-4 flex gap-4">
                         <span
-                            className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer 
+                            className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer
                             ${!isShowFormFeedBack ? "border-t-blue-600" : ""}`}
                             onClick={() => setisShowFormFeedBack(false)}
                         >
                             Khách hàng đánh giá
                         </span>
                         <span
-                            className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer 
+                            className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer
                             ${isShowFormFeedBack ? "border-t-blue-600" : ""}`}
                             onClick={() => setisShowFormFeedBack(true)}
                         >

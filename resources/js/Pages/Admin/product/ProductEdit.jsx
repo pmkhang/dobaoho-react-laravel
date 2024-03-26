@@ -10,21 +10,23 @@ import "react-quill/dist/quill.snow.css";
 
 const ProductEdit = ({ product, categories }) => {
     const [dataDesc, setDataDesc] = useState(product?.desc);
-
-    const { data, setData, post, get, processing, errors, reset } = useForm({
-        name: product?.name,
-        price: product?.price,
-        category_id: product?.category_id,
-        status: product?.status,
-        images: product.product_images,
-        newImages: [],
-        desc: dataDesc,
-    });
     const recurCategories = RecursiveCategory(categories);
     const statusProduct = [
         { id: 1, name: "Hoạt động" },
         { id: 2, name: "Không hoạt động" },
     ];
+    const { data, setData, post, get, processing, errors, reset } = useForm({
+        name: product?.name,
+        price: product?.price,
+        category_id: product?.category_id,
+        status: product?.status,
+        images: product?.product_images,
+        newImages: [],
+        desc: dataDesc,
+        classifys: product.product_classifys.map((i) => i?.name),
+        newClassifys: [],
+    });
+
     useEffect(() => {
         return () => {
             Object.keys(data).forEach((key) => reset(key));
@@ -60,6 +62,54 @@ const ProductEdit = ({ product, categories }) => {
             setData("desc", "");
         }
     }, [data.desc]);
+    const [quantityClassify, setQuantityClassify] = useState(0);
+
+    const handleSetClasstify = (event, index) => {
+        const name = event.target.value;
+        setData((prevData) => {
+            const updatedClasstify = [...prevData.classifys];
+            updatedClasstify[index] = name;
+            return {
+                ...prevData,
+                classifys: updatedClasstify,
+            };
+        });
+    };
+
+    const handleSetNewClasstify = (event, index) => {
+        const name = event.target.value;
+        setData((prevData) => {
+            const updatedClasstify = [...prevData.newClassifys];
+            updatedClasstify[index] = name;
+            return {
+                ...prevData,
+                newClassifys: updatedClasstify,
+            };
+        });
+    };
+
+    const handleDeleteNewClassify = (index) => {
+        setData((prevData) => {
+            const updatedClassifys = [...prevData.newClassifys];
+            updatedClassifys.splice(index, 1);
+            return {
+                ...prevData,
+                newClassifys: updatedClassifys,
+            };
+        });
+        setQuantityClassify((prevQuantity) => prevQuantity - 1);
+    };
+
+    const handleDeleteClassify = (index) => {
+        setData((prevData) => {
+            const updatedClassifys = [...prevData.classifys];
+            updatedClassifys.splice(index, 1);
+            return {
+                ...prevData,
+                classifys: updatedClassifys,
+            };
+        });
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -135,6 +185,78 @@ const ProductEdit = ({ product, categories }) => {
                         {errors.desc}
                     </span>
                 </div>
+                <div className="flex flex-col gap-4 mt-8">
+                    <h3 className="block font-bold text-gray-900">
+                        Phân loại sản phẩm
+                    </h3>
+                    <ul className="flex flex-col gap-4">
+                        {data?.classifys?.map((i, index) => (
+                            <li key={index} className="flex items-center gap-4">
+                                <InputText
+                                    label={`Tên phân loại (${index + 1})`}
+                                    id={`old-${index}`}
+                                    name={`old-${index}`}
+                                    value={i}
+                                    required
+                                    className="mt-1 block w-full"
+                                    onChange={(e) =>
+                                        handleSetClasstify(e, index)
+                                    }
+                                />
+                                <div className="mt-6">
+                                    <Button
+                                        text={"X"}
+                                        type="button"
+                                        onClick={() =>
+                                            handleDeleteClassify(index)
+                                        }
+                                    />
+                                </div>
+                            </li>
+                        ))}
+                        {Array.from({ length: quantityClassify }, (_, j) => (
+                            <li
+                                key={j}
+                                className="py-2 flex items-center gap-4"
+                            >
+                                <InputText
+                                    label={`Tên phân loại (${
+                                        j + 1 + data?.classifys?.length
+                                    })`}
+                                    id={`new-${j}`}
+                                    name={`new-${j}`}
+                                    value={data.newClassifys[j] || ""}
+                                    onChange={(e) =>
+                                        handleSetNewClasstify(e, j)
+                                    }
+                                />
+                                <div className="mt-6">
+                                    <Button
+                                        text={"X"}
+                                        type="button"
+                                        onClick={() =>
+                                            handleDeleteNewClassify(j)
+                                        }
+                                    />
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="w-1/4">
+                        <Button
+                            text={
+                                "Thêm phân loại mới cho sản phẩm (không bắc buộc)"
+                            }
+                            color="warning"
+                            type="button"
+                            className={"focus:ring-0"}
+                            onClick={() => {
+                                setQuantityClassify(quantityClassify + 1);
+                            }}
+                        />
+                    </div>
+                </div>
+
                 <div className="mt-8 flex flex-col gap-3">
                     <div className="flex flex-col gap-3 w-full relative">
                         <label
@@ -232,7 +354,7 @@ const ProductEdit = ({ product, categories }) => {
                     )}
                 </div>
                 <Button
-                    text={"Thêm sản phẩm mới"}
+                    text={"Cập nhật"}
                     className={"mt-8"}
                     disabled={processing}
                 />

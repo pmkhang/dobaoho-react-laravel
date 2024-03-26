@@ -1,9 +1,9 @@
-import ClientLayout from "@/Layouts/ClientLayout";
-import { Link, useForm } from "@inertiajs/react";
-import { useEffect, useState } from "react";
 import Button from "@/Components/Button";
-import formatCurrency from "@/Utils/formatCurrency";
 import CartTable from "@/Components/client/cart/CartTable";
+import ClientLayout from "@/Layouts/ClientLayout";
+import formatCurrency from "@/Utils/formatCurrency";
+import { Link, useForm } from "@inertiajs/react";
+import { useState } from "react";
 
 const tableColumns = [
     {
@@ -109,6 +109,7 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                             updateQuantity={updateQuantity}
                             handleQuantityChange={handleQuantityChange}
                             quantityItems={quantityItems}
+                            post={post}
                         />
                         <form
                             className="flex items-center justify-between mt-10"

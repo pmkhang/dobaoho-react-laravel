@@ -17,6 +17,7 @@ const ProductCreate = ({ categories }) => {
         status: "",
         images: [],
         desc: dataDesc,
+        classifys: [],
     });
     const recurCategories = RecursiveCategory(categories);
     const statusProduct = [
@@ -35,6 +36,32 @@ const ProductCreate = ({ categories }) => {
             ...prevData,
             images: [...prevData.images, ...files],
         }));
+    };
+
+    const [quantityClassify, setQuantityClassify] = useState(0);
+
+    const handleSetClasstify = (event, index) => {
+        const name = event.target.value;
+        setData((prevData) => {
+            const updatedClasstify = [...prevData.classifys];
+            updatedClasstify[index] = name;
+            return {
+                ...prevData,
+                classifys: updatedClasstify,
+            };
+        });
+    };
+
+    const handleDeleteClassify = (index) => {
+        setData((prevData) => {
+            const updatedClassifys = [...prevData.classifys];
+            updatedClassifys.splice(index, 1);
+            return {
+                ...prevData,
+                classifys: updatedClassifys,
+            };
+        });
+        setQuantityClassify((prevQuantity) => prevQuantity - 1);
     };
 
     const handleRemoveImage = (indexToRemove) =>
@@ -124,6 +151,52 @@ const ProductCreate = ({ categories }) => {
                     <span className="absolute text-base text-red-500 bottom-[-24px]">
                         {errors.desc}
                     </span>
+                </div>
+                <div className="flex flex-col gap-4 mt-8">
+                    {quantityClassify > 0 && (
+                        <ul className="flex flex-col gap-3">
+                            <li>(*) Phân loại: Kích cở, màu sắc ...</li>
+                            {Array.from(
+                                { length: quantityClassify },
+                                (_, j) => (
+                                    <li
+                                        key={j}
+                                        className="py-2 flex items-center gap-4"
+                                    >
+                                        <InputText
+                                            label={`Tên phân loại (${j + 1})`}
+                                            id={`name-${j}`}
+                                            name={`name-${j}`}
+                                            value={data.classifys[j] || ""}
+                                            onChange={(e) =>
+                                                handleSetClasstify(e, j)
+                                            }
+                                        />
+                                        <div className="mt-6">
+                                            <Button
+                                                text={"X"}
+                                                type="button"
+                                                onClick={() =>
+                                                    handleDeleteClassify(j)
+                                                }
+                                            />
+                                        </div>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    )}
+                    <div className="w-1/5">
+                        <Button
+                            text={"Thêm phân loại sản phẩm (không bắc buộc)"}
+                            color="warning"
+                            type="button"
+                            className={"focus:ring-0"}
+                            onClick={() => {
+                                setQuantityClassify(quantityClassify + 1);
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="mt-8 flex flex-col gap-3">
                     <div className="flex flex-col gap-3 w-full relative">

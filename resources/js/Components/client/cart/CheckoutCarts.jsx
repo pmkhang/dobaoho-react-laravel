@@ -27,8 +27,13 @@ const CheckoutCarts = ({ cartProducts, total_price, post, processing }) => {
                             className="block w-20 h-20 p-1 object-cover rounded-lg"
                         />
                         <div className="flex-1 flex flex-col py-2">
-                            <p className="text-lg font-medium mb-3">
-                                {i?.products[0]?.name}
+                            <p className="flex items-center gap-3">
+                                <span className="text-lg font-medium">
+                                    {i?.products[0]?.name}
+                                </span>
+                                {i?.classify && (
+                                    <span>Phân loại: {i?.classify}</span>
+                                )}
                             </p>
                             <p className="font-medium">
                                 Số lượng: <b>{i?.quantity}</b>
