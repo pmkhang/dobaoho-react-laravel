@@ -40,7 +40,7 @@ class ProductController extends Controller
                             ->orderBy('id', 'asc')
                             ->take(1);
                     }])
-                    ->take(4);
+                    ->take(8);
             }])
             ->findOrFail($product->category_id);
 
