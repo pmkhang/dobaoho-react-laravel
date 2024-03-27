@@ -22,16 +22,18 @@ class HomeController extends Controller
             ->has('products')
             ->select('id', 'name', 'parent_id')
             ->with(['products' => function ($query) {
-                $query->where('status', 1)
+                $query
+                    ->select('id', 'name', 'price', 'status', 'rate_avg', 'category_id')
+                    ->where('status', 1)
+                    ->orderBy('id', 'desc')
                     ->with(['productImages' => function ($query) {
-                        $query->orderBy('id', 'asc')->take(1);
+                        $query
+                            ->orderBy('id', 'asc')
+                            ->take(1);
                     }])
                     ->take(4);
             }])
             ->get();
-
-        dd($products->toArray());
-
 
         $countProductCart = "";
         if (Auth::check()) {

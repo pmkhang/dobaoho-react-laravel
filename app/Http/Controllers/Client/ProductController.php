@@ -30,11 +30,17 @@ class ProductController extends Controller
 
         $productsByCategory = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
-            ->with(['products' => function ($query) use ($id) {
-                $query->where('id', '!=', $id)
+            ->with(['products' => function ($query) {
+                $query
+                    ->select('id', 'name', 'price', 'status', 'rate_avg', 'category_id')
                     ->where('status', 1)
-                    ->with('productImages')
-                    ->take(10);
+                    ->orderBy('id', 'desc')
+                    ->with(['productImages' => function ($query) {
+                        $query
+                            ->orderBy('id', 'asc')
+                            ->take(1);
+                    }])
+                    ->take(4);
             }])
             ->findOrFail($product->category_id);
 
