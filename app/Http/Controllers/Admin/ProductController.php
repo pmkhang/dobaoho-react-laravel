@@ -29,39 +29,33 @@ class ProductController extends Controller
         $categories = Category::select('id', 'name', 'parent_id')
             ->where('status', '>', 0)
             ->get();
+        $queryProducts = Product::select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
+            ->where('status', '>', 0);
+        if ($queries['category_id'] != "") {
+            $queryProducts = $queryProducts->where('category_id', $queries['category_id']);
+        }
+        if ($queries['statusProduct'] != "") {
+            $queryProducts = $queryProducts->where('status', $queries['statusProduct']);
+        }
+        if ($queries['rate_avg'] != "") {
+            $queryProducts = $queryProducts->orderBy('rate_avg', $queries['rate_avg']);
+        }
+        if ($queries['price'] != '') {
+            $queryProducts = $queryProducts->orderBy('price', $queries['price']);
+        }
 
-        $query = Product::select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
-            ->where('status', '>', 0)
-            ->orderBy('created_at', 'DESC')
+        if (filled($name = $queries['name'])) {
+            $queryProducts->where('name', 'like', '%' . $name . '%')
+                ->orWhere('id', 'like', '%' . $name . '%');
+        }
+
+        $products = $queryProducts->orderBy('created_at', 'DESC')
             ->with(['productImages' => function ($query) {
                 $query->select('id', 'image', 'product_id')->take(1);
             }])
             ->with(['category' => function ($query) {
                 $query->select('id', 'name');
-            }]);
-
-        if ($queries['category_id'] != "") {
-            $query = $query->where('category_id', $queries['category_id']);
-        }
-        if ($queries['statusProduct'] != "") {
-            $query = $query->where('status', $queries['statusProduct']);
-        }
-        if ($queries['rate_avg'] != "") {
-            $query = $query->orderBy('rate_avg', $queries['rate_avg']);
-        }
-        if ($queries['price'] != "") {
-            $query = $query->orderBy('price', $queries['price']);
-        }
-
-        $name = $queries['name'];
-        if ($name) {
-            $query->where(function ($query) use ($name) {
-                $query->where('name', 'like', '%' . $name . '%')
-                    ->orWhere('id', 'like', '%' . $name . '%');
-            });
-        }
-
-        $products = $query->paginate($queries['limit']);
+            }])->paginate($queries['limit']);
 
 
         return Inertia::render('Admin/product/Product', [

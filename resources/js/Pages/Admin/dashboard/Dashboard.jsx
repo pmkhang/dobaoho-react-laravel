@@ -1,7 +1,9 @@
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Table } from "flowbite-react";
 import { Link } from "@inertiajs/react";
+import { Table } from "flowbite-react";
+
 const Dashboard = ({ invoices }) => {
+
     return (
         <AdminLayout title="Dashboard">
             <div className="flex gap-8">
@@ -67,7 +69,6 @@ const Dashboard = ({ invoices }) => {
                         </Table>
                     </div>
                 </div>
-                
             </div>
         </AdminLayout>
     );
