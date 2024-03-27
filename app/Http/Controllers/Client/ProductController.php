@@ -91,7 +91,7 @@ class ProductController extends Controller
 
         $query = Product::where('status', 1)
             ->where('category_id', $category_id)
-            ->select('id', 'name', 'category_id', 'price', 'status', 'desc', 'rate_avg')
+            ->select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
             ->with('productImages')
             ->with('category');
 
@@ -100,6 +100,7 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
+
 
         $countProductCart = "";
         if (Auth::check()) {

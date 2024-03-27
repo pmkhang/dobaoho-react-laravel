@@ -31,15 +31,24 @@ const NavCategory = ({ isHide, categories }) => {
         return (
             <>
                 {!isTabletScreen ? (
-                    <Link
-                        href={route("productListByCategory", category?.id)}
-                        className={commonClass}
-                    >
-                        <span>{category?.name}</span>
-                        {category?.children.length > 0 && (
-                            <i className="fa-solid fa-caret-right text-lg"></i>
+                    <>
+                        {category?.children.length > 0 ? (
+                            <span className={commonClass}>
+                                <span>{category?.name}</span>
+                                <i className="fa-solid fa-caret-right text-lg"></i>
+                            </span>
+                        ) : (
+                            <Link
+                                href={route(
+                                    "productListByCategory",
+                                    category?.id
+                                )}
+                                className={commonClass}
+                            >
+                                <span>{category?.name}</span>
+                            </Link>
                         )}
-                    </Link>
+                    </>
                 ) : category?.children.length > 0 ? (
                     <span onClick={handleClick} className={`${commonClass}`}>
                         <Link
@@ -80,7 +89,10 @@ const NavCategory = ({ isHide, categories }) => {
                             {category?.children?.map((child) => (
                                 <li key={child?.id}>
                                     <Link
-                                        href={route("productListByCategory", child?.id)}
+                                        href={route(
+                                            "productListByCategory",
+                                            child?.id
+                                        )}
                                         className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
                                     >
                                         <span>{child?.name}</span>
