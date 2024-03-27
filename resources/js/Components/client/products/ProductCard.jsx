@@ -30,9 +30,9 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                         </span>
                     </div>
                     <Link href={route("product-detail", id)}>
-                        <h5 className="min-h-[36px] font-semibold tracking-tight text-gray-900 mt-4">
-                            {`${name?.substring(0, 30)}${
-                                name?.length > 30 ? "..." : ""
+                        <h5 className="min-h-[60px] font-semibold tracking-tight text-gray-900 mt-4">
+                            {`${name?.substring(0, 50)}${
+                                name?.length > 50 ? "..." : ""
                             }`}
                         </h5>
                     </Link>

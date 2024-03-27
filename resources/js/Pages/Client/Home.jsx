@@ -22,7 +22,7 @@ const Home = ({ categories, products }) => {
                 <div className="col-span-1">
                     <NavCategory isHide={false} categories={categories} />
                 </div>
-                <div className="col-span-3 p-8 flex flex-col gap-14 rounded-xl bg-white">
+                <div className="col-span-3 py-4 px-6 flex flex-col gap-14 rounded-xl bg-white">
                     {products?.map((i) => (
                         <HomeGridProduct
                             key={i?.id}
