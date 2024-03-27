@@ -33,6 +33,7 @@ const ClientLayout = ({ children, title }) => {
             <div className="fixed w-full bottom-8 right-8 flex flex-col items-end gap-4">
                 <a href="https://zalo.me/0938505459" target="_blank">
                     <img
+                        loading="lazy"
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/1024px-Icon_of_Zalo.svg.png"
                         alt="zalo"
                         className="w-[50px] h-[50px] cursor-pointer"

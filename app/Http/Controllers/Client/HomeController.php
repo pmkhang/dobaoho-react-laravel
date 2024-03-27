@@ -19,11 +19,19 @@ class HomeController extends Controller
             ->get();
 
         $products = Category::where('status', '>', 0)
+            ->has('products')
             ->select('id', 'name', 'parent_id')
             ->with(['products' => function ($query) {
-                $query->where('status', 1)->with('productImages')->take(8);
+                $query->where('status', 1)
+                    ->with(['productImages' => function ($query) {
+                        $query->orderBy('id', 'asc')->take(1);
+                    }])
+                    ->take(4);
             }])
             ->get();
+
+        dd($products->toArray());
+
 
         $countProductCart = "";
         if (Auth::check()) {

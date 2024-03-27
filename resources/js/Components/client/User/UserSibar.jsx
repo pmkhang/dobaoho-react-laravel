@@ -6,6 +6,7 @@ const UserSibar = ({ user, active }) => {
         <div className="col-span-1 p-4 bg-white rounded-xl">
             <div className="flex items-center gap-4">
                 <img
+                    loading="lazy"
                     src={user?.avatar}
                     alt={user?.name}
                     className="w-16 h-16 rounded-full"

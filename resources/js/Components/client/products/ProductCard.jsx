@@ -8,6 +8,7 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
             <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
                 <Link href={route("product-detail", id)}>
                     <img
+                        loading="lazy"
                         className="w-full h-[200px] object-cover rounded-t-lg"
                         src={img}
                         alt={name}

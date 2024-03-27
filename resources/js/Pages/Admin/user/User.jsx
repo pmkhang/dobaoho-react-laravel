@@ -220,6 +220,7 @@ const User = ({ status, message, users, queries }) => {
                                     <Table.Cell>{i?.id}</Table.Cell>
                                     <Table.Cell>
                                         <img
+                                            loading="lazy"
                                             src={i?.avatar}
                                             alt={i?.avatar}
                                             className="block w-[30px] h-[30px] object-cover rounded-xl"

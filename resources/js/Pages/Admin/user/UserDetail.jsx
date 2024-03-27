@@ -100,6 +100,7 @@ const UserDetail = ({ user, invoiceUser }) => {
                     </div>
                     <div className="w-1/3 flex flex-col items-center justify-between">
                         <img
+                            loading="lazy"
                             src={user?.avatar}
                             alt={user?.name + user?.id}
                             className="block w-[200px] h-[200px] rounded-full object-cover shadow-xl mt-16"

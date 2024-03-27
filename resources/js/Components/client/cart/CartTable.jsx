@@ -27,6 +27,7 @@ const CartTable = ({
                         <Table.Cell>
                             <Link href={route("product-detail", i?.product_id)}>
                                 <img
+                                    loading="lazy"
                                     src={
                                         i?.products[0]?.product_images[0]?.image
                                     }

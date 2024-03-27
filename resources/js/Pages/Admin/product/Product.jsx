@@ -267,6 +267,7 @@ const Product = ({ status, message, products, queries, categories }) => {
                                     <Table.Cell>{i?.id}</Table.Cell>
                                     <Table.Cell>
                                         <img
+                                            loading="lazy"
                                             src={i?.product_images[0]?.image}
                                             alt={i?.product_images[0]?.id}
                                             className="block w-[40px] h-[40px] object-cover rounded-xl"

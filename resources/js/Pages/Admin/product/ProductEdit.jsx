@@ -314,6 +314,7 @@ const ProductEdit = ({ product, categories }) => {
                                             <i className="fa-solid fa-xmark text-lg"></i>
                                         </span>
                                         <img
+                                            loading="lazy"
                                             src={i?.image}
                                             alt={`Image ${index}`}
                                             className="w-[200px] h-[200px] object-cover rounded-lg"
@@ -343,6 +344,7 @@ const ProductEdit = ({ product, categories }) => {
                                             <i className="fa-solid fa-xmark text-lg"></i>
                                         </span>
                                         <img
+                                            loading="lazy"
                                             src={URL.createObjectURL(file)}
                                             alt={`Image ${index}`}
                                             className="w-[200px] h-[200px] object-cover rounded-lg"

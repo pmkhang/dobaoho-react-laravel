@@ -105,12 +105,14 @@ const FormInfo = ({ user }) => {
             <div className="w-2/5 flex flex-col items-center gap-6 border-l-2 mt-4">
                 {selectedImage ? (
                     <img
+                        loading="lazy"
                         src={selectedImage}
                         alt="Selected"
                         className="w-40 h-40 object-cover rounded-full mt-4"
                     />
                 ) : (
                     <img
+                        loading="lazy"
                         src={user?.avatar}
                         alt={user?.id}
                         className="w-40 h-40 object-cover rounded-full mt-4"

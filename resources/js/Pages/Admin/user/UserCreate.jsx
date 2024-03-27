@@ -213,6 +213,7 @@ const UserCreate = () => {
                                             <i className="fa-solid fa-xmark text-lg"></i>
                                         </span>
                                         <img
+                                            loading="lazy"
                                             src={URL.createObjectURL(file)}
                                             alt={`Image ${index}`}
                                             className="w-[200px] h-[200px] object-cover rounded-lg"

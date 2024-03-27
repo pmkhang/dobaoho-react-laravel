@@ -22,6 +22,7 @@ const CheckoutCarts = ({ cartProducts, total_price, post, processing }) => {
                         className="flex gap-4 p-2 bg-gray-100 rounded-lg"
                     >
                         <img
+                            loading="lazy"
                             src={i?.products[0]?.product_images[0]?.image}
                             alt={"image" + i?.products[0]?.id}
                             className="block w-20 h-20 p-1 object-cover rounded-lg"

@@ -6,6 +6,7 @@ const OrderProductitem = ({ products, quantity, price }) => {
         <li className="flex items-center justify-between">
             <div className="flex items-center gap-4">
                 <img
+                    loading="lazy"
                     src={products?.product_images[0]?.image}
                     alt={products?.id}
                     className="block w-16 h-16 p-1 object-cover border-2 rounded-full"

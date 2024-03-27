@@ -43,7 +43,6 @@ class ProductController extends Controller
         if ($queries['price'] != '') {
             $queryProducts = $queryProducts->orderBy('price', $queries['price']);
         }
-
         if (filled($name = $queries['name'])) {
             $queryProducts->where('name', 'like', '%' . $name . '%')
                 ->orWhere('id', 'like', '%' . $name . '%');
@@ -56,7 +55,6 @@ class ProductController extends Controller
             ->with(['category' => function ($query) {
                 $query->select('id', 'name');
             }])->paginate($queries['limit']);
-
 
         return Inertia::render('Admin/product/Product', [
             'status' => session('status'),

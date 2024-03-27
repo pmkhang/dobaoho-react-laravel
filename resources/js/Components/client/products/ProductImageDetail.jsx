@@ -17,6 +17,7 @@ const ProductImageDetail = ({ images }) => {
                 >
                     {images.map((i) => (
                         <img
+                            loading="lazy"
                             key={i?.id}
                             src={i.image}
                             alt="..."
