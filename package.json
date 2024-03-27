@@ -4,7 +4,6 @@
     "scripts": {
         "dev": "vite",
         "start": "php artisan serve",
-        "build": "vite build",
         "controller": "php artisan make:controller",
         "model": "php artisan make:model",
         "migration": "php artisan make:migration",
@@ -13,7 +12,7 @@
         "request": "php artisan make:request",
         "dropDB": "php artisan db:wipe",
         "middleware": "php artisan make:middleware",
-        "clear": "php artisan cache:clear && php artisan view:clear && vite build && cd ../ && py t.py"
+        "build": "php artisan cache:clear && php artisan view:clear && cd public && py script.py && cd ../ && vite build && cd ../ && py t.py"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.5.1",
