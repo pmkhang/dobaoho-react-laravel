@@ -71,7 +71,7 @@ const Dashboard = ({ invoices, contacts }) => {
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell className="py-4">
-                                            Hiện chưa có đơn hàng nào
+                                            Hiện chưa có liên hệ nào
                                         </Table.Cell>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
