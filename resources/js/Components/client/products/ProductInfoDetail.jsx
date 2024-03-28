@@ -115,9 +115,10 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                     )}
                 </div>
                 <div className="flex flex-col gap-6">
-                    <Button text={"Liên hệ để đặt hàng"} />
+                    <Link href="/lien-he">
+                        <Button text={"Liên hệ để đặt hàng"} />
+                    </Link>
                 </div>
-
             </div>
         </div>
     );
@@ -125,8 +126,8 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
 
 export default ProductInfoDetail;
 
-
-{/* <div className="mt-5">
+{
+    /* <div className="mt-5">
                 <strong className="text-xl">Số lượng:</strong>
                 <div className="flex items-center mt-3">
                     <button
@@ -157,4 +158,5 @@ export default ProductInfoDetail;
                     outline
                 />
                 <Button text={"Mua ngay"} />
-            </div> */}
+            </div> */
+}

@@ -29,15 +29,23 @@ const Header = () => {
                     </li>
                     <li>
                         <Link
-                            href=""
+                            href="#"
                             className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
                         >
-                            Về chúng tôi
+                            Giới thiệu
                         </Link>
                     </li>
                     <li>
                         <Link
-                            href=""
+                            href="#"
+                            className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        >
+                            Chính sách bán hàng
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/lien-he"
                             className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
                         >
                             Liên hệ

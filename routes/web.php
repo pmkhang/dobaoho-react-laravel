@@ -25,6 +25,7 @@ Route::prefix('')->group(function () {
         return Inertia::render('Client/About');
     })->name('about');
     Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
+    Route::post('/lien-he', [ContactController::class, 'store'])->name('sendContact');
 
     Route::middleware('auth')->group(function () {
         Route::prefix('/gio-hang')->controller(ClientCartController::class)->group(function () {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@inertiajs/react";
 
 const Footer = () => {
     return (
@@ -9,19 +10,31 @@ const Footer = () => {
             >
                 LOGO
             </a>
-            <div className="max-w-dt mx-auto my-0 px-2 grid grid-cols-4 max-tl:grid-cols-2 max-mb:grid-cols-1">
+            <div className="max-w-dt mx-auto my-0 px-2 grid grid-cols-4 gap-4 max-tl:grid-cols-2 max-mb:grid-cols-1">
                 <div className="flex flex-col">
                     <h3 className="font-bold uppercase text-2xl mt-10">
                         Thông tin liên lạc
                     </h3>
                     <ul className="flex flex-col text-lg mt-4">
                         <li className="flex items-center gap-2 my-2">
-                            <i className="fa-solid fa-envelope"></i>
-                            <span>Email: abc@xyz</span>
+                            <span>
+                                Địa chỉ:
+                                BPGĐ: 12/1/22/22 Đường số 10m Phường 9,
+                                Quận Gò Vấp, Tp. HCM
+                            </span>
                         </li>
                         <li className="flex items-center gap-2 my-2">
-                            <i className="fa-solid fa-phone"></i>
-                            <span>Hotline/Zalo: 0123456789</span>
+                            <a href="mailto:quangtruongthinh79@gmail.com">
+                                Quangtruongthinh79@gmail.com
+                            </a>
+                        </li>
+                        <li className="flex items-center gap-2 my-2">
+                            <a
+                                href="https://zalo.me/0938505459"
+                                target="_blank"
+                            >
+                                SĐT: {" 0938505459"}
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -34,13 +47,7 @@ const Footer = () => {
                             Giới thiệu
                         </li>
                         <li className="flex items-center gap-2 my-2">
-                            Khách hàng
-                        </li>
-                        <li className="flex items-center gap-2 my-2">
-                            Tuyển dụng
-                        </li>
-                        <li className="flex items-center gap-2 my-2">
-                            Liên hệ
+                            <Link href="/lien-he">Liên hệ</Link>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +80,7 @@ const Footer = () => {
                                 <input
                                     type="email"
                                     className="outline-none bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="Example@xyz.com"
+                                    placeholder="Email của bạn"
                                     required
                                 />
                                 <button
@@ -93,7 +100,7 @@ const Footer = () => {
                                     <i className="fa-brands fa-facebook"></i>
                                 </li>
                                 <li>
-                                    <span>Zalo</span>
+                                    <a href="">Zalo</a>
                                 </li>
                             </ul>
                         </li>
