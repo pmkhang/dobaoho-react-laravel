@@ -22,7 +22,6 @@ const ModalContact = ({ openModal, setOpenModal, contactId }) => {
     }, [contactId]);
     return (
         <>
-            <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
             {data && (
                 <Modal show={openModal} onClose={() => setOpenModal(false)}>
                     <Modal.Header>

@@ -19,7 +19,7 @@ class DashboardController extends Controller
             ->orderBy('status', "ASC")
             ->orderBy('created_at', "DESC")
             ->select('id', 'name', 'email', 'phone', 'title', 'status')
-            ->get();
+            ->paginate(10);
         return Inertia::render('Admin/dashboard/Dashboard', [
             'invoices' => $invoices,
             'contacts' => $contacts

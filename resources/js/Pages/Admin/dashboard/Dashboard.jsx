@@ -37,7 +37,7 @@ const Dashboard = ({ invoices, contacts }) => {
                                 <Table.HeadCell className="bg-blue-800 text-white"></Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
-                                {contacts?.map((i, index) => (
+                                {contacts?.data.map((i, index) => (
                                     <Table.Row key={i?.id}>
                                         <Table.Cell>{index + 1}</Table.Cell>
                                         <Table.Cell>{i?.name}</Table.Cell>
@@ -66,7 +66,7 @@ const Dashboard = ({ invoices, contacts }) => {
                                         </Table.Cell>
                                     </Table.Row>
                                 ))}
-                                {contacts?.length == 0 && (
+                                {contacts?.data.length == 0 && (
                                     <Table.Row>
                                         <Table.Cell></Table.Cell>
                                         <Table.Cell></Table.Cell>
