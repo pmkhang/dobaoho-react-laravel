@@ -43,11 +43,11 @@ const CustommerRate = ({ productFeedbacks }) => {
 const ProductRateDetail = () => {
     return (
         <div className="col-span-5 px-4">
-            <div className="flex flex-col gap-4 my-4">
+            {/* <div className="flex flex-col gap-4 my-4">
                 {[...Array(5)].map((_, i) => (
                     <CustommerRate key={i} />
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\CartController as ClientCartController;
+use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\UserController as ClientUserController;
@@ -23,6 +24,7 @@ Route::prefix('')->group(function () {
     Route::get('/ve-chung-toi', function () {
         return Inertia::render('Client/About');
     })->name('about');
+    Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
 
     Route::middleware('auth')->group(function () {
         Route::prefix('/gio-hang')->controller(ClientCartController::class)->group(function () {

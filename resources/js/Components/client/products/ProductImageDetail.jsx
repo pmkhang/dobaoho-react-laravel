@@ -4,27 +4,38 @@ const ProductImageDetail = ({ images }) => {
     return (
         <div className="w-full flex flex-col col-span-2 max-tl:col-span-5 gap-4  rounded-xl p-4">
             <div className="h-[480px]">
-                <Carousel
-                    slideInterval={5000}
-                    indicators={false}
-                    leftControl={
-                        <i className="fa-solid fa-chevron-left py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-70 bg-black"></i>
-                    }
-                    rightControl={
-                        <i className="fa-solid fa-chevron-right py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-70 bg-black"></i>
-                    }
-                    pauseOnHover
-                >
-                    {images.map((i) => (
-                        <img
-                            loading="lazy"
-                            key={i?.id}
-                            src={i.image}
-                            alt="..."
-                            className="h-[500px] object-cover"
-                        />
-                    ))}
-                </Carousel>
+                {images?.length == 1 && (
+                    <img
+                        loading="lazy"
+                        key={images[0]?.id}
+                        src={images[0]?.image}
+                        alt="..."
+                        className="h-[500px] object-cover"
+                    />
+                )}
+                {images?.length >= 2 && (
+                    <Carousel
+                        slideInterval={5000}
+                        indicators={false}
+                        leftControl={
+                            <i className="fa-solid fa-chevron-left py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-70 bg-black"></i>
+                        }
+                        rightControl={
+                            <i className="fa-solid fa-chevron-right py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-70 bg-black"></i>
+                        }
+                        pauseOnHover
+                    >
+                        {images?.map((i) => (
+                            <img
+                                loading="lazy"
+                                key={i?.id}
+                                src={i.image}
+                                alt="..."
+                                className="h-[500px] object-cover"
+                            />
+                        ))}
+                    </Carousel>
+                )}
             </div>
         </div>
     );

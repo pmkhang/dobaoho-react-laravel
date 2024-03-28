@@ -9,7 +9,7 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                 <Link href={route("product-detail", id)}>
                     <img
                         loading="lazy"
-                        className="w-full h-[200px] object-cover rounded-t-lg"
+                        className="w-full h-[200px] object-cover rounded-t-lg p-4 rounded-lg"
                         src={img}
                         alt={name}
                     />
@@ -37,9 +37,14 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                         </h5>
                     </Link>
                     <div className="flex flex-col gap-3 items-start">
-                        <span className="text-lg font-bold text-blue-800">
-                            Giá: {formatCurrency(+price)}
-                        </span>
+                        <p className="text-lg font-bold text-blue-800">
+                            {/* {+price == 0 ? (
+                                <span>Liên hệ</span>
+                            ) : (
+                                <span>Giá: {formatCurrency(+price)}</span>
+                            )} */}
+                            Liên hệ
+                        </p>
                     </div>
                 </div>
             </div>

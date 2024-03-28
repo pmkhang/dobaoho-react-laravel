@@ -17,7 +17,7 @@ const HeaderControll = () => {
             </li>
             <li className="relative cursor-pointer">
                 <i className="fa-solid fa-bell"></i>
-                <span className="absolute text-right top-[-10px] right-[-16px] text-[14px] bg-red-500 text-white rounded-full flex items-center justify-center min-w-[20px] h-[20px] text-center p-2">
+                <span className="absolute top-[-10px] right-[-16px] text-[14px] bg-red-500 text-white rounded-full flex items-center justify-center min-w-[20px] h-[20px] text-center p-2">
                     1
                 </span>
             </li>

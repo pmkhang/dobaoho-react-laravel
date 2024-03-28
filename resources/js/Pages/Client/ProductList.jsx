@@ -25,7 +25,7 @@ const ProductList = ({ products, categories, category }) => {
                             <h3 className=" text-2xl font-semibold">
                                 {category?.name}
                             </h3>
-                            <div className="flex items-center gap-2">
+                            {/* <div className="flex items-center gap-2">
                                 <Link
                                     href={`/san-pham/the-loai/${category?.id}?price=asc`}
                                     className={`p-2 border rounded-lg text-sm ${
@@ -43,7 +43,7 @@ const ProductList = ({ products, categories, category }) => {
                                 >
                                     Giá cao tới thấp
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
                         {products?.map((i) => (
                             <ProductCard

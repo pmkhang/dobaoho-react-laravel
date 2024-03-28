@@ -1,4 +1,4 @@
-import { usePage } from "@inertiajs/react";
+import { usePage, Link } from "@inertiajs/react";
 import DesktopNav from "./DesktopNav";
 import LogoHeader from "./LogoHeader";
 import MobileNav from "./MobileNav";
@@ -14,9 +14,37 @@ const Header = () => {
                 <LogoHeader />
                 <MobileNav />
                 <SearchHeader />
-                <DesktopNav user={user} countProductCart={countProductCart}/>
+                <DesktopNav user={user} countProductCart={countProductCart} />
             </div>
             <TabletNav user={user} />
+            <div className="flex items-center justify-center pb-4">
+                <ul className="flex items-center gap-6">
+                    <li>
+                        <Link
+                            href="/"
+                            className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        >
+                            Trang chủ
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href=""
+                            className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        >
+                            Về chúng tôi
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href=""
+                            className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        >
+                            Liên hệ
+                        </Link>
+                    </li>
+                </ul>
+            </div>
         </header>
     );
 };

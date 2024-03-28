@@ -11,7 +11,7 @@ const Header = () => {
                         href={route("dashboard")}
                         className="block text-white font-bold text-3xl"
                     >
-                        Logo
+                        QUANG TRUONG THINH
                     </Link>
                     <HeaderControll />
                 </div>

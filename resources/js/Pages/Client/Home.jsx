@@ -8,7 +8,7 @@ const Home = ({ categories, products }) => {
     return (
         <ClientLayout title="Trang chủ">
             <SliderImages />
-            <div className="w-full mt-6 grid grid-cols-4 gap-4 max-tl:px-4 max-mb:grid-cols-1">
+            {/* <div className="w-full mt-6 grid grid-cols-4 gap-4 max-tl:px-4 max-mb:grid-cols-1">
                 {[...Array(4)].map((_, i) => (
                     <div
                         key={i}
@@ -17,7 +17,7 @@ const Home = ({ categories, products }) => {
                         <h2>Tên dịch vụ</h2>
                     </div>
                 ))}
-            </div>
+            </div> */}
             <div className="relative w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6">
                 <div className="col-span-1">
                     <NavCategory isHide={false} categories={categories} />
@@ -34,7 +34,7 @@ const Home = ({ categories, products }) => {
                 </div>
             </div>
 
-            <div className="w-full mt-12 min-h-[200px] max-tl:px-4">
+            {/* <div className="w-full mt-12 min-h-[200px] max-tl:px-4">
                 <div className="flex items-center justify-between">
                     <h2 className="uppercase font-bold text-3xl">
                         Những ưu đãi !!!
@@ -70,7 +70,7 @@ const Home = ({ categories, products }) => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </ClientLayout>
     );
 };

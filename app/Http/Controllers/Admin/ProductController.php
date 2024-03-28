@@ -141,7 +141,7 @@ class ProductController extends Controller
 
     public function update(UpdateRequest $request, $id)
     {
-        $mergeClassify = array_merge($request->classifys, $request->newClassifys);
+
         $product = Product::findOrFail($id);
         $data = [
             'name' => $request->name,
@@ -151,13 +151,17 @@ class ProductController extends Controller
             'status' => $request->status,
         ];
         $product->update($data);
-        ProductClassifys::where('product_id', $id)->delete();
-        foreach ($mergeClassify as $classify) {
-            ProductClassifys::create([
-                'product_id' => $id,
-                'name' => $classify
-            ]);
+        $mergeClassify = array_merge($request->classifys ?? [], $request->newClassifys ?? []);
+        if ($mergeClassify != []) {
+            ProductClassifys::where('product_id', $id)->delete();
+            foreach ($mergeClassify as $classify) {
+                ProductClassifys::create([
+                    'product_id' => $id,
+                    'name' => $classify
+                ]);
+            }
         }
+
         if ($request->hasFile('newImages')) {
             $request->validate([
                 'newImages' => 'required|array',

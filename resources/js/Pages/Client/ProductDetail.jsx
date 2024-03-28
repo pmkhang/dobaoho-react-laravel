@@ -14,7 +14,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
     return (
         <ClientLayout title={product?.name}>
             <NavCategory isHide={true} categories={categories} />
-            <div className="min-h-[1000px] bg-white mt-4 rounded-xl">
+            <div className="min-h-fit bg-white mt-4 rounded-xl">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start">
                     <ProductImageDetail images={product?.product_images} />
                     <ProductInfoDetail
@@ -25,7 +25,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                         classifys={product?.product_classifys}
                     />
                     <ProductDescDetail desc={product?.desc} />
-                    <ProductRate rate_avg={product?.rate_avg} />
+                    {/* <ProductRate rate_avg={product?.rate_avg} /> */}
                     <div className="col-span-5 mt-4 px-4 flex gap-4">
                         <span
                             className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer
