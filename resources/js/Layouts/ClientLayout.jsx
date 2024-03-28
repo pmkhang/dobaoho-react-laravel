@@ -23,9 +23,9 @@ const ClientLayout = ({ children, title }) => {
     return (
         <div className="bg-gray-200  relative">
             <Head title={title} />
-            <div className="w-full bg-blue-500 h-[40px] flex items-center justify-center text-white font-bold">
+            <marquee className="flex py-2 bg-blue-500 text-white font-bold">
                 Something content
-            </div>
+            </marquee>
             <Header />
             <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit my-4 relative">
                 {children}
