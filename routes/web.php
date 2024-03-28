@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -50,6 +51,12 @@ Route::prefix('')->group(function () {
         ->group(function () {
             Route::get('/{id}', 'productDetailPage')->name('product-detail');
             Route::get('the-loai/{category_id}', 'productListByCategory')->name('productListByCategory');
+        });
+
+    Route::prefix('/lien-he')
+        ->controller(AdminContactController::class)
+        ->group(function () {
+            Route::get('/{id}', 'contactDetail')->name('contactDetail');
         });
 });
 

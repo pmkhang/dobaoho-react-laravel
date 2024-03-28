@@ -15,8 +15,14 @@ class DashboardController extends Controller
             ->where('status', 1)
             ->orderBy('created_at', "DESC")
             ->get();
+        $contacts = DB::table('contacts')
+            ->orderBy('status', "ASC")
+            ->orderBy('created_at', "DESC")
+            ->select('id', 'name', 'email', 'phone', 'title', 'status')
+            ->get();
         return Inertia::render('Admin/dashboard/Dashboard', [
-            'invoices' => $invoices
+            'invoices' => $invoices,
+            'contacts' => $contacts
         ]);
     }
 }

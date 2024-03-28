@@ -15,6 +15,7 @@ const SliderImages = () => {
             >
                 {Array.from({ length: 4 }, (_, i) => (
                     <img
+                        key={i}
                         loading="lazy"
                         src={`/uploads/banner${i + 1}.jpg`}
                         alt="..."
