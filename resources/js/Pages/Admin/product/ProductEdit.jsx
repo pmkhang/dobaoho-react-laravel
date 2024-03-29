@@ -15,7 +15,7 @@ const ProductEdit = ({ product, categories }) => {
         { id: 1, name: "Hoạt động" },
         { id: 2, name: "Không hoạt động" },
     ];
-    const { data, setData, post, get, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: product?.name,
         price: product?.price,
         category_id: product?.category_id,
@@ -26,6 +26,7 @@ const ProductEdit = ({ product, categories }) => {
         classifys: product.product_classifys.map((i) => i?.name),
         newClassifys: [],
     });
+    const { get } = useForm();
 
     useEffect(() => {
         return () => {
@@ -302,13 +303,14 @@ const ProductEdit = ({ product, categories }) => {
                                 {data.images.map((i, index) => (
                                     <div key={index} className="relative">
                                         <span
-                                            onClick={() =>
+                                            onClick={() => {
+                                                console.log(i?.id);
                                                 handleRemoveImage(
                                                     "images",
                                                     index,
                                                     i?.id
-                                                )
-                                            }
+                                                );
+                                            }}
                                             className="absolute right-0 top-0 flex items-center justify-center  cursor-pointer w-[30px] h-[30px] bg-white"
                                         >
                                             <i className="fa-solid fa-xmark text-lg"></i>
