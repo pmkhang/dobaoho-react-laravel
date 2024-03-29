@@ -28,6 +28,7 @@ Route::prefix('')->group(function () {
     Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
     Route::post('/lien-he', [ContactController::class, 'store'])->name('sendContact');
     Route::post('/tim-kiem', [ProductController::class, 'searchProducts'])->name('searchProducts');
+    Route::get('/tim-kiem', [ProductController::class, 'searchProductPage'])->name('searchProductPage');
 
     Route::middleware('auth')->group(function () {
         Route::prefix('/gio-hang')->controller(ClientCartController::class)->group(function () {

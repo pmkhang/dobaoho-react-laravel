@@ -1,10 +1,10 @@
 import ItemSearch from "@/Components/client/partials/ItemSearch";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { useForm } from "@inertiajs/react";
 
 const SearchHeader = () => {
     const [dataSearch, setDataSearch] = useState([]);
-    const [isShowSearch, setIsShowSearch] = useState(false);
     const [search, setSearch] = useState("");
     const debounce = (callback, delay) => {
         let timer;
@@ -54,9 +54,14 @@ const SearchHeader = () => {
             setDataSearch([]);
         }
     };
+    const { get } = useForm();
+    const submit = (e) => {
+        e.preventDefault();
+        get(route("searchProductPage", { search }));
+    };
 
     return (
-        <form className="w-full max-mb:hidden relative">
+        <form className="w-full max-mb:hidden relative" onSubmit={submit}>
             <div className="flex gap-2 max-tl:px-4">
                 <input
                     type="search"
@@ -77,8 +82,8 @@ const SearchHeader = () => {
             {dataSearch.length > 0 && (
                 <div
                     className="absolute w-[calc(100%-63px)] top-14"
-                    onClick={(e) => {
-                        e.stopPropagation();
+                    onBlur={() => {
+                        setDataSearch([]);
                     }}
                 >
                     <ul className="max-h-[300px] overflow-y-scroll flex flex-col  gap-2 ring-1 py-2 ring-gray-300 shadow-lg bg-white rounded-lg">

@@ -147,7 +147,7 @@ class ProductController extends Controller
         $request->validate([
             'search' => 'required|string'
         ]);
-        
+
         $products = Product::where('name', 'like', '%' . $request->search . '%')
             ->orWhere('id', 'like', '%' . $request->search . '%')
             ->where('status', 1)
@@ -157,8 +157,9 @@ class ProductController extends Controller
             }])
             ->get();
 
-        return Inertia::render('Client/SearchProduct', [
-            'products' => $products
+        return Inertia::render('Client/SearchProducts', [
+            'products' => $products,
+            'keyword' => $request->search
         ]);
     }
 }

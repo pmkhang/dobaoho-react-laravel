@@ -156,6 +156,7 @@ const Product = ({ status, message, products, queries, categories }) => {
     useEffect(() => {
         nameInputRef.current.focus();
     }, []);
+
     const [startIndex] = useState((products.current_page - 1) * limit + 1);
 
     const { get } = useForm();
