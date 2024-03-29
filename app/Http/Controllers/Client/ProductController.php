@@ -115,4 +115,50 @@ class ProductController extends Controller
             'countProductCart' => $countProductCart
         ]);
     }
+
+    public function searchProducts(Request $request)
+    {
+        $request->validate([
+            'search' => 'required|string'
+        ]);
+        $products = [];
+        if ($request->search != '') {
+            $products = Product::where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('id', 'like', '%' . $request->search . '%')
+                ->where('status', 1)
+                ->select('id', 'name', 'rate_avg')
+                ->with(['productImages' => function ($query) {
+                    $query->take(1);
+                }])
+                ->get();
+        } else {
+            $products = [];
+        }
+
+        return response()->json([
+            'status' => true,
+            'products' => $products
+        ]);
+    }
+
+    public function searchProductPage(Request $request)
+    {
+
+        $request->validate([
+            'search' => 'required|string'
+        ]);
+        
+        $products = Product::where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('id', 'like', '%' . $request->search . '%')
+            ->where('status', 1)
+            ->select('id', 'name', 'rate_avg')
+            ->with(['productImages' => function ($query) {
+                $query->take(1);
+            }])
+            ->get();
+
+        return Inertia::render('Client/SearchProduct', [
+            'products' => $products
+        ]);
+    }
 }
