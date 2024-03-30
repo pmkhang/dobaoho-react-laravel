@@ -28,8 +28,8 @@ const Contact = () => {
     return (
         <ClientLayout title={"Liên hệ"}>
             <div className="min-h-[500px]">
-                <div className="flex gap-4 items-start">
-                    <div className="w-1/3 bg-white py-4 px-6 rounded-lg">
+                <div className="flex gap-4 items-start max-tl:flex-col">
+                    <div className="w-1/3 bg-white py-4 px-6 rounded-lg max-tl:w-full">
                         <h3 className="text-xl font-bold uppercase mt-2 ">
                             công ty TNHH Quang Trường Thịnh
                         </h3>
@@ -47,7 +47,7 @@ const Contact = () => {
                     </div>
                     <form
                         onSubmit={submit}
-                        className="w-2/3 flex flex-col gap-3 pt-4 pb-6 px-6 bg-white rounded-lg"
+                        className="w-2/3 flex flex-col gap-3 pt-4 pb-6 px-6 bg-white rounded-lg max-tl:w-full"
                     >
                         <h3 className="text-lg font-bold uppercase mt-2">
                             Thông tin liên hệ của bạn
