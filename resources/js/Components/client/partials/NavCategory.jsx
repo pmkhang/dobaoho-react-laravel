@@ -10,8 +10,8 @@ const NavCategory = ({ isHide, categories }) => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsHideNav(window.innerWidth < 1024);
-            setIsTabletScreen(window.innerWidth < 1024);
+            setIsHideNav(window.innerWidth <= 1025);
+            setIsTabletScreen(window.innerWidth <= 1025);
         };
 
         const handle = isHide

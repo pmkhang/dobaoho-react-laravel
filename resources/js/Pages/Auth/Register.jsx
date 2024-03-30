@@ -29,12 +29,12 @@ const Register = () => {
 
     return (
         <ClientLayout title="Đăng nhập">
-            <div className=" min-h-[500px] bg-white rounded-lg shadow-lg py-8 px-6">
+            <div className="min-h-[500px] bg-white rounded-lg shadow-lg py-8 px-6">
                 <h3 className="text-2xl font-bold uppercase text-center">
                     Đăng ký
                 </h3>
                 <form
-                    className="w-1/2 flex flex-col mx-auto gap-6 mt-8"
+                    className="w-1/2 max-tl:w-full flex flex-col mx-auto gap-6 mt-8"
                     onSubmit={submit}
                 >
                     <div className="flex items-center gap-3">

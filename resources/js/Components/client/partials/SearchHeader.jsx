@@ -82,9 +82,6 @@ const SearchHeader = () => {
             {dataSearch.length > 0 && (
                 <div
                     className="absolute w-[calc(100%-63px)] top-14"
-                    onBlur={() => {
-                        setDataSearch([]);
-                    }}
                 >
                     <ul className="max-h-[300px] overflow-y-scroll flex flex-col  gap-2 ring-1 py-2 ring-gray-300 shadow-lg bg-white rounded-lg">
                         {dataSearch?.map((i) => (

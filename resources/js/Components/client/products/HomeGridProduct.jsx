@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 
 const HomeGridProduct = ({ title, cols = 4, id, products }) => {
     return (
-        <div className="w-full min-h-[200px] max-tl:px-4 max-tl:mt-8">
+        <div className="w-full min-h-[200px] max-tl:px-4 max-tl:mt-2">
             <div className="flex items-center justify-between">
                 <h2 className="uppercase font-bold text-xl">{title}</h2>
                 <Link
@@ -28,9 +28,12 @@ const HomeGridProduct = ({ title, cols = 4, id, products }) => {
                     />
                 ))}
             </div>
-            <div className="text-end min-mb:hidden">
-                <Link href={`#${id}`} className="underline p-2 ">
-                    Xem tất cả
+            <div className="text-end min-mb:hidden mt-3">
+                <Link
+                    href={route("productListByCategory", id)}
+                    className="underline p-2"
+                >
+                    Xem tất cả {title}
                 </Link>
             </div>
         </div>

@@ -18,11 +18,11 @@ const Home = ({ categories, products }) => {
                     </div>
                 ))}
             </div> */}
-            <div className="relative w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6">
+            <div className="relative w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start mt-6 max-mb:mt-2">
                 <div className="col-span-1">
                     <NavCategory isHide={false} categories={categories} />
                 </div>
-                <div className="col-span-3 py-4 px-6 flex flex-col gap-14 rounded-xl bg-white">
+                <div className="col-span-3 py-4 px-6 flex flex-col gap-14 max-mb:gap-4 rounded-xl bg-white max-tl:mt-4 max-mb:mt-6 max-tl:p-2">
                     {products?.map((i) => (
                         <HomeGridProduct
                             key={i?.id}

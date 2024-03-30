@@ -9,7 +9,7 @@ const MobileNav = () => {
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </li>
-            <CartNav />
+            {/* <CartNav /> */}
             <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
                 <i className="fa-solid fa-bars text-xl text-blue-600"></i>
             </li>

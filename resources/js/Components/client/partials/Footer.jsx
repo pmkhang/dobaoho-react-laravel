@@ -8,7 +8,7 @@ const Footer = () => {
                 href="#"
                 className="block max-w-dt mx-auto my-0 px-2 font-bold text-4xl"
             >
-                LOGO
+                QUANG TRUONG THINH
             </a>
             <div className="max-w-dt mx-auto my-0 px-2 grid grid-cols-4 gap-4 max-tl:grid-cols-2 max-mb:grid-cols-1">
                 <div className="flex flex-col">

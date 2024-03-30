@@ -36,12 +36,12 @@ const Login = ({ status, message }) => {
 
     return (
         <ClientLayout title="Đăng nhập">
-            <div className=" min-h-[500px] bg-white rounded-lg shadow-lg py-8 px-6">
+            <div className="bg-white rounded-lg shadow-lg py-8 px-6">
                 <h3 className="text-2xl font-bold uppercase text-center">
                     Đăng nhập
                 </h3>
                 <form
-                    className="w-1/3 flex flex-col mx-auto gap-6 mt-8"
+                    className="w-1/3 max-tl:w-full flex flex-col mx-auto gap-6 mt-8"
                     onSubmit={submit}
                 >
                     {errors.message && (
@@ -96,7 +96,7 @@ const Login = ({ status, message }) => {
                         Đăng ký tại đây
                     </Link>
                 </div>
-                <div className="w-1/3 mx-auto flex flex-col gap-3 items-center justify-center mt-4">
+                <div className="w-1/3 max-tl:w-full mx-auto flex flex-col gap-3 items-center justify-center mt-4">
                     <h3 className="text-center">Hoặc</h3>
                     <a
                         href={route("login.google")}

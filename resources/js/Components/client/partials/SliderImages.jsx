@@ -1,7 +1,7 @@
 import { Carousel } from "flowbite-react";
 const SliderImages = () => {
     return (
-        <div className="h-[500px]">
+        <div className="h-[500px] max-tl:px-4 max-mb:hidden">
             <Carousel
                 slideInterval={5000}
                 indicators={false}
