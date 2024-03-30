@@ -11,7 +11,7 @@ const NavScreen = ({ setIsShowNav }) => {
     };
     const user = usePage().props.auth.user;
     return (
-        <div className="absolute top-0 left-0 right-0 bottom-0 z-50 min-mb:hidden py-2 px-6 mt-0.5 bg-white">
+        <div className="fixed top-0 left-0 right-0 bottom-0 z-50 min-mb:hidden py-2 px-6 mt-0.5 bg-white">
             <div className="flex items-center justify-between">
                 <Link href="/" className="font-bold text-xl">
                     QUANG TRUONG THINH

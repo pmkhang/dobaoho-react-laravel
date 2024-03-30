@@ -2,15 +2,15 @@ import { Carousel } from "flowbite-react";
 
 const ProductImageDetail = ({ images }) => {
     return (
-        <div className="w-full flex flex-col col-span-2 max-tl:col-span-5 gap-4  rounded-xl p-4">
-            <div className="h-[480px]">
+        <div className="w-full flex flex-col col-span-2 max-tl:col-span-5 gap-4  rounded-xl p-4 max-mb:p-0">
+            <div className="h-[480px] max-mb:h-[300px]">
                 {images?.length == 1 && (
                     <img
                         loading="lazy"
                         key={images[0]?.id}
                         src={images[0]?.image}
                         alt="..."
-                        className="h-[500px] object-cover"
+                        className="h-[500px] object-cover max-mb:h-[300px]"
                     />
                 )}
                 {images?.length >= 2 && (
@@ -18,10 +18,10 @@ const ProductImageDetail = ({ images }) => {
                         slideInterval={5000}
                         indicators={false}
                         leftControl={
-                            <i className="fa-solid fa-chevron-left py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-70 bg-black"></i>
+                            <i className="fa-solid fa-chevron-left py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-20 bg-black"></i>
                         }
                         rightControl={
-                            <i className="fa-solid fa-chevron-right py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-70 bg-black"></i>
+                            <i className="fa-solid fa-chevron-right py-4 px-3 rounded-lg shadow-lg text-white bg-opacity-20 bg-black"></i>
                         }
                         pauseOnHover
                     >
@@ -31,7 +31,7 @@ const ProductImageDetail = ({ images }) => {
                                 key={i?.id}
                                 src={i.image}
                                 alt="..."
-                                className="h-[500px] object-cover"
+                                className="h-[500px] object-cover max-mb:h-[300px]"
                             />
                         ))}
                     </Carousel>

@@ -15,7 +15,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
         <ClientLayout title={product?.name}>
             <NavCategory isHide={true} categories={categories} />
             <div className="min-h-fit bg-white mt-4 rounded-xl">
-                <div className="grid grid-cols-5 gap-4 p-4 items-start">
+                <div className="grid grid-cols-5 gap-4 p-4 items-start max-mb:p-0">
                     <ProductImageDetail images={product?.product_images} />
                     <ProductInfoDetail
                         name={product?.name}

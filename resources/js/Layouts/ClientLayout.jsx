@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
 import Footer from "@/Components/client/partials/Footer";
 import Header from "@/Components/client/partials/Header";
+import NavScreen from "@/Components/client/partials/NavScreen";
+import SearchScreen from "@/Components/client/partials/SearchScreen";
 import { Head } from "@inertiajs/react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NavScreen from "@/Components/client/partials/NavScreen";
 
 const ClientLayout = ({ children, title }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isShowNav, setIsShowNav] = useState(false);
+    const [isShowSearch, setIsShowSearch] = useState(false);
     const handleScroll = () => {
         if (window.scrollY > 200) {
             setIsVisible(true);
@@ -23,13 +25,14 @@ const ClientLayout = ({ children, title }) => {
         };
     }, []);
     return (
-        <div className="bg-gray-200  relative">
+        <div className="bg-gray-200 relative overflow-x-hidden">
             <Head title={title} />
             {/* <marquee className="flex py-2 bg-blue-500 text-white font-bold">
                 Something content
             </marquee> */}
-            <Header setIsShowNav={setIsShowNav} />
+            <Header setIsShowNav={setIsShowNav} setIsShowSearch={setIsShowSearch}/>
             {isShowNav && <NavScreen setIsShowNav={setIsShowNav} />}
+            {isShowSearch && <SearchScreen setIsShowSearch={setIsShowSearch} />}
             <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit my-4 relative">
                 {children}
             </main>

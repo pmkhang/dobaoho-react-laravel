@@ -42,7 +42,7 @@ const ProductFormFeedback = ({ productId }) => {
     return (
         <>
             {auth.user == null ? (
-                <div className="col-span-5 px-4 flex flex-col gap-3 w-3/5 py-8">
+                <div className="col-span-5 px-4 flex flex-col gap-3 w-3/5 py-8 max-mb:w-full">
                     <h3 className="text-xl flex gap-2">
                         <Link
                             className="text-blue-600 underline"
@@ -55,7 +55,7 @@ const ProductFormFeedback = ({ productId }) => {
                 </div>
             ) : (
                 <form
-                    className="col-span-5 px-4 flex flex-col gap-3 w-3/5 pb-4"
+                    className="col-span-5 px-4 flex flex-col gap-3 w-3/5 pb-4 max-mb:w-full"
                     onSubmit={submit}
                 >
                     <h3 className="text-xl flex gap-2 font-bold">

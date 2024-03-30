@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 import { Rating } from "flowbite-react";
-const ItemSearch = ({ product }) => {
+const ItemSearch = ({ product, isMobile, onClick }) => {
     return (
         <li>
             <Link
                 href={route("product-detail", product.id)}
-                className="flex items-center justify-between hover:bg-gray-200 p-2"
+                className="flex items-center justify-between  hover:bg-gray-200 p-2"
+                onClick={onClick && onClick}
             >
                 <div className="flex items-center gap-4">
                     <img
@@ -14,16 +15,23 @@ const ItemSearch = ({ product }) => {
                         alt=""
                         className="w-12 h-12 object-cover rounded-full"
                     />
-                    <p className="text-lg font-semibold">{product?.name}</p>
+                    <p className="text-lg font-semibold max-mb:text-sm">
+                        {product?.name}
+                    </p>
                 </div>
-                <Rating>
-                    {Array.from({ length: product?.rate_avg }, (_, j) => (
-                        <Rating.Star key={j} />
-                    ))}
-                    {Array.from({ length: 5 - product?.rate_avg }, (_, j) => (
-                        <Rating.Star filled={false} key={j} />
-                    ))}
-                </Rating>
+                {!isMobile && (
+                    <Rating>
+                        {Array.from({ length: product?.rate_avg }, (_, j) => (
+                            <Rating.Star key={j} />
+                        ))}
+                        {Array.from(
+                            { length: 5 - product?.rate_avg },
+                            (_, j) => (
+                                <Rating.Star filled={false} key={j} />
+                            )
+                        )}
+                    </Rating>
+                )}
             </Link>
         </li>
     );
