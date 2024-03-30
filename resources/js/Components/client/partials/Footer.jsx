@@ -18,8 +18,7 @@ const Footer = () => {
                     <ul className="flex flex-col text-lg mt-4">
                         <li className="flex items-center gap-2 my-2">
                             <span>
-                                Địa chỉ:
-                                BPGĐ: 12/1/22/22 Đường số 10m Phường 9,
+                                Địa chỉ: BPGĐ: 12/1/22/22 Đường số 10m Phường 9,
                                 Quận Gò Vấp, Tp. HCM
                             </span>
                         </li>
@@ -44,7 +43,13 @@ const Footer = () => {
                     </h3>
                     <ul className="flex flex-col text-lg mt-4">
                         <li className="flex items-center gap-2 my-2">
+                            <Link href="/">Trang chủ</Link>
+                        </li>
+                        <li className="flex items-center gap-2 my-2">
                             Giới thiệu
+                        </li>
+                        <li className="flex items-center gap-2 my-2">
+                            Chính sách bán hàng
                         </li>
                         <li className="flex items-center gap-2 my-2">
                             <Link href="/lien-he">Liên hệ</Link>
