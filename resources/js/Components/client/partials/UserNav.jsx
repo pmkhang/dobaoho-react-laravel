@@ -1,6 +1,6 @@
 import { Link, useForm } from "@inertiajs/react";
 import { Dropdown } from "flowbite-react";
-import { HiLogout, HiViewGrid } from "react-icons/hi";
+import { HiLogout } from "react-icons/hi";
 
 const UserNav = ({ user }) => {
     const { post } = useForm();
@@ -41,7 +41,7 @@ const UserNav = ({ user }) => {
                 </Dropdown.Item>
                 <Dropdown.Item>
                     <Link
-                        href={route("showOrders")}
+                        // href={route("showOrders")}
                         className="block w-full text-start"
                     >
                         Đơn mua
