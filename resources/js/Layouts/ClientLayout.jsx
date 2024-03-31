@@ -30,10 +30,13 @@ const ClientLayout = ({ children, title }) => {
             {/* <marquee className="flex py-2 bg-blue-500 text-white font-bold">
                 Something content
             </marquee> */}
-            <Header setIsShowNav={setIsShowNav} setIsShowSearch={setIsShowSearch}/>
+            <Header
+                setIsShowNav={setIsShowNav}
+                setIsShowSearch={setIsShowSearch}
+            />
             {isShowNav && <NavScreen setIsShowNav={setIsShowNav} />}
             {isShowSearch && <SearchScreen setIsShowSearch={setIsShowSearch} />}
-            <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit my-4 relative">
+            <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit mt-[150px] max-mb:mt-[90px] relative">
                 {children}
             </main>
             <div className="fixed  bottom-8 right-8 flex flex-col items-end gap-4">
