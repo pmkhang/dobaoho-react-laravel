@@ -2,11 +2,42 @@ import React, { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import RecursiveCategory2 from "@/Utils/RecursiveCategory2";
 
+const order = [
+    "Nón bảo hộ",
+    "Kính bảo hộ",
+    "Khẩu trang",
+    "Kính - mặt nạ bảo hộ",
+    "Nút tai - Chụp tai chống ồn",
+    "Giày-ủng bảo hộ",
+    "Quần áo bảo hộ",
+    "Trang phục Giáo Dục Quốc Phòng",
+];
+
 const NavCategory = ({ isHide, categories }) => {
     const [isHideNav, setIsHideNav] = useState(isHide);
     const [isTabletScreen, setIsTabletScreen] = useState(isHide);
     const [hoveredItem, setHoveredItem] = useState(null);
-    const [dbCategories] = useState(RecursiveCategory2(categories));
+    const [dbCategories, setDbCategories] = useState(
+        RecursiveCategory2(categories)
+    );
+
+    const order = [
+        "Nón bảo hộ",
+        "Kính bảo hộ",
+        "Khẩu trang",
+        "Kính - mặt nạ bảo hộ",
+        "Nút tai - Chụp tai chống ồn",
+        "Giày-ủng bảo hộ",
+        "Quần áo bảo hộ",
+        "Trang phục Giáo Dục Quốc Phòng",
+    ];
+
+    const sortedArray = dbCategories.sort((a, b) => {
+        const nameA = a?.name;
+        const nameB = b?.name;
+        console.log({ nameA, nameB });
+        // return order.indexOf(nameA) - order.indexOf(nameB);
+    });
 
     useEffect(() => {
         const handleResize = () => {

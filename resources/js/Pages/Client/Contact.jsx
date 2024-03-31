@@ -35,8 +35,8 @@ const Contact = () => {
                         </h3>
                         <ul className="flex flex-col gap-3 mt-3">
                             <li>
-                                BPGĐ: 12/1/22/22 Đường số 10m Phường 9, Quận Gò
-                                Vấp, Tp. HCM
+                                Địa chỉ: 12/1/22/22 Đường số 10m Phường 9, Quận
+                                Gò Vấp, Tp. HCM
                             </li>
                             <li>MST: 015404888</li>
                             <li className="font-bold">SĐT: 0938505459</li>

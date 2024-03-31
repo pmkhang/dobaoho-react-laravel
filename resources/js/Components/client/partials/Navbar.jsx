@@ -8,7 +8,7 @@ const Navbar = ({ isTablet }) => {
                 isTablet ? "" : "hidden"
             }`}
         >
-            <ul className="flex items-center gap-6">
+            <ul className="flex items-center gap-6 uppercase">
                 <li>
                     <Link
                         href="/"

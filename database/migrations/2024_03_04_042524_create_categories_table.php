@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('status')->default(1)->comment("1: Active, 2: Inactive");
             $table->string('parent_id')->default(0);
+            $table->tinyInteger('order');
             $table->timestamps();
         });
     }

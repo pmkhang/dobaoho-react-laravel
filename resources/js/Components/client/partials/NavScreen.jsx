@@ -25,7 +25,7 @@ const NavScreen = ({ setIsShowNav }) => {
                     ></i>
                 </span>
             </div>
-            <ul className="flex flex-col w-full items-start gap-2 mt-6">
+            <ul className="flex flex-col w-full items-start gap-2 mt-6 uppercase">
                 <li className="w-full">
                     <Link
                         href="/"

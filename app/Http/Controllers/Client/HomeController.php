@@ -16,6 +16,7 @@ class HomeController extends Controller
     {
         $categories = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
+            ->orderBy('order', 'asc')
             ->get();
 
         $products = Category::where('status', '>', 0)

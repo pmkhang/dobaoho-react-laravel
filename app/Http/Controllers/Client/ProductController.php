@@ -18,6 +18,7 @@ class ProductController extends Controller
     {
         $categories = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
+            ->orderBy('order', 'asc')
             ->get();
 
         $product = Product::where('status', 1)
@@ -86,6 +87,7 @@ class ProductController extends Controller
 
         $categories = Category::where('status', '>', 0)
             ->select('id', 'name', 'parent_id')
+            ->orderBy('order', 'asc')
             ->get();
         $category = Category::select('id', 'name')->findOrFail($category_id);
 
