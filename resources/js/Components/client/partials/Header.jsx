@@ -11,7 +11,7 @@ const Header = ({ setIsShowNav, setIsShowSearch }) => {
     const countProductCart = usePage().props.countProductCart;
 
     return (
-        <header className="w-full shadow-lg sticky top-0 bg-white z-10">
+        <header className="w-full shadow-lg fixed top-0 bg-white z-10">
             <div className="w-full max-w-dt my-0 mx-auto h-fit py-4 max-tl:py-3 flex justify-between items-center px-2 gap-10">
                 <LogoHeader />
                 <MobileNav
