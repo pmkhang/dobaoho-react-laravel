@@ -19,13 +19,35 @@ const ProductList = ({ products, categories, category }) => {
                 <div className="col-span-1">
                     <NavCategory isHide={false} categories={categories} />
                 </div>
-                <div className="col-span-3">
-                    <div className="w-full p-4 grid grid-cols-4 gap-4 rounded-xl bg-white ">
+                <div className="col-span-3 mt-4">
+                    <div className="w-full p-4 grid grid-cols-4 gap-4 rounded-xl bg-white">
                         <div className="col-span-4 px-2 flex items-center justify-between">
-                            <h3 className=" text-2xl font-semibold">
+                            <h3 className="text-2xl font-semibold">
                                 {category?.name}
                             </h3>
-                            {/* <div className="flex items-center gap-2">
+                        </div>
+                        <div className="grid grid-cols-4 max-tl:grid-cols-2 max-mb:grid-cols-1 gap-4 col-span-4">
+                            {products?.map((i) => (
+                                <ProductCard
+                                    key={i?.id}
+                                    id={i?.id}
+                                    rate_avg={i?.rate_avg}
+                                    name={i?.name}
+                                    price={i?.price}
+                                    img={i?.product_images[0]?.image}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ClientLayout>
+    );
+};
+
+export default ProductList;
+{
+    /* <div className="flex items-center gap-2">
                                 <Link
                                     href={`/san-pham/the-loai/${category?.id}?price=asc`}
                                     className={`p-2 border rounded-lg text-sm ${
@@ -43,23 +65,5 @@ const ProductList = ({ products, categories, category }) => {
                                 >
                                     Giá cao tới thấp
                                 </Link>
-                            </div> */}
-                        </div>
-                        {products?.map((i) => (
-                            <ProductCard
-                                key={i?.id}
-                                id={i?.id}
-                                rate_avg={i?.rate_avg}
-                                name={i?.name}
-                                price={i?.price}
-                                img={i?.product_images[0]?.image}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </ClientLayout>
-    );
-};
-
-export default ProductList;
+                            </div> */
+}

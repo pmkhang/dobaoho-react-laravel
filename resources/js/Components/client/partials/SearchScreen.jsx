@@ -78,9 +78,6 @@ const SearchScreen = ({ setIsShowSearch }) => {
                     <button
                         type="submit"
                         className="py-2 bg-blue-600 text-white px-3 rounded-xl ring-2 ring-white"
-                        onClick={() => {
-                            setIsShowSearch(false);
-                        }}
                     >
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
