@@ -61,8 +61,25 @@ const SearchScreen = ({ setIsShowSearch }) => {
     };
 
     return (
-        <div className="fixed top-0 left-0 right-0 bottom-0 backdrop-blur p-4 bg-slate-800 bg-opacity-80 z-50">
-            <div className="flex flex-col mt-10">
+        <div className="fixed top-0 left-0 right-0 bottom-0 backdrop-blur p-4 bg-gray-900 bg-opacity-90 z-50">
+            <div
+                className="w-full flex justify-end px-4"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setIsShowSearch(false);
+                }}
+            >
+                <span className="text-end text-xl text-white">
+                    <i className="fa-solid fa-xmark"></i>
+                </span>
+            </div>
+            <div
+                className="flex flex-col mt-10"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setIsShowSearch(true);
+                }}
+            >
                 <form className="flex items-center gap-3" onSubmit={submit}>
                     <input
                         type="search"

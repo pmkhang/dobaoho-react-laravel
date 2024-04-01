@@ -3,11 +3,11 @@ import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-const NavCategory = ({ isHide }) => {
-    const [isHideNav, setIsHideNav] = useState(isHide);
-    const [isTabletScreen, setIsTabletScreen] = useState(isHide);
-    const [hoveredItem, setHoveredItem] = useState(null);
+const NavCategoryHeader = () => {
+    const [isShowCategory, setIsShowCategory] = useState(false);
     const [dbCategories, setDbCategories] = useState([]);
+    const [hoveredItem, setHoveredItem] = useState(null);
+    const [isTabletScreen] = useState(true);
     const fetcheCategory = (...args) =>
         fetch(...args).then((res) => res.json());
 
@@ -23,48 +23,14 @@ const NavCategory = ({ isHide }) => {
         }
     }, [data]);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsHideNav(window.innerWidth <= 1025);
-            setIsTabletScreen(window.innerWidth <= 1025);
-        };
-
-        const handle = isHide
-            ? undefined
-            : window.addEventListener("resize", handleResize);
-
-        return () =>
-            handle && window.removeEventListener("resize", handleResize);
-    }, [isHide]);
-
-    const tabletScreenCategories = (category) => {
+    const CategoryItems = ({ category }) => {
         const commonClass =
             "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
         const handleClick = () =>
             setHoveredItem(hoveredItem == category?.id ? null : category?.id);
-
         return (
             <>
-                {!isTabletScreen ? (
-                    <>
-                        {category?.children.length > 0 ? (
-                            <span className={commonClass}>
-                                <span>{category?.name}</span>
-                                <i className="fa-solid fa-caret-right text-lg"></i>
-                            </span>
-                        ) : (
-                            <Link
-                                href={route(
-                                    "productListByCategory",
-                                    category?.id
-                                )}
-                                className={commonClass}
-                            >
-                                <span>{category?.name}</span>
-                            </Link>
-                        )}
-                    </>
-                ) : category?.children.length > 0 ? (
+                {category?.children.length > 0 ? (
                     <span onClick={handleClick} className={`${commonClass}`}>
                         {category?.name}
                         {hoveredItem == category?.id ? (
@@ -86,7 +52,7 @@ const NavCategory = ({ isHide }) => {
         );
     };
 
-    const childrenCategories = (category) => {
+    const ChildrenCategories = ({ category }) => {
         return (
             <>
                 {category?.children.length > 0 &&
@@ -116,44 +82,44 @@ const NavCategory = ({ isHide }) => {
         );
     };
 
-    const dataCategories = (categories) => {
-        return (
-            <ul
-                className={`dropdown flex flex-col  transition-all ${
-                    isHideNav ? "hidden" : ""
-                }`}
-            >
-                {categories?.map((category) => (
-                    <li
-                        key={category?.id}
-                        className="relative border-t-2"
-                        onMouseEnter={() =>
-                            isTabletScreen || setHoveredItem(category?.id)
-                        }
-                        onMouseLeave={() =>
-                            isTabletScreen || setHoveredItem(null)
-                        }
-                    >
-                        {tabletScreenCategories(category)}
-                        {childrenCategories(category)}
-                    </li>
-                ))}
-            </ul>
-        );
-    };
-
     return (
-        <div className="py-2 rounded-xl shadow-lg bg-gray-50 max-tl:hidden">
-            <h2
-                className="flex items-center px-4 py-2 cursor-pointer gap-3 text-md  font-semibold uppercase"
-                onClick={() => setIsHideNav(!isHideNav)}
+        <li
+            className={`col-span-1 max-tl:col-span-2 max-mb:col-span-7 max-mb:bg-white bg-gray-50 h-full flex items-center px-4 relative border-b-4  border-blue-600`}
+            onMouseEnter={() => {
+                setIsShowCategory(true);
+            }}
+            onMouseLeave={() => {
+                setIsShowCategory(false);
+            }}
+        >
+            <p
+                className="flex items-center gap-2 w-full"
+                onClick={() => {
+                    setIsShowCategory(!isShowCategory);
+                }}
             >
                 <i className="fa-solid fa-bars"></i>
-                <span>Danh mục sản phẩm</span>
-            </h2>
-            {dataCategories(dbCategories)}
-        </div>
+                <span className="uppercase text-base font-bold">
+                    Danh mục sản phẩm
+                </span>
+            </p>
+            {isShowCategory && (
+                <ul className="absolute top-10 right-0 left-0 border bg-gray-50 shadow-xl pb-2 transition-all flex flex-col rounded-b-xl">
+                    {dbCategories?.map((i) => (
+                        <li
+                            key={i?.id}
+                            className="w-full border-t-2 border-gray-100 relative"
+                            onMouseEnter={() => setHoveredItem(i?.id)}
+                            onMouseLeave={() => setHoveredItem(null)}
+                        >
+                            <CategoryItems category={i} />
+                            <ChildrenCategories category={i} />
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </li>
     );
 };
 
-export default NavCategory;
+export default NavCategoryHeader;

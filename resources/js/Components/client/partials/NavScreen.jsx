@@ -18,7 +18,7 @@ const NavScreen = ({ setIsShowNav }) => {
                 </Link>
                 <span className="text-2xl ">
                     <i
-                        class="fa-solid fa-xmark"
+                        className="fa-solid fa-xmark"
                         onClick={() => {
                             setIsShowNav(false);
                         }}
