@@ -84,7 +84,7 @@ const NavCategoryHeader = () => {
 
     return (
         <li
-            className={`col-span-1 max-tl:col-span-2 max-mb:col-span-7 max-mb:bg-white bg-gray-50 h-full flex items-center px-4 relative border-b-4  border-blue-600`}
+            className={`col-span-1 max-tl:col-span-2 max-mb:col-span-7 max-mb:bg-white bg-gray-50 h-full flex items-center px-4 relative `}
             onMouseEnter={() => {
                 setIsShowCategory(true);
             }}
@@ -104,7 +104,7 @@ const NavCategoryHeader = () => {
                 </span>
             </p>
             {isShowCategory && (
-                <ul className="absolute top-10 right-0 left-0 border bg-gray-50 shadow-xl pb-2 transition-all flex flex-col rounded-b-xl">
+                <ul className="absolute top-10 right-0 font-bold left-0 border bg-gray-50 shadow-xl pb-2 transition-all flex flex-col rounded-b-xl">
                     {dbCategories?.map((i) => (
                         <li
                             key={i?.id}

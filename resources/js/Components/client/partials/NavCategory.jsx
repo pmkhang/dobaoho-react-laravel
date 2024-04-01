@@ -119,7 +119,7 @@ const NavCategory = ({ isHide }) => {
     const dataCategories = (categories) => {
         return (
             <ul
-                className={`dropdown flex flex-col  transition-all ${
+                className={`dropdown flex flex-col  transition-all  font-bold ${
                     isHideNav ? "hidden" : ""
                 }`}
             >

@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 const Navbar = ({ isTablet }) => {
     return (
         <div
-            className={`flex items-center justify-center py-3 max-mb:hidden ${
+            className={` flex items-center  justify-center py-4 min-tl:py-3 min-tl:text-white max-mb:hidden ${
                 isTablet ? "" : "hidden"
             }`}
         >
@@ -12,7 +12,7 @@ const Navbar = ({ isTablet }) => {
                 <li>
                     <Link
                         href="/"
-                        className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        className="p-2 px-4 font-bold hover:text-orange-400 transition-all"
                     >
                         Trang chủ
                     </Link>
@@ -20,7 +20,7 @@ const Navbar = ({ isTablet }) => {
                 <li>
                     <Link
                         href={route("introducePage")}
-                        className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        className="p-2 px-4 font-bold hover:text-orange-400 transition-all"
                     >
                         Giới thiệu
                     </Link>
@@ -28,7 +28,7 @@ const Navbar = ({ isTablet }) => {
                 <li>
                     <Link
                         href="#"
-                        className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        className="p-2 px-4 font-bold hover:text-orange-400 transition-all"
                     >
                         Chính sách bán hàng
                     </Link>
@@ -36,7 +36,7 @@ const Navbar = ({ isTablet }) => {
                 <li>
                     <Link
                         href="/lien-he"
-                        className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
+                        className="p-2 px-4 font-bold hover:text-orange-400 transition-all"
                     >
                         Liên hệ
                     </Link>
