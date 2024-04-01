@@ -9,7 +9,7 @@ const Introduce = () => {
                     Giới thiệu
                 </h2>
                 <div className="w-5/6 max-tl:w-full mx-auto text-start mt-4 text-lg flex flex-col items-center justify-center gap-6">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center max-mb:flex-col gap-4">
                         <p>
                             Chào mừng bạn đến với{" "}
                             <strong>Công ty Quang Trường Thịnh</strong>. Chúng
@@ -28,14 +28,14 @@ const Introduce = () => {
                         <img
                             src="/uploads/introduce1.jpg"
                             alt="introduce1"
-                            className="h-[300px] object-contain rounded-lg shadow-lg"
+                            className="h-[300px] object-contain max-tl:h-[260px] max-mb:w-full max-mb:h-fit rounded-lg shadow-lg"
                         />
                     </div>
-                    <div className="flex items-center gap-8">
+                    <div className="flex items-center max-mb:flex-col gap-8">
                         <img
                             src="/uploads/introduce2.jpg"
                             alt="introduce2"
-                            className="h-[360px] object-contain rounded-lg shadow-lg"
+                            className="h-[360px] object-contain max-tl:h-[260px] max-mb:w-full max-mb:h-fit rounded-lg shadow-lg"
                         />
                         <p>
                             Để đáp ứng nhu cầu đa dạng của từng doanh nghiệp,
@@ -58,7 +58,7 @@ const Introduce = () => {
                         <p></p>
                     </div>
 
-                    <div className="w-full flex items-center gap-8 ">
+                    <div className="w-full flex items-center max-mb:flex-col gap-8 ">
                         <div className="flex flex-col text-start gap-2">
                             <p>
                                 Mọi chi tiết xin vui lòng liên hệ với chúng tôi
@@ -67,28 +67,28 @@ const Introduce = () => {
                             <strong className="text-xl">
                                 CÔNG TY TNHH QUANG TRƯỜNG THỊNH
                             </strong>
-                            <ul className="ml-10">
+                            <ul className="ml-4">
                                 <li>
-                                    <i className="mr-4">•</i> VPGĐ: 12/1/22/22
+                                    <i className="mr-2">•</i> VPGĐ: 12/1/22/22
                                     Đường số 10, Phường 9, Quận Gò Vấp, Tp.HCM
                                 </li>
                                 <li>
-                                    <i className="mr-4">•</i> Điện thoại:
+                                    <i className="mr-2">•</i> Điện thoại:
                                     0938505459
                                 </li>
                                 <li>
-                                    <i className="mr-4">•</i> MST: 0315404888
+                                    <i className="mr-2">•</i> MST: 0315404888
                                 </li>
                                 <li>
-                                    <i className="mr-4">•</i> Hotline:
+                                    <i className="mr-2">•</i> Hotline:
                                     0938505459
                                 </li>
                                 <li>
-                                    <i className="mr-4">•</i> Email:
+                                    <i className="mr-2">•</i> Email:
                                     quangtruongthinh79@gmail.com
                                 </li>
                                 <li>
-                                    <i className="mr-4">•</i> Website:
+                                    <i className="mr-2">•</i> Website:
                                     quantruongthinh.vn
                                 </li>
                             </ul>
@@ -96,7 +96,7 @@ const Introduce = () => {
                         <img
                             src="/uploads/introduce3.jpg"
                             alt="introduce3"
-                            className="h-[360px] object-contain rounded-lg shadow-lg"
+                            className="h-[360px] object-contain max-tl:h-[260px] max-mb:w-full max-mb:h-fit rounded-lg shadow-lg"
                         />
                     </div>
                 </div>
