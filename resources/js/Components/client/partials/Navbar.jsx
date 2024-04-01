@@ -19,7 +19,7 @@ const Navbar = ({ isTablet }) => {
                 </li>
                 <li>
                     <Link
-                        href="#"
+                        href={route("introducePage")}
                         className="p-2 px-4 font-bold hover:text-blue-600 transition-all"
                     >
                         Giới thiệu

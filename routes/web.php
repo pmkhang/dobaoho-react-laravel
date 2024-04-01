@@ -22,9 +22,7 @@ Route::prefix('')->group(function () {
     Route::redirect('/public', '/');
     Route::redirect('/cpanel', '/');
     Route::get('', [HomeController::class, 'index'])->name('home');
-    Route::get('/ve-chung-toi', function () {
-        return Inertia::render('Client/About');
-    })->name('about');
+    Route::get('/gioi-thieu', [HomeController::class, 'introducePage'])->name('introducePage');
     Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
     Route::post('/lien-he', [ContactController::class, 'store'])->name('sendContact');
     Route::post('/tim-kiem', [ProductController::class, 'searchProducts'])->name('searchProducts');

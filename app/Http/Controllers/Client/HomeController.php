@@ -50,4 +50,8 @@ class HomeController extends Controller
         ]);
     }
 
+    public function introducePage()
+    {
+        return Inertia::render('Client/Introduce');
+    }
 }

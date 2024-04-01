@@ -39,7 +39,11 @@ const Footer = () => {
                         <li className="flex items-center gap-2">
                             <Link href="/">Trang chủ</Link>
                         </li>
-                        <li className="flex items-center gap-2">Giới thiệu</li>
+                        <li className="flex items-center gap-2">
+                            <Link href={route("introducePage")}>
+                                Giới thiệu
+                            </Link>
+                        </li>
                         <li className="flex items-center gap-2">
                             Chính sách bán hàng
                         </li>
