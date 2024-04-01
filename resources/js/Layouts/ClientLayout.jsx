@@ -34,6 +34,24 @@ const ClientLayout = ({ children, title }) => {
     return (
         <div className="bg-gray-200 relative overflow-x-hidden">
             <Head title={title} />
+            <div className="w-full bg-blue-700 max-tl:hidden">
+                <div className="max-w-dt mx-auto px-2 flex items-center">
+                    <a
+                        href="tel:0938505459"
+                        className="w-1/5 block bg-blue-400 text-white px-4 py-1 font-semibold"
+                    >
+                        <i className="fa-solid fa-phone mr-3"></i>Hotline:
+                        0938505459
+                    </a>
+                    <a
+                        href="mailto:Quangtruongthinh79@gmail.com"
+                        className="w-1/4 block bg-blue-600 text-white px-4 py-1 font-semibold"
+                    >
+                        <i className="fa-solid fa-envelope mr-3"></i>Email:
+                        Quangtruongthinh79@gmail.com
+                    </a>
+                </div>
+            </div>
             <Header
                 setIsShowNav={setIsShowNav}
                 setIsShowSearch={setIsShowSearch}

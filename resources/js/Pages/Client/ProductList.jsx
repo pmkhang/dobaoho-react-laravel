@@ -26,7 +26,7 @@ const ProductList = ({ products, categories, category }) => {
                                 {category?.name}
                             </h3>
                         </div>
-                        <div className="grid grid-cols-4 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4">
+                        <div className="grid grid-cols-6 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4">
                             {products?.map((i) => (
                                 <ProductCard
                                     key={i?.id}
