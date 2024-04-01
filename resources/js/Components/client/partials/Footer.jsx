@@ -12,7 +12,7 @@ const Footer = () => {
                     <ul className="flex flex-col mt-4 gap-4">
                         <li className="flex items-center gap-2">
                             <span>
-                                Địa chỉ: 12/1/22/22 Đường số 10m Phường 9, Quận
+                                Địa chỉ: 12/1/22/22 Đường số 10, Phường 9, Quận
                                 Gò Vấp, Tp. HCM
                             </span>
                         </li>

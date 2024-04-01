@@ -35,10 +35,10 @@ const Contact = () => {
                         </h3>
                         <ul className="flex flex-col gap-3 mt-3">
                             <li>
-                                Địa chỉ: 12/1/22/22 Đường số 10m Phường 9, Quận
+                                Địa chỉ: 12/1/22/22 Đường số 10, Phường 9, Quận
                                 Gò Vấp, Tp. HCM
                             </li>
-                            <li>MST: 015404888</li>
+                            <li>MST: 0315404888</li>
                             <li className="font-bold">SĐT: 0938505459</li>
                             <li className="font-bold">
                                 Email: quangtruongthinh79@gmail.com
