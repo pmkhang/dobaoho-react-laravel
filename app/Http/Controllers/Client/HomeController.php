@@ -22,6 +22,7 @@ class HomeController extends Controller
         $products = Category::where('status', '>', 0)
             ->has('products')
             ->select('id', 'name', 'parent_id')
+            ->orderBy('order', 'asc')
             ->with(['products' => function ($query) {
                 $query
                     ->select('id', 'name', 'price', 'status', 'rate_avg', 'category_id')

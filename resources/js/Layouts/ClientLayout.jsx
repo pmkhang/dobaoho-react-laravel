@@ -34,24 +34,7 @@ const ClientLayout = ({ children, title }) => {
     return (
         <div className="bg-gray-200 relative overflow-x-hidden">
             <Head title={title} />
-            <div className="w-full bg-blue-700 max-tl:hidden">
-                <div className="max-w-dt mx-auto px-2 flex items-center">
-                    <a
-                        href="tel:0938505459"
-                        className="w-1/5 block bg-blue-400 text-white px-4 py-1 font-semibold"
-                    >
-                        <i className="fa-solid fa-phone mr-3"></i>Hotline:
-                        0938505459
-                    </a>
-                    <a
-                        href="mailto:Quangtruongthinh79@gmail.com"
-                        className="w-1/4 block bg-blue-600 text-white px-4 py-1 font-semibold"
-                    >
-                        <i className="fa-solid fa-envelope mr-3"></i>Email:
-                        Quangtruongthinh79@gmail.com
-                    </a>
-                </div>
-            </div>
+
             <Header
                 setIsShowNav={setIsShowNav}
                 setIsShowSearch={setIsShowSearch}
@@ -69,14 +52,30 @@ const ClientLayout = ({ children, title }) => {
                 <a href="https://zalo.me/0938505459" target="_blank">
                     <img
                         loading="lazy"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/1024px-Icon_of_Zalo.svg.png"
+                        src="/uploads/mail.png"
                         alt="zalo"
-                        className="w-[50px] h-[50px] cursor-pointer"
+                        className="w-[40px] h-[40px] cursor-pointer animate-bounce animate-infinite animate-duration-[1500ms] animate-ease-linear "
+                    />
+                </a>
+                <a href="tel:0938505459">
+                    <img
+                        loading="lazy"
+                        src="/uploads/phone-icon-6753051_1280.png"
+                        alt="pone"
+                        className="w-[40px] h-[40px] cursor-pointer animate-jump animate-infinite animate-duration-[1500ms] animate-ease-linear"
+                    />
+                </a>
+                <a href="https://zalo.me/0938505459" target="_blank">
+                    <img
+                        loading="lazy"
+                        src="/uploads/zalo.png"
+                        alt="zalo"
+                        className="w-[40px] h-[40px] cursor-pointer animate-wiggle-more animate-infinite animate-duration-[1500ms] animate-ease-linear"
                     />
                 </a>
                 {isVisible && (
                     <span
-                        className="cursor-pointer w-7 h-7 pt-3 mr-3 flex items-center justify-center ring-2 ring-gray-400  text-gray-400 rounded-lg"
+                        className="cursor-pointer w-7 h-7 pt-3 mr-1 mt-4 flex items-center justify-center ring-2 ring-gray-400  text-gray-400 rounded-lg animate-bounce animate-infinite animate-duration-[1500ms] animate-ease-linear"
                         onClick={() => {
                             window.scrollTo({
                                 top: 0,
