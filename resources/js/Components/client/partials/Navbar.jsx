@@ -4,11 +4,11 @@ import { Link } from "@inertiajs/react";
 const Navbar = ({ isTablet }) => {
     return (
         <div
-            className={`flex items-center justify-center py-4 max-mb:hidden ${
+            className={`flex items-center justify-center py-3 max-mb:hidden ${
                 isTablet ? "" : "hidden"
             }`}
         >
-            <ul className="flex items-center gap-6 uppercase">
+            <ul className="flex items-center gap-6 text-sm uppercase">
                 <li>
                     <Link
                         href="/"
