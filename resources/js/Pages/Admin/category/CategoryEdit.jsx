@@ -90,9 +90,9 @@ const CategoryEdit = ({ categories, category, status, message }) => {
                     />
                 </div>
                 <Button
-                    className="bg-primary hover:!bg-primary-darker"
+                    className="bg-primary hover:!bg-primary-darker mt-8"
                     text={"Sửa"}
-                    className={"mt-8"}
+                    
                     disabled={processing}
                 />
             </form>
