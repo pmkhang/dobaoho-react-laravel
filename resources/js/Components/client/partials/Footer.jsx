@@ -86,7 +86,7 @@ const Footer = () => {
                                 />
                                 <button
                                     type="button"
-                                    className="text-white border-2 border-white hover:bg-primary-darker focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 "
+                                    className="text-white border-2 border-white hover:bg-primary-darker focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5 me-2 "
                                 >
                                     <i className="fa-solid fa-envelope"></i>
                                 </button>
