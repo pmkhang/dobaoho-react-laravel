@@ -79,18 +79,22 @@ const Login = ({ status, message }) => {
                                 setData("remember", e.target.checked)
                             }
                         />
-                        <Link className="text-sm text-blue-600 hover:underline">
+                        <Link className="text-sm text-primary hover:underline">
                             Bạn quên mật khẩu ?
                         </Link>
                     </div>
 
-                    <Button text={"Đăng nhập"} className={"mt-3"} />
+                    <Button
+                        className="bg-primary hover:!bg-primary-darker"
+                        text={"Đăng nhập"}
+                        className={"mt-3"}
+                    />
                 </form>
                 <div className="w-full flex gap-3 items-center justify-center mt-4">
                     <h3 className="text-center">Bạn chưa có tài khoản ?</h3>
                     <Link
                         href={route("register")}
-                        className="text-sm text-blue-600 hover:underline"
+                        className="text-sm text-primary hover:underline"
                         disabled={processing}
                     >
                         Đăng ký tại đây
@@ -100,7 +104,7 @@ const Login = ({ status, message }) => {
                     <h3 className="text-center">Hoặc</h3>
                     <a
                         href={route("login.google")}
-                        className="w-full flex items-center font-semibold justify-center gap-3 focus:ring-2 focus:ring-blue-300 text-blue-600 border-2 border-blue-600 py-2 px-3 rounded-lg"
+                        className="w-full flex items-center font-semibold justify-center gap-3 focus:ring-2 focus:ring-blue-300 text-primary border-2 border-primary py-2 px-3 rounded-lg"
                     >
                         <i className="fa-brands fa-google"></i>
                         <span>Đăng nhập bằng tài khoản Google</span>

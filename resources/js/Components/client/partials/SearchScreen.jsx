@@ -94,13 +94,13 @@ const SearchScreen = ({ setIsShowSearch }) => {
                     />
                     <button
                         type="submit"
-                        className="py-2 bg-blue-600 text-white px-3 rounded-xl ring-2 ring-white"
+                        className="py-2 bg-primary text-white px-3 rounded-xl ring-2 ring-white"
                     >
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
                 {dataSearch.length > 0 && (
-                    <ul className="py-2 px-3 bg-white mt-4 rounded-lg ring-2 ring-blue-500 max-h-[500px] overflow-y-scroll">
+                    <ul className="py-2 px-3 bg-white mt-4 rounded-lg ring-2 ring-primary max-h-[500px] overflow-y-scroll">
                         {dataSearch?.map((i) => (
                             <ItemSearch
                                 key={i?.id}

@@ -29,14 +29,14 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                     <div className="col-span-5 mt-4 px-4 flex gap-4">
                         <span
                             className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer
-                            ${!isShowFormFeedBack ? "border-t-blue-600" : ""}`}
+                            ${!isShowFormFeedBack ? "border-t-primary" : ""}`}
                             onClick={() => setisShowFormFeedBack(false)}
                         >
                             Khách hàng đánh giá
                         </span>
                         <span
                             className={`p-3 border border-gray-200 border-t-4 rounded-xl cursor-pointer
-                            ${isShowFormFeedBack ? "border-t-blue-600" : ""}`}
+                            ${isShowFormFeedBack ? "border-t-primary" : ""}`}
                             onClick={() => setisShowFormFeedBack(true)}
                         >
                             Hỏi đáp / Phản hồi

@@ -97,14 +97,17 @@ const Contact = () => {
                                 id="content"
                                 required
                                 rows={4}
-                                className="outline-none focus:ring-blue-600 focus:border-blue-600"
+                                className="outline-none focus:ring-primary focus:border-primary"
                                 value={data.message}
                                 onChange={(e) =>
                                     setData("message", e.target.value)
                                 }
                             />
                         </div>
-                        <Button text={"Gửi yêu cầu"} />
+                        <Button
+                            className="bg-primary hover:!bg-primary-darker"
+                            text={"Gửi yêu cầu"}
+                        />
                     </form>
                 </div>
             </div>

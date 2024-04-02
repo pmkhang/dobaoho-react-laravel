@@ -45,7 +45,7 @@ const ProductFormFeedback = ({ productId }) => {
                 <div className="col-span-5 px-4 flex flex-col gap-3 w-3/5 py-8 max-mb:w-full">
                     <h3 className="text-xl flex gap-2">
                         <Link
-                            className="text-blue-600 underline"
+                            className="text-primary underline"
                             href={route("login")}
                         >
                             Đăng nhập
@@ -107,7 +107,7 @@ const ProductFormFeedback = ({ productId }) => {
                             id="content"
                             required
                             rows={4}
-                            className="outline-none focus:ring-blue-600 focus:border-blue-600"
+                            className="outline-none focus:ring-primary focus:border-primary"
                             value={data.content}
                             onChange={(e) => setData("content", e.target.value)}
                         />

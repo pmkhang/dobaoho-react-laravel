@@ -8,29 +8,29 @@ import { useState } from "react";
 const tableColumns = [
     {
         label: "Stt",
-        className: "bg-blue-500 text-white",
+        className: "bg-primary text-white",
     },
-    { label: "Hình", className: "bg-blue-500 text-white" },
+    { label: "Hình", className: "bg-primary text-white" },
     {
         label: "Tên sản phẩm",
-        className: "bg-blue-500 text-white",
+        className: "bg-primary text-white",
     },
     {
         label: "Số lượng",
-        className: "bg-blue-500 text-white",
+        className: "bg-primary text-white",
     },
     {
         label: "Giá/sản phẩm",
-        className: "bg-blue-500 text-white",
+        className: "bg-primary text-white",
     },
     ,
     {
         label: "Giá tổng",
-        className: "bg-blue-500 text-white",
+        className: "bg-primary text-white",
     },
     {
         label: "",
-        className: "bg-blue-500 text-white",
+        className: "bg-primary text-white",
     },
 ];
 
@@ -93,7 +93,7 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                         <h4 className="text-3xl font-semibold">
                             Bạn chưa có thêm sản phẩm nào
                         </h4>
-                        <Link className="text-blue-500 underline font-bold mt-8">
+                        <Link className="text-primary underline font-bold mt-8">
                             Danh sách sản phẩm
                         </Link>
                     </div>
@@ -118,12 +118,15 @@ const Cart = ({ cartProducts, total_price, user_id }) => {
                             <div className="w-[400%]">
                                 <h3 className="text-xl font-bold">
                                     Tổng giá trị ước tính:{" "}
-                                    <span className="text-blue-800 text-2xl ml-2">
+                                    <span className="text-primary-darker text-2xl ml-2">
                                         {formatCurrency(total_price)}
                                     </span>
                                 </h3>
                             </div>
-                            <Button text={"Tiến hành đặt hàng"} />
+                            <Button
+                                className="bg-primary hover:!bg-primary-darker"
+                                text={"Tiến hành đặt hàng"}
+                            />
                         </form>
                     </>
                 )}

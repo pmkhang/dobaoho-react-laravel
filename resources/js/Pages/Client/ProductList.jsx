@@ -51,8 +51,8 @@ export default ProductList;
                                 <Link
                                     href={`/san-pham/the-loai/${category?.id}?price=asc`}
                                     className={`p-2 border rounded-lg text-sm ${
-                                        price == "asc" && "ring-2 ring-blue-600"
-                                    } focus:ring-2 focus:ring-blue-600`}
+                                        price == "asc" && "ring-2 ring-primary"
+                                    } focus:ring-2 focus:ring-primary`}
                                 >
                                     Giá thấp tới cao
                                 </Link>
@@ -60,8 +60,8 @@ export default ProductList;
                                     href={`/san-pham/the-loai/${category?.id}?price=desc`}
                                     className={`p-2 border rounded-lg text-sm ${
                                         price == "desc" &&
-                                        "ring-2 ring-blue-600"
-                                    } focus:ring-2 focus:ring-blue-600`}
+                                        "ring-2 ring-primary"
+                                    } focus:ring-2 focus:ring-primary`}
                                 >
                                     Giá cao tới thấp
                                 </Link>

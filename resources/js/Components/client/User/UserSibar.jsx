@@ -23,9 +23,7 @@ const UserSibar = ({ user, active }) => {
                     <li className="w-full">
                         <Link
                             className={`block w-full px-2 rounded-lg ${
-                                active == "info"
-                                    ? "text-blue-500 font-bold"
-                                    : ""
+                                active == "info" ? "text-primary font-bold" : ""
                             }
                             `}
                             href={route("showProfile")}
@@ -39,7 +37,7 @@ const UserSibar = ({ user, active }) => {
                             href={active == "order" ? "#" : route("showOrders")}
                             className={`block w-full px-2 rounded-lg ${
                                 active == "order"
-                                    ? "text-blue-500 font-bold"
+                                    ? "text-primary font-bold"
                                     : ""
                             }
                             `}

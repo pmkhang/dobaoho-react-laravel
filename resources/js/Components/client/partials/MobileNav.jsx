@@ -5,7 +5,7 @@ const MobileNav = ({ setIsShowNav, setIsShowSearch }) => {
     return (
         <>
             <ul className="flex items-center gap-2 min-mb:hidden">
-                <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                <li className="px-2 hover:text-primary-darker transition-all cursor-pointer flex items-center gap-1">
                     <button
                         onClick={() => {
                             setIsShowSearch(true);
@@ -16,9 +16,9 @@ const MobileNav = ({ setIsShowNav, setIsShowSearch }) => {
                     </button>
                 </li>
                 {/* <CartNav /> */}
-                <li className="px-2 hover:text-blue-700 transition-all cursor-pointer flex items-center gap-1">
+                <li className="px-2 hover:text-primary-darker transition-all cursor-pointer flex items-center gap-1">
                     <i
-                        className="fa-solid fa-bars text-xl text-blue-600"
+                        className="fa-solid fa-bars text-xl text-primary"
                         onClick={() => {
                             setIsShowNav(true);
                         }}

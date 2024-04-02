@@ -17,7 +17,7 @@ const InputText = ({
             </label>
             <input
                 type={type}
-                className={`bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  ${className}`}
+                className={`bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:!ring-0  ${className}`}
                 id={name}
                 ref={inputRef}
                 required={req}

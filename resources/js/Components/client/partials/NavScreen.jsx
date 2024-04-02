@@ -29,7 +29,7 @@ const NavScreen = ({ setIsShowNav }) => {
                 <li className="w-full">
                     <Link
                         href="/"
-                        className="w-full py-2 inline-block font-bold hover:text-blue-600 transition-all"
+                        className="w-full py-2 inline-block font-bold hover:text-primary transition-all"
                     >
                         Trang chủ
                     </Link>
@@ -37,7 +37,7 @@ const NavScreen = ({ setIsShowNav }) => {
                 <li className="w-full">
                     <Link
                         href="#"
-                        className="w-full py-2 inline-block font-bold hover:text-blue-600 transition-all"
+                        className="w-full py-2 inline-block font-bold hover:text-primary transition-all"
                     >
                         Giới thiệu
                     </Link>
@@ -45,7 +45,7 @@ const NavScreen = ({ setIsShowNav }) => {
                 <li className="w-full">
                     <Link
                         href="#"
-                        className="w-full py-2 inline-block font-bold hover:text-blue-600 transition-all"
+                        className="w-full py-2 inline-block font-bold hover:text-primary transition-all"
                     >
                         Chính sách bán hàng
                     </Link>
@@ -53,7 +53,7 @@ const NavScreen = ({ setIsShowNav }) => {
                 <li className="w-full">
                     <Link
                         href="/lien-he"
-                        className="w-full py-2 inline-block font-bold hover:text-blue-600 transition-all"
+                        className="w-full py-2 inline-block font-bold hover:text-primary transition-all"
                     >
                         Liên hệ
                     </Link>
@@ -61,7 +61,7 @@ const NavScreen = ({ setIsShowNav }) => {
             </ul>
             <ul className="flex flex-col w-full mt-8">
                 {user ? (
-                    <li className="flex-col flex bg-blue-600 p-3 rounded-lg text-white">
+                    <li className="flex-col flex bg-primary p-3 rounded-lg text-white">
                         <div className="flex flex-col">
                             <span className="font-bold text-lg">
                                 Xin chào, {user?.name}
@@ -75,7 +75,7 @@ const NavScreen = ({ setIsShowNav }) => {
                                 {user?.role == 1 && (
                                     <Link
                                         href={route("admin")}
-                                        className="block w-full text-start p-2 bg-blue-500 rounded-lg"
+                                        className="block w-full text-start p-2 bg-primary rounded-lg"
                                         onClick={() => {
                                             setIsShowNav(false);
                                         }}
@@ -87,7 +87,7 @@ const NavScreen = ({ setIsShowNav }) => {
                             <li>
                                 <Link
                                     href={route("showProfile")}
-                                    className="block w-full text-start p-2 bg-blue-500 rounded-lg"
+                                    className="block w-full text-start p-2 bg-primary rounded-lg"
                                     onClick={() => {
                                         setIsShowNav(false);
                                     }}
@@ -98,7 +98,7 @@ const NavScreen = ({ setIsShowNav }) => {
                             <li>
                                 <Link
                                     // href={route("showOrders")}
-                                    className="block w-full text-start p-2 bg-blue-500 rounded-lg"
+                                    className="block w-full text-start p-2 bg-primary rounded-lg"
                                     onClick={() => {
                                         setIsShowNav(false);
                                     }}
@@ -108,7 +108,7 @@ const NavScreen = ({ setIsShowNav }) => {
                             </li>
                             <li>
                                 <span
-                                    className="block w-full p-2 bg-blue-800 rounded-lg mt-10 text-center"
+                                    className="block w-full p-2 bg-primary-darker rounded-lg mt-10 text-center"
                                     onClick={() => {
                                         logout();
                                         setIsShowNav(false);

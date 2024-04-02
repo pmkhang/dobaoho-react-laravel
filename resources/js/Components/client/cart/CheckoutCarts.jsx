@@ -10,7 +10,7 @@ const CheckoutCarts = ({ cartProducts, total_price, post, processing }) => {
                 <h4 className="text-xl font-bold">Xem lại đơn hàng</h4>
                 <Link
                     href={route("clientCart")}
-                    className="text-blue-600 underline"
+                    className="text-primary underline"
                 >
                     Chỉnh sửa đơn hàng
                 </Link>
@@ -68,11 +68,15 @@ const CheckoutCarts = ({ cartProducts, total_price, post, processing }) => {
             </div>
             <div className="flex items-center justify-between mt-4">
                 <h4 className="text-2xl font-bold mb-2 ">Tổng đơn đặt hàng</h4>
-                <strong className="text-blue-800 text-2xl">
+                <strong className="text-primary-darker text-2xl">
                     {formatCurrency(total_price)}
                 </strong>
             </div>
-            <Button text={"Đặt hàng"} disabled={processing} />
+            <Button
+                className="bg-primary hover:!bg-primary-darker"
+                text={"Đặt hàng"}
+                disabled={processing}
+            />
         </div>
     );
 };

@@ -89,7 +89,12 @@ const CategoryEdit = ({ categories, category, status, message }) => {
                         options={recurCategories}
                     />
                 </div>
-                <Button text={"Sửa"} className={"mt-8"} disabled={processing} />
+                <Button
+                    className="bg-primary hover:!bg-primary-darker"
+                    text={"Sửa"}
+                    className={"mt-8"}
+                    disabled={processing}
+                />
             </form>
         </AdminLayout>
     );

@@ -99,7 +99,11 @@ const FormInfo = ({ user }) => {
                     </Table.Body>
                 </Table>
                 <div className="px-4 mt-4">
-                    <Button text={"Lưu"} disabled={processing} />
+                    <Button
+                        className="bg-primary hover:!bg-primary-darker"
+                        text={"Lưu"}
+                        disabled={processing}
+                    />
                 </div>
             </div>
             <div className="w-2/5 flex flex-col items-center gap-6 border-l-2 mt-4">

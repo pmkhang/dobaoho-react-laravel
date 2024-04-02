@@ -43,7 +43,7 @@ const CartTable = ({
                                         "product-detail",
                                         i?.product_id
                                     )}
-                                    className="text-base font-bold underline text-blue-600"
+                                    className="text-base font-bold underline text-primary"
                                 >
                                     {i?.products[0]?.name}
                                 </Link>

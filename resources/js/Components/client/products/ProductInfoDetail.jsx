@@ -67,7 +67,7 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                                     )
                                 )}
                             </Rating>
-                            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded  ms-3">
+                            <span className="bg-blue-100 text-primary-darker text-xs font-semibold px-2.5 py-0.5 rounded  ms-3">
                                 {rate_avg}
                             </span>
                         </div>
@@ -81,7 +81,7 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                         </div> */}
                     </div>
                     <div className=" p-3 bg-gray-100 rounded-lg border">
-                        <strong className="text-xl text-blue-600">
+                        <strong className="text-xl text-primary">
                             {/* Giá: {formatCurrency(+price)} */}
                             Giá: Liên hệ
                         </strong>
@@ -116,7 +116,10 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                 </div>
                 <div className="flex flex-col gap-6">
                     <Link href="/lien-he">
-                        <Button text={"Liên hệ để đặt hàng"} />
+                        <Button
+                            className="bg-primary hover:!bg-primary-darker"
+                            text={"Liên hệ để đặt hàng"}
+                        />
                     </Link>
                 </div>
             </div>
@@ -157,6 +160,6 @@ export default ProductInfoDetail;
                     text={"Thêm vào giỏ hàng"}
                     outline
                 />
-                <Button text={"Mua ngay"} />
+                <Button className="bg-primary hover:!bg-primary-darker" text={"Mua ngay"} />
             </div> */
 }

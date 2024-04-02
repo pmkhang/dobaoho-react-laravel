@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 
 const Footer = () => {
     return (
-        <footer className="w-full min-h-fit bg-blue-700 text-white pb-6 max-tl:px-4">
+        <footer className="w-full min-h-fit bg-primary-darker text-white pb-6 max-tl:px-4">
             <div className="max-w-dt mx-auto my-0 px-2 grid grid-cols-4 gap-4 max-tl:grid-cols-2 max-mb:grid-cols-1">
                 <div className="flex flex-col">
                     <h3 className="font-bold uppercase text-lg mt-10">
@@ -80,13 +80,13 @@ const Footer = () => {
                             <form className="flex items-center gap-2">
                                 <input
                                     type="email"
-                                    className="outline-none bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    className="outline-none bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
                                     placeholder="Email của bạn"
                                     required
                                 />
                                 <button
                                     type="button"
-                                    className="text-white border-2 border-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 "
+                                    className="text-white border-2 border-white hover:bg-primary-darker focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 "
                                 >
                                     <i className="fa-solid fa-envelope"></i>
                                 </button>

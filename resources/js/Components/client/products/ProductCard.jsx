@@ -25,7 +25,7 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                                 <Rating.Star filled={false} key={j} />
                             ))}
                         </Rating>
-                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2  rounded  ms-3">
+                        <span className="bg-blue-100 text-primary-darker text-xs font-semibold px-2  rounded  ms-3">
                             {rate_avg + ".0"}
                         </span>
                     </div>
@@ -37,7 +37,7 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                         </h5>
                     </Link>
                     <div className="flex flex-col gap-3 items-start">
-                        <p className="text-lg font-bold text-blue-800">
+                        <p className="text-lg font-bold text-primary-darker">
                             {/* {+price == 0 ? (
                                 <span>Liên hệ</span>
                             ) : (

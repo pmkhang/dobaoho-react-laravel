@@ -104,13 +104,17 @@ const Register = () => {
                         message={errors.password_confirmation}
                     />
 
-                    <Button text={"Đăng ký"} className={"mt-3"} />
+                    <Button
+                        className="bg-primary hover:!bg-primary-darker"
+                        text={"Đăng ký"}
+                        className={"mt-3"}
+                    />
                 </form>
                 <div className="w-full flex gap-3 items-center justify-center mt-4">
                     <h3 className="text-center">Bạn đã có tài khoản ?</h3>
                     <Link
                         href={route("login")}
-                        className="text-sm text-blue-600 hover:underline"
+                        className="text-sm text-primary hover:underline"
                         disabled={processing}
                     >
                         Đăng nhập tại đây

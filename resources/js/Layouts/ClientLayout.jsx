@@ -42,7 +42,7 @@ const ClientLayout = ({ children, title }) => {
             {isShowNavHeader && <NavbarHeader />}
             {isShowNav && <NavScreen setIsShowNav={setIsShowNav} />}
             {isShowSearch && <SearchScreen setIsShowSearch={setIsShowSearch} />}
-            <div className="w-full bg-blue-800 max-tl:hidden">
+            <div className="w-full bg-primary-darker max-tl:hidden">
                 <Navbar isTablet={true} />
             </div>
             <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit mt-4 max-mb:mt-[72px]  relative">

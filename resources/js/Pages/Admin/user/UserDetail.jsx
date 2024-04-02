@@ -106,7 +106,10 @@ const UserDetail = ({ user, invoiceUser }) => {
                             className="block w-[200px] h-[200px] rounded-full object-cover shadow-xl mt-16"
                         />
                         <Link href={route("editUser", user?.id)}>
-                            <Button text={"Chỉnh sửa thông tin"} />
+                            <Button
+                                className="bg-primary hover:!bg-primary-darker"
+                                text={"Chỉnh sửa thông tin"}
+                            />
                         </Link>
                     </div>
                 </div>

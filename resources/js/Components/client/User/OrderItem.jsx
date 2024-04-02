@@ -7,7 +7,7 @@ const OrderItem = ({ invoice }) => {
         1: { text: "Chờ xác nhận", className: "text-yellow-700" },
         2: {
             text: "Đã xác nhận và đang giao hàng",
-            className: "text-blue-700",
+            className: "text-primary-darker",
         },
         3: { text: "Đã giao hàng", className: "text-green-700" },
         4: { text: "Đơn huỷ", className: "text-red-700" },
@@ -45,7 +45,7 @@ const OrderItem = ({ invoice }) => {
                     />
                 ))}
             </ul>
-            <p className="text-2xl font-bold text-end  text-blue-600">
+            <p className="text-2xl font-bold text-end  text-primary">
                 Tổng đơn hàng: {formatCurrency(+invoice?.total_price)}
             </p>
         </div>

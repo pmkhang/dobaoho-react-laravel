@@ -21,6 +21,10 @@ export default {
                 mb: "768px",
             },
         },
+        colors: {
+            primary: "#076e12",
+            "primary-darker": "#054e0a",
+        },
     },
     plugins: [require("flowbite/plugin"), require("tailwindcss-animated")],
 };

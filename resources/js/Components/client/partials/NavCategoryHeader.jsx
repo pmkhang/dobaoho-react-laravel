@@ -25,7 +25,7 @@ const NavCategoryHeader = () => {
 
     const CategoryItems = ({ category }) => {
         const commonClass =
-            "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
+            "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-primary transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
         const handleClick = () =>
             setHoveredItem(hoveredItem == category?.id ? null : category?.id);
         return (
@@ -70,7 +70,7 @@ const NavCategoryHeader = () => {
                                             "productListByCategory",
                                             child?.id
                                         )}
-                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-blue-500 transition-all"
+                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-primary transition-all"
                                     >
                                         <span>{child?.name}</span>
                                     </Link>

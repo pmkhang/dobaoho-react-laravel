@@ -8,7 +8,7 @@ const UserNav = ({ user }) => {
         post(route("logout"));
     };
     return (
-        <li className=" transition-all cursor-pointer text-white flex items-center gap-2 rounded-lg bg-blue-600">
+        <li className=" transition-all cursor-pointer text-white flex items-center gap-2 rounded-lg bg-primary">
             <Dropdown
                 dismissOnClick={false}
                 renderTrigger={() => (

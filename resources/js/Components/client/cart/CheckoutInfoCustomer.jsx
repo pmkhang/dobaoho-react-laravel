@@ -70,7 +70,7 @@ const CheckoutInfoCustomer = ({ data, setData, errors }) => {
                     <textarea
                         id="message"
                         rows={6}
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary focus:border-primary"
                         onChange={(e) => setData("message", e.target.value)}
                         value={data.message}
                     ></textarea>
