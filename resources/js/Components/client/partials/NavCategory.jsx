@@ -143,7 +143,7 @@ const NavCategory = ({ isHide }) => {
     };
 
     return (
-        <div className="py-2 rounded-xl shadow-lg bg-gray-50 max-tl:hidden">
+        <div className="py-2 rounded-xl border shadow-lg bg-gray-50 max-tl:hidden">
             <h2
                 className="flex items-center px-4 py-2 cursor-pointer gap-3 text-md  font-semibold uppercase"
                 onClick={() => setIsHideNav(!isHideNav)}

@@ -32,7 +32,7 @@ const ClientLayout = ({ children, title }) => {
     }, []);
 
     return (
-        <div className="bg-gray-200 relative overflow-x-hidden">
+        <div className="bg-[#f3faf4] relative overflow-x-hidden">
             <Head title={title} />
 
             <Header

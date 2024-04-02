@@ -4,7 +4,7 @@ import { Rating } from "flowbite-react";
 
 const ProductCard = ({ id, img, rate_avg, name, price }) => {
     return (
-        <div className="w-full rounded-lg hover:translate-y-[-8px] hover:shadow-xl transition-all">
+        <div className="w-full rounded-lg hover:translate-y-[-8px] shadow-primary-darker hover:shadow-xl transition-all">
             <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
                 <Link href={route("product-detail", id)}>
                     <img
