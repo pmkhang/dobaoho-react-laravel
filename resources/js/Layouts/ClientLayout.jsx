@@ -49,7 +49,7 @@ const ClientLayout = ({ children, title }) => {
                 {children}
             </main>
             <div className="fixed  bottom-8 right-8 flex flex-col items-end gap-4">
-                <a href="https://zalo.me/0938505459" target="_blank">
+                <a href="mailto:quangtruongthinh79@gmail.com" target="_blank">
                     <img
                         loading="lazy"
                         src="/uploads/mail.png"
@@ -57,7 +57,7 @@ const ClientLayout = ({ children, title }) => {
                         className="w-[40px] h-[40px] cursor-pointer animate-bounce animate-infinite animate-duration-[1500ms] animate-ease-linear "
                     />
                 </a>
-                <a href="tel:0938505459">
+                <a href="tel:0938505459" target="_blank">
                     <img
                         loading="lazy"
                         src="/uploads/phone-icon-6753051_1280.png"
