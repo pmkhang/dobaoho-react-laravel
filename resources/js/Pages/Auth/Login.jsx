@@ -85,9 +85,8 @@ const Login = ({ status, message }) => {
                     </div>
 
                     <Button
-                        className="bg-primary hover:!bg-primary-darker"
+                        className="bg-primary hover:!bg-primary-darker mt-3"
                         text={"Đăng nhập"}
-                        className={"mt-3"}
                     />
                 </form>
                 <div className="w-full flex gap-3 items-center justify-center mt-4">
