@@ -3,7 +3,11 @@ import React from "react";
 
 const Introduce = () => {
     return (
-        <ClientLayout title={"Giới thiệu"}>
+        <ClientLayout
+            title={"Giới thiệu"}
+            breadcrumb={"Giới thiệu"}
+            breadcrumbLink={"/gioi-thieu"}
+        >
             <div className="w-full bg-white min-h-[605px] rounded-md shadow-md mb-4 p-8">
                 <h2 className="pl-4 border-l-4 border-primary w-5/6 max-tl:w-full mx-auto text-2xl font-bold uppercase">
                     Giới thiệu

@@ -4,7 +4,11 @@ import React from "react";
 
 const SearchProducts = ({ products, keyword }) => {
     return (
-        <ClientLayout title={"Tìm kiếm: " + keyword}>
+        <ClientLayout
+            title={"Tìm kiếm: " + keyword}
+            breadcrumb={"Tìm kiếm: " + keyword}
+            breadcrumbLink={"/tim-kiem?search=" + keyword}
+        >
             <div className="w-full h-fit min-h-[380px] bg-white rounded-lg shadow-lg p-8">
                 <h3 className="text-2xl font-bold text-center">
                     Kết quả tìm kiếm: <i className="underline">{keyword}</i>

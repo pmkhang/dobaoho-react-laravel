@@ -8,8 +8,15 @@ import { Head } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "@inertiajs/react";
 
-const ClientLayout = ({ children, title }) => {
+const ClientLayout = ({
+    children,
+    title,
+    breadcrumb,
+    breadcrumbLink,
+    isHideBreadcrumb,
+}) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isShowNav, setIsShowNav] = useState(false);
     const [isShowSearch, setIsShowSearch] = useState(false);
@@ -33,7 +40,7 @@ const ClientLayout = ({ children, title }) => {
 
     return (
         <div className="bg-[#f3faf4] relative overflow-x-hidden">
-            <Head title={title} />
+            <Head title={title + " | Quang Truong Thinh"} />
 
             <Header
                 setIsShowNav={setIsShowNav}
@@ -46,6 +53,19 @@ const ClientLayout = ({ children, title }) => {
                 <Navbar isTablet={true} />
             </div>
             <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit mt-4 max-mb:mt-[72px]  relative">
+                {!isHideBreadcrumb && (
+                    <ul className="flex items-center gap-4 mb-4 mt-[-10px] bg-white p-2 px-4 rounded-lg shadow-lg border">
+                        <li>
+                            <Link href="/" className="font-semibold">
+                                Trang chủ
+                            </Link>
+                        </li>
+                        <li>/</li>
+                        <li>
+                            <Link href={breadcrumbLink}>{breadcrumb}</Link>
+                        </li>
+                    </ul>
+                )}
                 {children}
             </main>
             <div className="fixed  bottom-8 right-8 flex flex-col items-end gap-4">

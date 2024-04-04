@@ -6,7 +6,7 @@ import SliderImages from "@/Components/client/partials/SliderImages";
 
 const Home = ({ categories, products }) => {
     return (
-        <ClientLayout title="Trang chủ">
+        <ClientLayout title="Trang chủ" isHideBreadcrumb={true}>
             <div className="w-full grid grid-cols-5 gap-4 items-start">
                 <NavCategory isHide={false} categories={categories} />
                 <div className="col-span-4 max-tl:col-span-5">

@@ -12,7 +12,11 @@ import { useState } from "react";
 const ProductDetail = ({ categories, product, productsByCategory }) => {
     const [isShowFormFeedBack, setisShowFormFeedBack] = useState(false);
     return (
-        <ClientLayout title={product?.name}>
+        <ClientLayout
+            title={product?.name}
+            breadcrumb={product?.name}
+            breadcrumbLink={route("product-detail", product?.id)}
+        >
             <div className="min-h-fit bg-white rounded-xl shadow-lg border">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start max-mb:p-0">
                     <ProductImageDetail images={product?.product_images} />
