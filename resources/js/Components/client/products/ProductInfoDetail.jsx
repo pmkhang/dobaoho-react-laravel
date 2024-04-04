@@ -115,6 +115,46 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                     )}
                 </div>
                 <div className="flex flex-col gap-6">
+                    <div className="flex items-center gap-4">
+                        <a
+                            href="mailto:quangtruongthinh79@gmail.com"
+                            target="_blank"
+                        >
+                            <img
+                                loading="lazy"
+                                src="/uploads/mail.png"
+                                alt="zalo"
+                                className="w-[40px] h-[40px] cursor-pointer "
+                            />
+                        </a>
+                        <a href="tel:0938505459" target="_blank">
+                            <img
+                                loading="lazy"
+                                src="/uploads/phone-icon-6753051_1280.png"
+                                alt="pone"
+                                className="w-[40px] h-[40px] cursor-pointer"
+                            />
+                        </a>
+                        <a href="https://zalo.me/0938505459" target="_blank">
+                            <img
+                                loading="lazy"
+                                src="/uploads/zalo.png"
+                                alt="zalo"
+                                className="w-[40px] h-[40px] cursor-pointer"
+                            />
+                        </a>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <i className="text-gray-500">
+                            Để được tư vấn cụ thể quý khách vui lòng gọi:
+                        </i>
+                        <a
+                            href="tel:0938505459"
+                            className="text-primary-darker text-2xl font-bold"
+                        >
+                            0938505459
+                        </a>
+                    </div>
                     <Link href="/lien-he">
                         <Button
                             className="bg-primary hover:!bg-primary-darker"
