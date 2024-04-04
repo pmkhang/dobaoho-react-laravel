@@ -13,8 +13,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
     const [isShowFormFeedBack, setisShowFormFeedBack] = useState(false);
     return (
         <ClientLayout title={product?.name}>
-            <NavCategory isHide={true} categories={categories} />
-            <div className="min-h-fit bg-white mt-4 rounded-xl">
+            <div className="min-h-fit bg-white rounded-xl shadow-lg border">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start max-mb:p-0">
                     <ProductImageDetail images={product?.product_images} />
                     <ProductInfoDetail
@@ -51,7 +50,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                     )}
                 </div>
             </div>
-            <div className="mt-10">
+            <div className="mt-6 bg-white p-8 rounded-xl shadow-lg border mb-4">
                 <HomeGridProduct
                     key={productsByCategory?.id}
                     title={"Sản phẩm liên quan"}

@@ -15,9 +15,9 @@ const ProductList = ({ products, categories, category }) => {
 
     return (
         <ClientLayout>
-            <div className="w-full grid grid-cols-4 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-4 items-start ">
-                <div className="col-span-4">
-                    <NavCategory isHide={true} categories={categories} />
+            <div className="w-full min-h-[632px] grid grid-cols-5 gap-4 max-tl:grid-cols-1  max-tl:gap-0 max-tl:px-4 items-start ">
+                <div className="col-span-1">
+                    <NavCategory isHide={false} categories={categories} />
                 </div>
                 <div className="col-span-4 max-tl:mt-4 mb-4">
                     <div className="w-full p-4 grid grid-cols-4 gap-4 rounded-xl bg-white">
@@ -26,7 +26,7 @@ const ProductList = ({ products, categories, category }) => {
                                 {category?.name}
                             </h3>
                         </div>
-                        <div className="grid grid-cols-6 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4">
+                        <div className="grid grid-cols-5 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4">
                             {products?.map((i) => (
                                 <ProductCard
                                     key={i?.id}

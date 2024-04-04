@@ -46,7 +46,7 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
     }, [quantity]);
 
     return (
-        <div className="w-full min-h-[480px] max-tl:min-h-fit col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 p-4">
+        <div className="w-full min-h-[480px] max-tl:min-h-fit col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 py-4 px-10">
             <div className="flex flex-col justify-between max-tl:justify-start gap-4 min-h-[480px] max-tl:min-h-fit">
                 <div>
                     <h5 className="font-semibold tracking-tight text-gray-900 text-3xl">
