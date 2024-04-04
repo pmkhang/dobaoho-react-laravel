@@ -26,7 +26,11 @@ const Contact = () => {
         }
     };
     return (
-        <ClientLayout title={"Liên hệ"}>
+        <ClientLayout
+            title={"Liên hệ"}
+            breadcrumb={"Liên hệ"}
+            breadcrumbLink={"/lien-he"}
+        >
             <div className="min-h-[500px]">
                 <div className="flex gap-4 items-start max-tl:flex-col">
                     <div className="w-1/3 bg-white py-4 px-6 rounded-lg max-tl:w-full">
