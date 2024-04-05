@@ -39,7 +39,7 @@ const NavCategory = ({ isHide }) => {
 
     const tabletScreenCategories = (category) => {
         const commonClass =
-            "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-primary transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
+            "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-[#054e0a] hover:text-white transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
         const handleClick = () =>
             setHoveredItem(hoveredItem == category?.id ? null : category?.id);
 
@@ -94,8 +94,8 @@ const NavCategory = ({ isHide }) => {
                         <ul
                             className={`${
                                 !isTabletScreen &&
-                                "absolute z-50 top-0 left-[102%] min-w-[250px] rounded-xl py-2 shadow-lg transition-all"
-                            } bg-gray-50`}
+                                "absolute z-50 top-[-7px] left-[102%] min-w-[250px] rounded-xl py-2 shadow-lg transition-all"
+                            } bg-[#c9d7cb]`}
                         >
                             {category?.children?.map((child) => (
                                 <li key={child?.id}>
@@ -104,7 +104,7 @@ const NavCategory = ({ isHide }) => {
                                             "productListByCategory",
                                             child?.id
                                         )}
-                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-primary transition-all"
+                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-[#054e0a] border-t-2 hover:text-white transition-all"
                                     >
                                         <span>{child?.name}</span>
                                     </Link>
@@ -143,7 +143,7 @@ const NavCategory = ({ isHide }) => {
     };
 
     return (
-        <div className="py-2 rounded-xl border shadow-lg bg-gray-50 max-tl:hidden">
+        <div className="py-2 rounded-xl border border-gray-300 shadow-lg bg-[#bdd1bf] max-tl:hidden">
             <h2
                 className="flex items-center px-4 py-2 cursor-pointer gap-3 text-md  font-semibold uppercase"
                 onClick={() => setIsHideNav(!isHideNav)}

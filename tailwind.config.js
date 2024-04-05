@@ -8,7 +8,7 @@ export default {
     theme: {
         extend: {
             screens: {
-                "max-dt": { max: "1400px" },
+                "max-dt": { max: "1200px" },
                 "max-tl": { max: "1024px" },
                 "max-mb": { max: "768px" },
                 "min-dt": { min: "1401px" },
@@ -16,7 +16,7 @@ export default {
                 "min-mb": { min: "769px" },
             },
             maxWidth: {
-                dt: "1400px",
+                dt: "1200px",
                 tl: "1024px",
                 mb: "768px",
             },

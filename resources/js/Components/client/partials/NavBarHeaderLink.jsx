@@ -2,7 +2,7 @@ import { Link } from "@inertiajs/react";
 
 const NavBarHeaderLink = () => {
     return (
-        <li className="col-span-4 max-tl:col-span-5 max-mb:hidden">
+        <li className="col-span-9 max-tl:col-span-5 max-mb:hidden">
             <ul className="flex items-center uppercase text-white font-bold gap-4 text-sm">
                 <li className="h-full">
                     <Link

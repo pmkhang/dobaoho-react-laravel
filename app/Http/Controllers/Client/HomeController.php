@@ -33,7 +33,7 @@ class HomeController extends Controller
                             ->orderBy('id', 'asc')
                             ->take(1);
                     }])
-                    ->take(6);
+                    ->take(5);
             }])
             ->get();
 

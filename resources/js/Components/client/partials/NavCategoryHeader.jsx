@@ -25,7 +25,7 @@ const NavCategoryHeader = () => {
 
     const CategoryItems = ({ category }) => {
         const commonClass =
-            "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-primary transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
+            "px-4 py-2 w-full flex items-center justify-between gap-2 hover:bg-[#054e0a] hover:text-white transition-all before:content-[''] before:absolute before:right-[-30px] before:top-0 before:p-5";
         const handleClick = () =>
             setHoveredItem(hoveredItem == category?.id ? null : category?.id);
         return (
@@ -61,7 +61,7 @@ const NavCategoryHeader = () => {
                             className={`${
                                 !isTabletScreen &&
                                 "absolute z-50 top-0 left-[102%] min-w-[250px] rounded-xl py-2 shadow-lg transition-all"
-                            } bg-gray-50`}
+                            } bg-[#d4e0d6]`}
                         >
                             {category?.children?.map((child) => (
                                 <li key={child?.id}>
@@ -70,7 +70,7 @@ const NavCategoryHeader = () => {
                                             "productListByCategory",
                                             child?.id
                                         )}
-                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-white hover:text-primary transition-all"
+                                        className="px-6 py-2 w-full flex items-center justify-between gap-2 hover:bg-[#054e0a] hover:text-white transition-all"
                                     >
                                         <span>{child?.name}</span>
                                     </Link>
@@ -84,7 +84,7 @@ const NavCategoryHeader = () => {
 
     return (
         <li
-            className={`col-span-1 max-tl:col-span-2 max-mb:col-span-7 max-mb:bg-white bg-gray-50 h-full flex items-center px-4 relative `}
+            className={`col-span-3 max-tl:col-span-2 max-mb:col-span-7 max-mb:bg-green-50  bg-[#bdd1bf] h-full flex items-center px-4 relative `}
             onMouseEnter={() => {
                 setIsShowCategory(true);
             }}
@@ -99,12 +99,12 @@ const NavCategoryHeader = () => {
                 }}
             >
                 <i className="fa-solid fa-bars"></i>
-                <span className="uppercase text-base font-bold">
+                <span className="uppercase text-base font-bold max-mb:text-primary-darker">
                     Danh mục sản phẩm
                 </span>
             </p>
             {isShowCategory && (
-                <ul className="absolute top-10 right-0 font-bold left-0 border bg-gray-50 shadow-xl pb-2 transition-all flex flex-col rounded-b-xl">
+                <ul className="absolute top-10 right-0 font-bold left-0 border bg-[#bdd1bf] shadow-xl pb-2 transition-all flex flex-col rounded-b-xl">
                     {dbCategories?.map((i) => (
                         <li
                             key={i?.id}

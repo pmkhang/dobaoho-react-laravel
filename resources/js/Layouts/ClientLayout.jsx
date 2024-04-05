@@ -41,7 +41,6 @@ const ClientLayout = ({
     return (
         <div className="bg-[#f3faf4] relative overflow-x-hidden">
             <Head title={title + " | Quang Truong Thinh"} />
-
             <Header
                 setIsShowNav={setIsShowNav}
                 setIsShowSearch={setIsShowSearch}
