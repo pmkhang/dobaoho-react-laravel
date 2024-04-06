@@ -1,4 +1,4 @@
-import NavCategory from "@/Components/client/partials/NavCategory";
+import NavCategory from "@/Components/client/partials/header-v1/NavCategory";
 import ProductCard from "@/Components/client/products/ProductCard";
 import ClientLayout from "@/Layouts/ClientLayout";
 import { Link } from "@inertiajs/react";

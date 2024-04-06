@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, usePage, useForm } from "@inertiajs/react";
-import AuthButton from "@/Components/client/partials/AuthButton";
-import UserNav from "@/Components/client/partials/UserNav";
+import AuthButton from "@/Components/client/partials/header-v1/AuthButton";
+import UserNav from "@/Components/client/partials/header-v1/UserNav";
 import { Dropdown } from "flowbite-react";
 
 const NavScreen = ({ setIsShowNav }) => {

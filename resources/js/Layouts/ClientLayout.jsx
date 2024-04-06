@@ -1,9 +1,9 @@
 import Footer from "@/Components/client/partials/Footer";
-import Header from "@/Components/client/partials/Header";
-import Navbar from "@/Components/client/partials/Navbar";
-import NavbarHeader from "@/Components/client/partials/NavbarHeader";
-import NavScreen from "@/Components/client/partials/NavScreen";
-import SearchScreen from "@/Components/client/partials/SearchScreen";
+import Header from "@/Components/client/partials/header-v2/Header";
+import Navbar from "@/Components/client/partials/header-v1/Navbar";
+import NavbarHeader from "@/Components/client/partials/header-v1/NavbarHeader";
+import NavScreen from "@/Components/client/partials/header-v1/NavScreen";
+import SearchScreen from "@/Components/client/partials/header-v1/SearchScreen";
 import { Head } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -41,7 +41,7 @@ const ClientLayout = ({
     return (
         <div className="bg-[#f3faf4] relative overflow-x-hidden">
             <Head title={title + " | Quang Truong Thinh"} />
-            <Header
+            {/* <Header
                 setIsShowNav={setIsShowNav}
                 setIsShowSearch={setIsShowSearch}
             />
@@ -50,7 +50,8 @@ const ClientLayout = ({
             {isShowSearch && <SearchScreen setIsShowSearch={setIsShowSearch} />}
             <div className="w-full bg-primary-darker max-tl:hidden">
                 <Navbar isTablet={true} />
-            </div>
+            </div> */}
+            <Header />
             <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit mt-4 max-mb:mt-[72px]  relative">
                 {!isHideBreadcrumb && (
                     <ul className="flex items-center gap-4 mb-4 mt-[-10px] bg-white p-2 px-4 rounded-lg shadow-lg border">

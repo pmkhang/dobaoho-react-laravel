@@ -1,6 +1,6 @@
 import React from "react";
-import NavBarHeaderLink from "@/Components/client/partials/NavBarHeaderLink";
-import NavCategoryHeader from "@/Components/client/partials/NavCategoryHeader";
+import NavBarHeaderLink from "@/Components/client/partials/header-v1/NavBarHeaderLink";
+import NavCategoryHeader from "@/Components/client/partials/header-v1/NavCategoryHeader";
 
 const NavbarHeader = () => {
     return (

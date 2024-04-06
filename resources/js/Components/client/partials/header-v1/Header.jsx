@@ -4,7 +4,7 @@ import LogoHeader from "./LogoHeader";
 import MobileNav from "./MobileNav";
 import SearchHeader from "./SearchHeader";
 import TabletNav from "./TabletNav";
-import Navbar from "@/Components/client/partials/Navbar";
+import Navbar from "@/Components/client/partials/header-v1/Navbar";
 
 const Header = ({ setIsShowNav, setIsShowSearch }) => {
     const user = usePage().props.auth.user;

@@ -2,7 +2,7 @@ import React from "react";
 import AuthButton from "./AuthButton";
 import CartNav from "./CartNav";
 import UserNav from "./UserNav";
-import Navbar from "@/Components/client/partials/Navbar";
+import Navbar from "@/Components/client/partials/header-v1/Navbar";
 
 const TabletNav = ({ user }) => {
     return (

@@ -24,6 +24,7 @@ export default {
         colors: {
             primary: "#076e12",
             "primary-darker": "#054e0a",
+            secondary: "#f26622",
         },
     },
     plugins: [require("flowbite/plugin"), require("tailwindcss-animated")],
