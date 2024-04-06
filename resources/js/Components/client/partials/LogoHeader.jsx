@@ -9,7 +9,7 @@ const LogoHeader = () => {
                 className="w-full flex items-center justify-center max-mb:justify-start"
             >
                 <img
-                    src="/uploads/logo.png"
+                    src="/uploads/logo1.png"
                     alt="logo"
                     className="h-[42px] object-contain"
                 />
