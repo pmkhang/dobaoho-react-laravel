@@ -1,9 +1,11 @@
 import NavCategories from "@/Components/client/partials/header-v2/NavCategories";
 import Search from "@/Components/client/partials/header-v2/Search";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 
 const NavFixed = () => {
+    const { url } = usePage();
+    const active = "text-primary font-bold rounded-lg bg-[#edf1ee]";
     return (
         <ul className="grid grid-cols-12 items-center gap-4 font-bold px-2 max-mb:p-0">
             <li className="col-span-3 max-tl:col-span-4 max-mb:col-span-12 py-2 max-mb:p-0">
@@ -12,22 +14,39 @@ const NavFixed = () => {
             <li className="col-span-9 flex items-center justify-between max-tl:col-span-8 max-mb:hidden">
                 <ul className="flex items-center gap-2 text-white">
                     <li>
-                        <Link className="py-2 px-3 max-tl:px-2 hover:text-secondary transition-all">
+                        <Link
+                            href="/"
+                            className={`py-2 px-3 max-tl:px-2 hover:text-secondary transition-all ${
+                                url == "/" ? active : ""
+                            }`}
+                        >
                             Trang chủ
                         </Link>
                     </li>
                     <li>
-                        <Link className="py-2 px-3 max-tl:px-2 hover:text-secondary transition-all">
+                        <Link
+                            href="/gioi-thieu"
+                            className={`py-2 px-3 max-tl:px-2 hover:text-secondary transition-all ${
+                                url == "/gioi-thieu" ? active : ""
+                            }`}
+                        >
                             Giới thiệu
                         </Link>
                     </li>
                     <li>
-                        <Link className="py-2 px-3 max-tl:px-2 hover:text-secondary transition-all">
+                        <Link
+                            className={`py-2 px-3 max-tl:px-2 hover:text-secondary transition-all `}
+                        >
                             Chính sách bán hàng
                         </Link>
                     </li>
                     <li>
-                        <Link className="py-2 px-3 max-tl:px-2 hover:text-secondary transition-all">
+                        <Link
+                            href="/lien-he"
+                            className={`py-2 px-3 max-tl:px-2 hover:text-secondary transition-all ${
+                                url == "/lien-he" ? active : ""
+                            }`}
+                        >
                             Liên hệ
                         </Link>
                     </li>

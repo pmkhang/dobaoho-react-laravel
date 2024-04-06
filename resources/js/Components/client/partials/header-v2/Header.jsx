@@ -1,12 +1,14 @@
 import HeaderLogo from "@/Components/client/partials/header-v2/HeaderLogo";
 import Navbar from "@/Components/client/partials/header-v2/Navbar";
 import NavFixed from "@/Components/client/partials/header-v2/NavFixed";
+import NavMobile from "@/Components/client/partials/header-v2/NavMobile";
 import Search from "@/Components/client/partials/header-v2/Search";
 import SubHeader from "@/Components/client/partials/header-v2/SubHeader";
 import React, { useState, useEffect } from "react";
 
 const Header = () => {
     const [isShowNavHeader, setIsShowNavHeader] = useState(false);
+    const [isShowNavMobile, setIsShowNavMobile] = useState(false);
     const handleScroll = () => {
         if (window.scrollY > 150) {
             setIsShowNavHeader(true);
@@ -26,7 +28,7 @@ const Header = () => {
                 <SubHeader />
             </div>
             <div className="max-w-dt bg-[#f3faf4] mx-auto py-4 p-2 max-tl:px-4 ">
-                <HeaderLogo />
+                <HeaderLogo setIsShowNavMobile={setIsShowNavMobile} />
             </div>
             <div className="w-full bg-primary-darker">
                 <div className="max-w-dt mx-auto flex justify-between max-mb:hidden py-1">
@@ -40,6 +42,9 @@ const Header = () => {
                         <NavFixed />
                     </div>
                 </div>
+            )}
+            {isShowNavMobile && (
+                <NavMobile setIsShowNavMobile={setIsShowNavMobile} />
             )}
         </header>
     );
