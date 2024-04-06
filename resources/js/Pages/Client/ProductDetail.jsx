@@ -1,4 +1,4 @@
-import NavCategory from "@/Components/client/partials/header-v1/NavCategory";
+import NavCategory from "@/Components/client/partials/NavCategory";
 import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import ProductDescDetail from "@/Components/client/products/ProductDescDetail";
 import ProductFormFeedback from "@/Components/client/products/ProductFormFeedback";

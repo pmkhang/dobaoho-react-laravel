@@ -1,6 +1,6 @@
 import ClientLayout from "@/Layouts/ClientLayout";
 import React, { useEffect, useState } from "react";
-import NavCategory from "@/Components/client/partials/header-v1/NavCategory";
+import NavCategory from "@/Components/client/partials/NavCategory";
 import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import SliderImages from "@/Components/client/partials/header-v1/SliderImages";
 
