@@ -40,7 +40,7 @@ const Login = ({ status, message }) => {
             breadcrumb="Đăng nhập"
             breadcrumbLink="/login"
         >
-            <div className="bg-white rounded-lg shadow-lg py-8 px-6">
+            <div className="bg-white rounded-lg shadow-lg py-8 px-6 mb-4">
                 <h3 className="text-2xl font-bold uppercase text-center">
                     Đăng nhập
                 </h3>

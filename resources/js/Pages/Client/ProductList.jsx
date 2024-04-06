@@ -24,13 +24,13 @@ const ProductList = ({ products, categories, category }) => {
                     <NavCategory isHide={false} categories={categories} />
                 </div>
                 <div className="col-span-9 max-tl:mt-4 mb-4">
-                    <div className="w-full p-4 grid grid-cols-4 gap-4 rounded-xl bg-white">
+                    <div className="w-full p-4 grid grid-cols-4 gap-4 rounded-xl bg-white shadow-xl border">
                         <div className="col-span-4 px-2 flex items-center justify-between">
                             <h3 className="text-2xl font-semibold border-l-4 border-primary pl-4">
                                 {category?.name}
                             </h3>
                         </div>
-                        <div className="grid grid-cols-4 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4">
+                        <div className="grid grid-cols-4 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4 ">
                             {products?.map((i) => (
                                 <ProductCard
                                     key={i?.id}

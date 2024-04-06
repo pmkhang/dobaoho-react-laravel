@@ -33,7 +33,7 @@ const Register = () => {
             breadcrumb="Đăng ký"
             breadcrumbLink="/dang-ky"
         >
-            <div className="min-h-[500px] bg-white rounded-lg shadow-lg py-8 px-6">
+            <div className="min-h-[500px] bg-white rounded-lg shadow-lg py-8 px-6 mb-4">
                 <h3 className="text-2xl font-bold uppercase text-center">
                     Đăng ký
                 </h3>
