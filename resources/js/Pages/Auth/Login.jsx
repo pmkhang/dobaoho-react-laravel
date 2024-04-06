@@ -35,7 +35,11 @@ const Login = ({ status, message }) => {
     };
 
     return (
-        <ClientLayout title="Đăng nhập">
+        <ClientLayout
+            title="Đăng nhập"
+            breadcrumb="Đăng nhập"
+            breadcrumbLink="/login"
+        >
             <div className="bg-white rounded-lg shadow-lg py-8 px-6">
                 <h3 className="text-2xl font-bold uppercase text-center">
                     Đăng nhập

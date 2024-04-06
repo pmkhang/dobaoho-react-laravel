@@ -28,7 +28,11 @@ const Register = () => {
     };
 
     return (
-        <ClientLayout title="Đăng nhập">
+        <ClientLayout
+            title="Đăng ký"
+            breadcrumb="Đăng ký"
+            breadcrumbLink="/dang-ky"
+        >
             <div className="min-h-[500px] bg-white rounded-lg shadow-lg py-8 px-6">
                 <h3 className="text-2xl font-bold uppercase text-center">
                     Đăng ký
