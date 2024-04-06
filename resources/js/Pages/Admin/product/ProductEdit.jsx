@@ -10,6 +10,7 @@ import "react-quill/dist/quill.snow.css";
 
 const ProductEdit = ({ product, categories }) => {
     const [dataDesc, setDataDesc] = useState(product?.desc);
+    const [dataSubDesc, setDataSubDesc] = useState(product?.sub_desc);
     const recurCategories = RecursiveCategory(categories);
     const statusProduct = [
         { id: 1, name: "Hoạt động" },
@@ -23,6 +24,7 @@ const ProductEdit = ({ product, categories }) => {
         images: product?.product_images,
         newImages: [],
         desc: dataDesc,
+        sub_desc: dataSubDesc,
         classifys: product.product_classifys.map((i) => i?.name),
         newClassifys: [],
     });
@@ -57,6 +59,10 @@ const ProductEdit = ({ product, categories }) => {
     useEffect(() => {
         setData("desc", dataDesc);
     }, [dataDesc]);
+
+    useEffect(() => {
+        setData("sub_desc", dataSubDesc);
+    }, [dataSubDesc]);
 
     useEffect(() => {
         if (data.desc == "<p><br></p>") {
@@ -175,7 +181,20 @@ const ProductEdit = ({ product, categories }) => {
                 </div>
                 <div className="mt-8 flex flex-col gap-3 relative">
                     <label className="block font-bold text-gray-900">
-                        Thông tin mô tả <i className="text-red-500"> *</i>
+                        Thông tin mô tả phụ<i className="text-red-500"> *</i>
+                    </label>
+                    <ReactQuill
+                        theme="snow"
+                        value={dataSubDesc}
+                        onChange={setDataSubDesc}
+                    />
+                    <span className="absolute text-base text-red-500 bottom-[-24px]">
+                        {errors.sub_desc}
+                    </span>
+                </div>
+                <div className="mt-8 flex flex-col gap-3 relative">
+                    <label className="block font-bold text-gray-900">
+                        Thông tin mô tả chính<i className="text-red-500"> *</i>
                     </label>
                     <ReactQuill
                         theme="snow"

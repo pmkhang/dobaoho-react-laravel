@@ -22,7 +22,7 @@ class ProductController extends Controller
             ->get();
 
         $product = Product::where('status', 1)
-            ->select('id', 'name', 'category_id', 'price', 'status', 'desc', 'rate_avg')
+            ->select('id', 'name', 'category_id', 'price', 'status', 'desc', 'sub_desc', 'rate_avg')
             ->with('productImages')
             ->with('category')
             ->with('productFeedbacks')
@@ -125,16 +125,14 @@ class ProductController extends Controller
         ]);
         $products = [];
         if ($request->search != '') {
-            $products = Product::where('name', 'like', '%' . $request->search . '%')
+            $products = Product::where('status', 1)
+                ->where('name', 'like', '%' . $request->search . '%')
                 ->orWhere('id', 'like', '%' . $request->search . '%')
-                ->where('status', 1)
                 ->select('id', 'name', 'rate_avg')
                 ->with(['productImages' => function ($query) {
                     $query->take(1);
                 }])
                 ->get();
-        } else {
-            $products = [];
         }
 
         return response()->json([

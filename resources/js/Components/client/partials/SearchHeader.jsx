@@ -61,7 +61,7 @@ const SearchHeader = () => {
     };
 
     return (
-        <form className="w-3/5 max-mb:hidden relative" onSubmit={submit}>
+        <form className="w-3/5 max-mb:hidden relative z-50" onSubmit={submit}>
             <div className="flex gap-2 max-tl:px-4">
                 <input
                     type="search"

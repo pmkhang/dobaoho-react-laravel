@@ -82,6 +82,7 @@ class ProductController extends Controller
             'id' => $id,
             'name' => $request->name,
             'desc' => $request->desc,
+            'sub_desc' => $request->sub_desc,
             'category_id' => $request->category_id,
             'price' => $request->price,
             'status' => $request->status,
@@ -122,7 +123,7 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-        $product = Product::select('id', 'name', 'category_id', 'price', 'status', 'desc')
+        $product = Product::select('id', 'name', 'category_id', 'price', 'status', 'desc','sub_desc')
             ->with(['productImages:id,image,product_id'])
             ->with(['productClassifys:id,name,product_id'])
             ->findOrFail($id);
@@ -146,6 +147,7 @@ class ProductController extends Controller
         $data = [
             'name' => $request->name,
             'desc' => $request->desc,
+            'sub_desc' => $request->sub_desc,
             'category_id' => $request->category_id,
             'price' => $request->price,
             'status' => $request->status,

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id')->primary();
             $table->string('name');
             $table->longText('desc');
+            $table->text('sub-desc');
             $table->integer('price');
             $table->tinyInteger('rate_avg')->default(0);
             $table->tinyInteger('status')->default(1)->comment("1: Active, 2: Inactive, 3: Deleted");

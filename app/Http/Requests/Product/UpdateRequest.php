@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required|string|unique:categories,name,' . $this->id,
             'desc' => 'required|string',
+            'sub_desc' => 'required|string',
             'category_id' => 'required',
             'price' => 'required|numeric',
             'status' => 'required|integer',
@@ -37,6 +38,7 @@ class UpdateRequest extends FormRequest
             'name.required' => 'Trường này là bắt buộc',
             'name.unique' => 'Tên sản phẩm đã tồn tại',
             'desc.required' => 'Trường này là bắt buộc',
+            'sub_desc.required' => 'Trường này là bắt buộc',
             'category_id.required' => 'Trường này là bắt buộc',
             'price.required' => 'Trường này là bắt buộc',
             'status.required' => 'Trường này là bắt buộc',

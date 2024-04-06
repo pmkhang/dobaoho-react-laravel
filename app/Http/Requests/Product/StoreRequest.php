@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'desc' => 'required|string',
+            'sub_desc' => 'required|string',
             'category_id' => 'required',
             'price' => 'required|numeric',
             'images' => 'required|array',
@@ -36,6 +37,7 @@ class StoreRequest extends FormRequest
         return [
             'name.required' => 'Trường này là bắt buộc',
             'desc.required' => 'Trường này là bắt buộc',
+            'sub_desc.required' => 'Trường này là bắt buộc',
             'category_id.required' => 'Trường này là bắt buộc',
             'price.required' => 'Trường này là bắt buộc',
             'price.numeric' => 'Giá sản phẩm phải là số',

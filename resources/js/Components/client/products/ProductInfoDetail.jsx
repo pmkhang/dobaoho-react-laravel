@@ -5,7 +5,14 @@ import { Rating } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
+const ProductInfoDetail = ({
+    name,
+    price,
+    productId,
+    rate_avg,
+    classifys,
+    sub_desc,
+}) => {
     const [quantity, setQuantity] = useState(1);
     const [validate, setValidate] = useState(false);
     const [valdMessage, setValdMessage] = useState("");
@@ -44,9 +51,10 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
     useEffect(() => {
         setData("quantity", quantity);
     }, [quantity]);
+    console.log(sub_desc);
 
     return (
-        <div className="w-full min-h-[480px] max-tl:min-h-fit col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 py-4 px-10">
+        <div className="w-full min-h-[480px] max-tl:min-h-fit col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 py-4 px-6">
             <div className="flex flex-col justify-between max-tl:justify-start gap-4 min-h-[480px] max-tl:min-h-fit">
                 <div>
                     <h5 className="font-semibold tracking-tight text-gray-900 text-3xl">
@@ -80,13 +88,17 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                             <span> Đã bán</span>
                         </div> */}
                     </div>
-                    <div className=" p-3 bg-gray-100 rounded-lg border">
+                    <div
+                        className="my-3"
+                        dangerouslySetInnerHTML={{ __html: sub_desc }}
+                    ></div>
+                    <div className="p-3 bg-gray-100 rounded-lg border">
                         <strong className="text-xl text-primary">
                             {/* Giá: {formatCurrency(+price)} */}
                             Giá: Liên hệ
                         </strong>
                     </div>
-                    {classifys.length > 0 && (
+                    {/* {classifys.length > 0 && (
                         <div className="mt-5">
                             <strong className="text-xl">Phân loại: </strong>
                             <div className="grid grid-cols-6 max-mb:grid-cols-3 mt-2 gap-3">
@@ -112,48 +124,51 @@ const ProductInfoDetail = ({ name, price, productId, rate_avg, classifys }) => {
                                 </p>
                             )}
                         </div>
-                    )}
+                    )} */}
                 </div>
                 <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-4">
-                        <a
-                            href="mailto:quangtruongthinh79@gmail.com"
-                            target="_blank"
-                        >
-                            <img
-                                loading="lazy"
-                                src="/uploads/mail.png"
-                                alt="zalo"
-                                className="w-[40px] h-[40px] cursor-pointer "
-                            />
-                        </a>
-                        <a href="tel:0938505459" target="_blank">
-                            <img
-                                loading="lazy"
-                                src="/uploads/phone-icon-6753051_1280.png"
-                                alt="pone"
-                                className="w-[40px] h-[40px] cursor-pointer"
-                            />
-                        </a>
-                        <a href="https://zalo.me/0938505459" target="_blank">
-                            <img
-                                loading="lazy"
-                                src="/uploads/zalo.png"
-                                alt="zalo"
-                                className="w-[40px] h-[40px] cursor-pointer"
-                            />
-                        </a>
-                    </div>
                     <div className="flex flex-col gap-2">
                         <i className="text-gray-500">
                             Để được tư vấn cụ thể quý khách vui lòng gọi:
                         </i>
-                        <a
-                            href="tel:0938505459"
-                            className="text-primary-darker text-2xl font-bold"
-                        >
-                            0938505459
-                        </a>
+                        <div className="flex items-center gap-4">
+                            <a
+                                href="mailto:quangtruongthinh79@gmail.com"
+                                target="_blank"
+                            >
+                                <img
+                                    loading="lazy"
+                                    src="/uploads/mail.png"
+                                    alt="zalo"
+                                    className="w-[40px] h-[40px] cursor-pointer "
+                                />
+                            </a>
+                            <a
+                                href="https://zalo.me/0938505459"
+                                target="_blank"
+                            >
+                                <img
+                                    loading="lazy"
+                                    src="/uploads/zalo.png"
+                                    alt="zalo"
+                                    className="w-[40px] h-[40px] cursor-pointer"
+                                />
+                            </a>
+                            <a href="tel:0938505459" target="_blank">
+                                <img
+                                    loading="lazy"
+                                    src="/uploads/phone-icon-6753051_1280.png"
+                                    alt="pone"
+                                    className="w-[40px] h-[40px] cursor-pointer"
+                                />
+                            </a>
+                            <a
+                                href="tel:0938505459"
+                                className="text-primary-darker text-2xl font-bold"
+                            >
+                                0938505459
+                            </a>
+                        </div>
                     </div>
                     <Link href="/lien-he">
                         <Button

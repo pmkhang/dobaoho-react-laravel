@@ -9,7 +9,8 @@ import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
 import { useState } from "react";
 
-const ProductDetail = ({ categories, product, productsByCategory }) => {
+const ProductDetail = ({ product, productsByCategory }) => {
+    console.log(product);
     const [isShowFormFeedBack, setisShowFormFeedBack] = useState(false);
     return (
         <ClientLayout
@@ -26,6 +27,7 @@ const ProductDetail = ({ categories, product, productsByCategory }) => {
                         productId={product?.id}
                         rate_avg={product?.rate_avg}
                         classifys={product?.product_classifys}
+                        sub_desc={product?.sub_desc}
                     />
                     <ProductDescDetail desc={product?.desc} />
                     {/* <ProductRate rate_avg={product?.rate_avg} /> */}

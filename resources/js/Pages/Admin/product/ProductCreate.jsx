@@ -10,6 +10,7 @@ import "react-quill/dist/quill.snow.css";
 
 const ProductCreate = ({ categories }) => {
     const [dataDesc, setDataDesc] = useState("");
+    const [dataSubDesc, setDataSubDesc] = useState("");
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         price: "",
@@ -17,6 +18,7 @@ const ProductCreate = ({ categories }) => {
         status: "",
         images: [],
         desc: dataDesc,
+        sub_desc: dataSubDesc,
         classifys: [],
     });
     const recurCategories = RecursiveCategory(categories);
@@ -75,6 +77,10 @@ const ProductCreate = ({ categories }) => {
     useEffect(() => {
         setData("desc", dataDesc);
     }, [dataDesc]);
+
+    useEffect(() => {
+        setData("sub_desc", dataSubDesc);
+    }, [dataSubDesc]);
 
     const submit = (e) => {
         e.preventDefault();
@@ -141,7 +147,20 @@ const ProductCreate = ({ categories }) => {
                 </div>
                 <div className="mt-8 flex flex-col gap-3 relative">
                     <label className="block font-bold text-gray-900">
-                        Thông tin mô tả <i className="text-red-500"> *</i>
+                        Thông tin mô tả phụ <i className="text-red-500"> *</i>
+                    </label>
+                    <ReactQuill
+                        theme="snow"
+                        value={dataSubDesc}
+                        onChange={setDataSubDesc}
+                    />
+                    <span className="absolute text-base text-red-500 bottom-[-24px]">
+                        {errors.sub_desc}
+                    </span>
+                </div>
+                <div className="mt-8 flex flex-col gap-3 relative">
+                    <label className="block font-bold text-gray-900">
+                        Thông tin mô tả chính <i className="text-red-500"> *</i>
                     </label>
                     <ReactQuill
                         theme="snow"
