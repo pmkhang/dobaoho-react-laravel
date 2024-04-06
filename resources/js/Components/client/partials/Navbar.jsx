@@ -41,6 +41,14 @@ const Navbar = ({ isTablet }) => {
                         Liên hệ
                     </Link>
                 </li>
+                <li>
+                    <a
+                        href="tel:0938505459"
+                        className="p-2 px-4 font-bold hover:text-orange-400 transition-all"
+                    >
+                        Hotline: 0938505459
+                    </a>
+                </li>
             </ul>
         </div>
     );
