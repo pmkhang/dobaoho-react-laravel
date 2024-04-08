@@ -19,7 +19,7 @@ const ProductList = ({ products, categories, category }) => {
             breadcrumb={category?.name}
             breadcrumbLink={route("productListByCategory", category?.id)}
         >
-            <div className="w-full min-h-[632px] grid grid-cols-12 gap-4 max-tl:grid-cols-1  max-tl:gap-0 max-tl:px-4 items-start ">
+            <div className="w-full min-h-[632px] grid grid-cols-12 gap-4 max-tl:grid-cols-1 max-tl:gap-0 max-tl:px-1 items-start ">
                 <div className="col-span-3">
                     <NavCategory isHide={false} categories={categories} />
                 </div>
