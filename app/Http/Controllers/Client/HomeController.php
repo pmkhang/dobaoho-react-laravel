@@ -16,14 +16,20 @@ class HomeController extends Controller
 
     public function index()
     {
-        
+
         $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image, c.name AS category_name, c.id AS category_id
                 FROM categories c
                 JOIN products p ON c.id = p.category_id
                 JOIN product_images pi ON p.id = pi.product_id
                 WHERE p.status = 1
                 AND (SELECT COUNT(*) FROM products p2 WHERE p2.category_id = c.id AND p2.id >= p.id) <= 5
-                AND pi.id = (SELECT MIN(pi2.id) FROM product_images pi2 WHERE pi2.product_id = p.id)
+                AND pi.id = (
+                    SELECT pi2.id
+                    FROM product_images pi2
+                    WHERE pi2.product_id = p.id
+                    ORDER BY pi2.created_at ASC
+                    LIMIT 1
+                    )
                 ORDER BY c.order ASC";
 
         $products = DB::select($sql);
