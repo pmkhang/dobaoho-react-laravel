@@ -13,7 +13,7 @@ const HeaderLogo = ({ setIsShowNavMobile }) => {
                 />
             </Link>
             <button
-                className="flex flex-col gap-1 min-tl:hidden"
+                className="flex flex-col gap-1 min-mb:hidden"
                 onClick={() => {
                     setIsShowNavMobile(true);
                 }}

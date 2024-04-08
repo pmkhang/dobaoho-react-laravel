@@ -1,7 +1,7 @@
 import { Carousel } from "flowbite-react";
 const SliderImages = () => {
     return (
-        <div className="h-[465px] shadow-xl rounded-xl border">
+        <div className="h-[465px] max-mb:h-[200px] shadow-xl rounded-xl border">
             <Carousel
                 slideInterval={5000}
                 indicators={false}
@@ -19,7 +19,7 @@ const SliderImages = () => {
                         loading="lazy"
                         src={`/uploads/banner${i + 1}.jpg`}
                         alt="..."
-                        className="h-[500px] object-cover"
+                        className="h-[500px] max-mb:h-[200px] object-cover"
                     />
                 ))}
             </Carousel>

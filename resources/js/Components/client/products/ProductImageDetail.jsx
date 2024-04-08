@@ -2,15 +2,15 @@ import { Carousel } from "flowbite-react";
 
 const ProductImageDetail = ({ images }) => {
     return (
-        <div className="w-full flex flex-col col-span-2 max-tl:col-span-5 gap-4 p-2  rounded-xl p max-mb:p-0">
-            <div className="h-[480px] max-mb:h-[300px] shadow-lg border rounded-xl">
+        <div className="w-full flex flex-col col-span-2 max-tl:col-span-5 gap-4 p-2  rounded-xl p max-mb:p-4">
+            <div className="h-[480px] flex items-center justify-center   max-mb:h-[300px] shadow-lg border rounded-xl">
                 {images?.length == 1 && (
                     <img
                         loading="lazy"
                         key={images[0]?.id}
                         src={images[0]?.image}
                         alt="..."
-                        className="h-[500px] object-cover max-mb:h-[300px]"
+                        className="h-[400px] object-cover max-mb:h-[300px]"
                     />
                 )}
                 {images?.length >= 2 && (
@@ -31,7 +31,7 @@ const ProductImageDetail = ({ images }) => {
                                 key={i?.id}
                                 src={i.image}
                                 alt="..."
-                                className="h-[500px] object-cover max-mb:h-[300px]"
+                                className="h-[400px] object-cover max-mb:h-[300px]"
                             />
                         ))}
                     </Carousel>

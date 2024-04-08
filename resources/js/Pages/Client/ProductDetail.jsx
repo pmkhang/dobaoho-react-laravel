@@ -56,7 +56,7 @@ const ProductDetail = ({ product, productsByCategory }) => {
                     )}
                 </div>
             </div>
-            <div className="mt-6 bg-white p-8 rounded-xl shadow-lg border mb-4">
+            <div className="mt-6 bg-white p-8 max-tl:p-2 rounded-xl shadow-lg border mb-4">
                 <HomeGridProduct
                     key={productsByCategory?.id}
                     title={"Sản phẩm liên quan"}

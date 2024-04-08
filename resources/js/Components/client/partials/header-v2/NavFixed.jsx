@@ -7,7 +7,7 @@ const NavFixed = () => {
     const { url } = usePage();
     const active = "text-primary font-bold rounded-lg bg-[#edf1ee]";
     return (
-        <ul className="grid grid-cols-12 items-center gap-4 font-bold px-2 max-mb:p-0">
+        <ul className="grid grid-cols-12 items-center gap-4 font-bold pl-2 max-mb:p-0">
             <li className="col-span-3 max-tl:col-span-4 max-mb:col-span-12 py-2 max-mb:p-0">
                 <NavCategories />
             </li>
@@ -51,7 +51,7 @@ const NavFixed = () => {
                         </Link>
                     </li>
                 </ul>
-                <div className="py-1 max-tl:hidden">
+                <div className=" max-tl:hidden">
                     <Search />
                 </div>
             </li>

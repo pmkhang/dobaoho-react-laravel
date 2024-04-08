@@ -31,7 +31,7 @@ const Header = () => {
                 <HeaderLogo setIsShowNavMobile={setIsShowNavMobile} />
             </div>
             <div className="w-full bg-primary-darker">
-                <div className="max-w-dt mx-auto flex justify-between max-mb:hidden py-1">
+                <div className="max-w-dt mx-auto flex justify-between max-mb:hidden py-2">
                     <Navbar />
                     <Search />
                 </div>

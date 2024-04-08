@@ -4,9 +4,9 @@ import { Link } from "@inertiajs/react";
 
 const HomeGridProduct = ({ title, cols = 4, id, products }) => {
     return (
-        <div className="w-full min-h-[200px] max-tl:px-4 max-tl:mt-2">
+        <div className="w-full min-h-[200px] max-tl:px-4 max-mb:px-2 max-tl:mt-2">
             <div className="flex items-center justify-between">
-                <h2 className="uppercase font-bold text-xl border-l-[4px] pl-4 py-2 border-primary">
+                <h2 className="uppercase font-bold text-xl max-mb:text-base border-l-[4px] pl-4 py-2 border-primary">
                     {title}
                 </h2>
                 <Link
@@ -17,7 +17,7 @@ const HomeGridProduct = ({ title, cols = 4, id, products }) => {
                 </Link>
             </div>
             <div
-                className={`w-full mt-4 grid grid-cols-${cols} gap-4 max-tl:grid-cols-3 max-mb:grid-cols-1`}
+                className={`w-full mt-4 grid grid-cols-${cols} gap-4 max-tl:grid-cols-3 max-mb:grid-cols-2`}
             >
                 {products?.map((i) => (
                     <ProductCard

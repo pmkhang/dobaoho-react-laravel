@@ -9,14 +9,14 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                 <Link href={route("product-detail", id)}>
                     <img
                         loading="lazy"
-                        className="w-full h-[200px] max-mb:h-[300px] object-cover rounded-t-lg p-4 rounded-lg"
+                        className="w-full h-[200px] max-mb:h-[120px] object-cover max-mb:object-contain rounded-t-lg p-4 rounded-lg"
                         src={img}
                         alt={name}
                     />
                 </Link>
-                <div className="p-4">
+                <div className="p-4 max-mb:p-3">
                     <div className="flex items-center">
-                        <Rating>
+                        <Rating size={"s"}>
                             {+rate_avg > 0 &&
                                 Array.from({ length: +rate_avg }, (_, j) => (
                                     <Rating.Star key={j} />
@@ -30,13 +30,13 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                         </span>
                     </div>
                     <Link href={route("product-detail", id)}>
-                        <h5 className="min-h-[60px] font-semibold tracking-tight text-gray-900 mt-4">
+                        <h5 className="min-h-[60px] max-mb:text-sm font-semibold tracking-tight text-gray-900 mt-4">
                             {`${name?.substring(0, 40)} ${
                                 name?.length > 40 ? "..." : ""
                             }`}
                         </h5>
                     </Link>
-                    <div className="flex flex-col gap-3 items-start">
+                    <div className="flex flex-col items-start">
                         <p className="text-lg font-bold text-primary-darker">
                             {/* {+price == 0 ? (
                                 <span>Liên hệ</span>
