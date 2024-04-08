@@ -26,7 +26,7 @@ const HomeGridProduct = ({ title, cols = 4, id, products }) => {
                         rate_avg={i?.rate_avg}
                         name={i?.name}
                         price={i?.price}
-                        img={i?.product_images[0]?.image}
+                        img={i?.image}
                     />
                 ))}
             </div>

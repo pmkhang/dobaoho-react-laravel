@@ -51,7 +51,6 @@ const ProductInfoDetail = ({
     useEffect(() => {
         setData("quantity", quantity);
     }, [quantity]);
-    console.log(sub_desc);
 
     return (
         <div className="w-full min-h-[480px] max-tl:min-h-fit col-span-3 max-tl:col-span-5 border-l-2 max-tl:border-l-0 py-4 px-6">

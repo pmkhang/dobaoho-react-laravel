@@ -9,8 +9,7 @@ import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
 import { useState } from "react";
 
-const ProductDetail = ({ product, productsByCategory }) => {
-    console.log(product);
+const ProductDetail = ({ product, productsGroupByCategory }) => {
     const [isShowFormFeedBack, setisShowFormFeedBack] = useState(false);
     return (
         <ClientLayout
@@ -58,10 +57,10 @@ const ProductDetail = ({ product, productsByCategory }) => {
             </div>
             <div className="mt-6 bg-white p-8 max-tl:p-2 rounded-xl shadow-lg border mb-4">
                 <HomeGridProduct
-                    key={productsByCategory?.id}
+                    key={productsGroupByCategory[0]?.id}
                     title={"Sản phẩm liên quan"}
-                    id={productsByCategory?.id}
-                    products={productsByCategory?.products}
+                    id={productsGroupByCategory[0]?.id}
+                    products={productsGroupByCategory[0]?.products}
                     cols={5}
                 />
             </div>

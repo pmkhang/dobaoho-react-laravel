@@ -8,47 +8,52 @@ use App\Models\CartProducts;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class HomeController extends Controller
 {
+
     public function index()
     {
-        $categories = Category::where('status', '>', 0)
-            ->select('id', 'name', 'parent_id')
-            ->orderBy('order', 'asc')
-            ->get();
+        
+        $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image, c.name AS category_name, c.id AS category_id
+                FROM categories c
+                JOIN products p ON c.id = p.category_id
+                JOIN product_images pi ON p.id = pi.product_id
+                WHERE p.status = 1
+                AND (SELECT COUNT(*) FROM products p2 WHERE p2.category_id = c.id AND p2.id >= p.id) <= 5
+                AND pi.id = (SELECT MIN(pi2.id) FROM product_images pi2 WHERE pi2.product_id = p.id)
+                ORDER BY c.order ASC";
 
-        $products = Category::where('status', '>', 0)
-            ->has('products')
-            ->select('id', 'name', 'parent_id')
-            ->orderBy('order', 'asc')
-            ->with(['products' => function ($query) {
-                $query
-                    ->select('id', 'name', 'price', 'status', 'rate_avg', 'category_id')
-                    ->where('status', 1)
-                    ->orderBy('id', 'desc')
-                    ->with(['productImages' => function ($query) {
-                        $query
-                            ->orderBy('id', 'asc')
-                            ->take(1);
-                    }])
-                    ->take(5);
-            }])
-            ->get();
-
-        $countProductCart = "";
-        if (Auth::check()) {
-            $countProductCart = Cart::where('user_id', Auth::user()->id)
-                ->where('status', 1)
-                ->count();
-        }
+        $products = DB::select($sql);
+        $data = $this->groupProductsByCategory($products);
 
         return Inertia::render('Client/Home', [
-            'categories' => $categories,
-            'products' => $products,
-            'countProductCart' => $countProductCart
+            'products' => $data,
         ]);
+    }
+
+    private function groupProductsByCategory($data)
+    {
+        $result = [];
+        foreach ($data as $item) {
+            if (!isset($result[$item->category_id])) {
+                $result[$item->category_id] = [
+                    'id' => $item->category_id,
+                    'name' => $item->category_name,
+                    'products' => []
+                ];
+            }
+            $result[$item->category_id]['products'][] = [
+                'id' => $item->id,
+                'name' => $item->name,
+                'price' => $item->price,
+                'rate_avg' => $item->rate_avg,
+                'image' => $item->image
+            ];
+        }
+        return array_values($result);
     }
 
     public function introducePage()

@@ -30,7 +30,7 @@ const ProductList = ({ products, categories, category }) => {
                                 {category?.name}
                             </h3>
                         </div>
-                        <div className="grid grid-cols-4 max-tl:grid-cols-3 max-mb:grid-cols-1 gap-4 col-span-4 ">
+                        <div className="grid grid-cols-4 max-tl:grid-cols-3 max-mb:grid-cols-2 gap-4 col-span-4 ">
                             {products?.map((i) => (
                                 <ProductCard
                                     key={i?.id}
@@ -38,7 +38,7 @@ const ProductList = ({ products, categories, category }) => {
                                     rate_avg={i?.rate_avg}
                                     name={i?.name}
                                     price={i?.price}
-                                    img={i?.product_images[0]?.image}
+                                    img={i?.image}
                                 />
                             ))}
                         </div>

@@ -4,12 +4,12 @@ import NavCategory from "@/Components/client/partials/NavCategory";
 import HomeGridProduct from "@/Components/client/products/HomeGridProduct";
 import SliderImages from "@/Components/client/partials/header-v1/SliderImages";
 
-const Home = ({ categories, products }) => {
+const Home = ({ products }) => {
     return (
         <ClientLayout title="Trang chủ" isHideBreadcrumb={true}>
             <div className="w-full grid grid-cols-12 gap-4 items-start">
                 <div className="col-span-3">
-                    <NavCategory isHide={false} categories={categories} />
+                    <NavCategory isHide={false} />
                 </div>
                 <div className="col-span-9 max-tl:col-span-12 max-tl:px-2">
                     <SliderImages />

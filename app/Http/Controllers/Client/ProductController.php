@@ -10,17 +10,13 @@ use App\Models\Product;
 use App\Models\ProductFeedbacks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
     public function productDetailPage($id)
     {
-        $categories = Category::where('status', '>', 0)
-            ->select('id', 'name', 'parent_id')
-            ->orderBy('order', 'asc')
-            ->get();
-
         $product = Product::where('status', 1)
             ->select('id', 'name', 'category_id', 'price', 'status', 'desc', 'sub_desc', 'rate_avg')
             ->with('productImages')
@@ -29,35 +25,49 @@ class ProductController extends Controller
             ->with('productClassifys')
             ->findOrFail($id);
 
-        $productsByCategory = Category::where('status', '>', 0)
-            ->select('id', 'name', 'parent_id')
-            ->with(['products' => function ($query) {
-                $query
-                    ->select('id', 'name', 'price', 'status', 'rate_avg', 'category_id')
-                    ->where('status', 1)
-                    ->orderBy('id', 'desc')
-                    ->with(['productImages' => function ($query) {
-                        $query
-                            ->orderBy('id', 'asc')
-                            ->take(1);
-                    }])
-                    ->take(8);
-            }])
-            ->findOrFail($product->category_id);
+        $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image, c.name AS category_name, c.id AS category_id
+            FROM products p
+            JOIN product_images pi ON p.id = pi.product_id
+            JOIN categories c ON p.category_id = c.id
+            WHERE p.status = 1 AND c.id = ? AND p.id != ?
+            AND pi.id = (SELECT MIN(pi2.id) FROM product_images pi2 WHERE pi2.product_id = p.id)";
 
-        $countProductCart = "";
-        if (Auth::check()) {
-            $countProductCart = Cart::where('user_id', Auth::user()->id)
-                ->where('status', 1)
-                ->count();
-        }
+        $productsByCategory = DB::select($sql, [$product->category_id, $id]);
+
+
+        $productsGroupByCategory = $this->groupProductsByCategory($productsByCategory);
+
 
         return Inertia::render('Client/ProductDetail', [
-            'categories' => $categories,
             'product' => $product,
-            'productsByCategory' => $productsByCategory,
-            'countProductCart' => $countProductCart
+            'productsGroupByCategory' => $productsGroupByCategory
         ]);
+    }
+
+    private function groupProductsByCategory($products)
+    {
+        $productsByCategory = [];
+        foreach ($products as $product) {
+            $category_id = $product->category_id;
+            $category_name = $product->category_name;
+
+            if (!isset($productsByCategory[$category_id])) {
+                $productsByCategory[$category_id] = [
+                    'id' => $category_id,
+                    'name' => $category_name,
+                    'products' => []
+                ];
+            }
+            $productsByCategory[$category_id]['products'][] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'rate_avg' => $product->rate_avg,
+                'image' => $product->image
+            ];
+        }
+        $productsByCategory = array_values($productsByCategory);
+        return $productsByCategory;
     }
 
     public function sendFeedback(Request $request)
@@ -85,36 +95,35 @@ class ProductController extends Controller
     public function productListByCategory(Request $request, $category_id)
     {
 
-        $categories = Category::where('status', '>', 0)
-            ->select('id', 'name', 'parent_id')
-            ->orderBy('order', 'asc')
-            ->get();
         $category = Category::select('id', 'name')->findOrFail($category_id);
 
-        $query = Product::where('status', 1)
-            ->where('category_id', $category_id)
-            ->select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
-            ->with('productImages')
-            ->with('category');
+        // $query = Product::where('status', 1)
+        //     ->where('category_id', $category_id)
+        //     ->select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
+        //     ->with('productImages')
+        //     ->with('category');
 
-        if (in_array($request->price, ['asc', 'ASC'], true) || in_array($request->price, ['desc', 'DESC'], true)) {
-            $query = $query->orderBy('price', $request->price);
-        }
+        // if (
+        //     in_array($request->price, ['asc', 'ASC'], true)
+        //     || in_array($request->price, ['desc', 'DESC'], true)
+        // ) {
+        //     $query = $query->orderBy('price', $request->price);
+        // }
 
-        $products = $query->get();
+        // $products = $query->get();
 
+        $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image
+            FROM products p
+            JOIN product_images pi ON p.id = pi.product_id
+            JOIN categories c ON p.category_id = c.id
+            WHERE p.status = 1 AND c.id = ?
+            AND pi.id = (SELECT MIN(pi2.id) FROM product_images pi2 WHERE pi2.product_id = p.id)";
 
-        $countProductCart = "";
-        if (Auth::check()) {
-            $countProductCart = Cart::where('user_id', Auth::user()->id)
-                ->where('status', 1)
-                ->count();
-        }
+        $products = DB::select($sql, [$category_id]);
+
         return Inertia::render('Client/ProductList', [
             'products' => $products,
-            'categories' => $categories,
             'category' => $category,
-            'countProductCart' => $countProductCart
         ]);
     }
 
