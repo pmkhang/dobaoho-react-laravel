@@ -9,3 +9,13 @@
     font-family: "Nunito", sans-serif;
     letter-spacing: -0.025em;
 }
+
+*::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background-color: #054e0a;
+}

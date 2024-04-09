@@ -24,7 +24,7 @@ const HeaderLogo = ({ setIsShowNavMobile }) => {
             <div className="w-[18%] max-mb:hidden">
                 <img
                     src="/uploads/ttknh.png"
-                    alt="logo"
+                    alt="TTKNH"
                     className="object-contain "
                 />
             </div>

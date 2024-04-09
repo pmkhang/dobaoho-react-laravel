@@ -1,5 +1,6 @@
 import HeaderLogo from "@/Components/client/partials/header-v2/HeaderLogo";
 import Navbar from "@/Components/client/partials/header-v2/Navbar";
+import NavCateMobile from "@/Components/client/partials/header-v2/NavCateMobile";
 import NavFixed from "@/Components/client/partials/header-v2/NavFixed";
 import NavMobile from "@/Components/client/partials/header-v2/NavMobile";
 import Search from "@/Components/client/partials/header-v2/Search";
@@ -36,15 +37,18 @@ const Header = () => {
                     <Search />
                 </div>
             </div>
+            <NavCateMobile />
             {isShowNavHeader && (
                 <div className="w-full bg-primary-darker shadow-xl min-mb:fixed min-mb:top-0 min-mb:right-0 min-mb:left-0">
-                    <div className="max-w-dt mx-auto">
+                    <div className="max-w-dt mx-auto max-mb:hidden">
                         <NavFixed />
                     </div>
                 </div>
             )}
             {isShowNavMobile && (
-                <NavMobile setIsShowNavMobile={setIsShowNavMobile} />
+                <>
+                    <NavMobile setIsShowNavMobile={setIsShowNavMobile} />
+                </>
             )}
         </header>
     );

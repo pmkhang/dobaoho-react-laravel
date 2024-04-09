@@ -52,7 +52,7 @@ const ClientLayout = ({
                 <Navbar isTablet={true} />
             </div> */}
             <Header />
-            <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit mt-4 max-mb:mt-[72px]  relative">
+            <main className="max-w-dt min-h-[calc(100vh-536px)] mx-auto p-2 h-fit mt-4 max-mb:mt-[110px]  relative">
                 {!isHideBreadcrumb && (
                     <ul className="flex items-center gap-4 mb-4 mt-[-10px] bg-white p-2 px-4 rounded-lg shadow-lg border">
                         <li>
