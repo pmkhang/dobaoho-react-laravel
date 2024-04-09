@@ -11,6 +11,7 @@ const SubHeader = () => {
                     <a
                         href="https://zalo.me/0938505459"
                         className="hover:text-secondary transition-all "
+                        target="_blank"
                     >
                         Zalo
                     </a>
@@ -19,6 +20,7 @@ const SubHeader = () => {
                     <a
                         href="mailto:quangtruongthinh79@gmail"
                         className="hover:text-secondary transition-all "
+                        target="_blank"
                     >
                         <i className="fa-solid fa-envelope"></i>
                     </a>
@@ -27,6 +29,7 @@ const SubHeader = () => {
                     <a
                         href="tel:0938505459"
                         className="hover:text-secondary transition-all "
+                        target="_blank"
                     >
                         Hotline: 0938505459
                     </a>

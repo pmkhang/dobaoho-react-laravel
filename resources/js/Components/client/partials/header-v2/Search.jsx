@@ -16,6 +16,7 @@ const Search = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Tìm kiếm sản phẩm"
                 className="text-gray-900 text-sm rounded-lg focus:ring-0 outline-none block min-w-[300px] p-2.5"
+                required
             />
             <button
                 type="submit"
