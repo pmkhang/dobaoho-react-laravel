@@ -57,7 +57,10 @@ const NavCateMobile = () => {
                     className="absolute w-full h-screen backdrop-blur-sm bg-gray-900 bg-opacity-45"
                 ></div>
                 <div className="absolute w-3/4 h-screen bg-primary-darker text-white shadow-xl p-4 overflow-y-scroll">
-                    <div className="text-end text-2xl">
+                    <div
+                        className="text-end text-2xl"
+                        onClick={() => setSetshowCategories(false)}
+                    >
                         <i className="fa-solid fa-xmark"></i>
                     </div>
                     <h3 className="flex items-center gap-3 font-bold uppercase text-lg mt-3">
