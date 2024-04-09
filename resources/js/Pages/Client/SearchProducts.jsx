@@ -9,12 +9,12 @@ const SearchProducts = ({ products, keyword }) => {
             breadcrumb={"Tìm kiếm: " + keyword}
             breadcrumbLink={"/tim-kiem?search=" + keyword}
         >
-            <div className="w-full h-fit min-h-[380px] bg-white rounded-lg shadow-lg p-8">
+            <div className="w-full h-fit min-h-[380px] bg-white rounded-lg shadow-lg p-8 max-mb:p-4">
                 <h3 className="text-2xl font-bold text-center">
                     Kết quả tìm kiếm: <i className="underline">{keyword}</i>
                 </h3>
                 <div
-                    className={`w-full mt-4 grid grid-cols-5 gap-4 max-tl:grid-cols-3 max-mb:grid-cols-1`}
+                    className={`w-full mt-4 grid grid-cols-5 gap-4 max-tl:grid-cols-3 max-mb:grid-cols-2`}
                 >
                     {products?.map((i) => (
                         <ProductCard
