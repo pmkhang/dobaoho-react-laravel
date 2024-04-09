@@ -16,13 +16,16 @@ class HomeController extends Controller
 
     public function index()
     {
-
-        $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image, c.name AS category_name, c.id AS category_id
-                FROM categories c
-                JOIN products p ON c.id = p.category_id
-                JOIN product_images pi ON p.id = pi.product_id
-                WHERE p.status = 1
-                AND (SELECT COUNT(*) FROM products p2 WHERE p2.category_id = c.id AND p2.id >= p.id) <= 5
+        $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image,
+                        c.name AS category_name, c.id AS category_id
+                FROM categories c, products p, product_images pi
+                WHERE p.status = 1 AND c.id = p.category_id AND p.id = pi.product_id
+                -- lấy 5 sản phẩm trong 1 danh mục
+                AND (SELECT COUNT(*)
+                    FROM products p2
+                    WHERE p2.category_id = c.id
+                    AND p2.id <= p.id) <= 5 -- <- đổi limit tại đây
+                -- lấy hình ảnh đầu tiên
                 AND pi.id = (
                     SELECT pi2.id
                     FROM product_images pi2
@@ -31,10 +34,8 @@ class HomeController extends Controller
                     LIMIT 1
                     )
                 ORDER BY c.order ASC";
-
         $products = DB::select($sql);
         $data = $this->groupProductsByCategory($products);
-
         return Inertia::render('Client/Home', [
             'products' => $data,
         ]);
@@ -70,10 +71,8 @@ class HomeController extends Controller
     public function getCategories()
     {
 
-        $categories = Category::where('status', '>', 0)
-            ->select('id', 'name', 'parent_id')
-            ->orderBy('order', 'asc')
-            ->get();
+
+        $categories = DB::select("SELECT c.id, c.name, c.parent_id FROM categories c WHERE c.status = 1 ORDER BY c.order ASC");
 
         return response()->json([
             'status' => true,

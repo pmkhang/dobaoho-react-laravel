@@ -9,7 +9,6 @@ const HeaderLogo = ({ setIsShowNavMobile }) => {
                     src="/uploads/logo2.png"
                     alt="logo"
                     className="object-contain"
-                    loading="lazy"
                 />
             </Link>
             <button
@@ -27,7 +26,6 @@ const HeaderLogo = ({ setIsShowNavMobile }) => {
                     src="/uploads/ttknh.png"
                     alt="logo"
                     className="object-contain "
-                    loading="lazy"
                 />
             </div>
         </div>

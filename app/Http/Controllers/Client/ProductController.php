@@ -97,21 +97,6 @@ class ProductController extends Controller
 
         $category = Category::select('id', 'name')->findOrFail($category_id);
 
-        // $query = Product::where('status', 1)
-        //     ->where('category_id', $category_id)
-        //     ->select('id', 'name', 'category_id', 'price', 'status', 'rate_avg')
-        //     ->with('productImages')
-        //     ->with('category');
-
-        // if (
-        //     in_array($request->price, ['asc', 'ASC'], true)
-        //     || in_array($request->price, ['desc', 'DESC'], true)
-        // ) {
-        //     $query = $query->orderBy('price', $request->price);
-        // }
-
-        // $products = $query->get();
-
         $sql = "SELECT p.id, p.name, p.price, p.rate_avg, pi.image
             FROM products p
             JOIN product_images pi ON p.id = pi.product_id
