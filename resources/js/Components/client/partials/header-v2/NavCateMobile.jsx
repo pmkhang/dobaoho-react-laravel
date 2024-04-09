@@ -108,15 +108,17 @@ const NavCateMobile = () => {
                                         )}
                                     </div>
                                 )}
-                                <Link
-                                    href={route(
-                                        "productListByCategory",
-                                        category?.id
-                                    )}
-                                    className="p-2 inline-block w-full font-bold bg-[#f5f5f5] mb-2 rounded-lg"
-                                >
-                                    {category?.name}
-                                </Link>
+                                {category?.children?.length == 0 && (
+                                    <Link
+                                        href={route(
+                                            "productListByCategory",
+                                            category?.id
+                                        )}
+                                        className="p-2 inline-block w-full font-bold bg-[#f5f5f5] mb-2 rounded-lg"
+                                    >
+                                        {category?.name}
+                                    </Link>
+                                )}
                             </li>
                         ))}
                     </ul>
