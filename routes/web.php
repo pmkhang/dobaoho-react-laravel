@@ -52,6 +52,9 @@ Route::prefix('')->group(function () {
     Route::prefix('/san-pham')
         ->controller(ProductController::class)
         ->group(function () {
+            Route::get("", function () {
+                return redirect()->route('home');
+            });
             Route::get('/{id}', 'productDetailPage')->name('product-detail');
             Route::get('the-loai/{category_id}', 'productListByCategory')->name('productListByCategory');
         });
