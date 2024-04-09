@@ -4,9 +4,9 @@ import React from "react";
 const HeaderLogo = ({ setIsShowNavMobile }) => {
     return (
         <div className="w-full flex items-center justify-between gap-6">
-            <Link href="/" className="w-[50%] max-mb:w-[110%] block">
+            <Link href="/" className="w-[65%] max-mb:w-[130%] block">
                 <img
-                    src="/uploads/logo2.png"
+                    src="/uploads/logo3.png"
                     alt="logo"
                     className="object-contain"
                 />
