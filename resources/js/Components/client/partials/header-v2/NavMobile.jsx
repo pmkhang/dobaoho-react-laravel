@@ -9,7 +9,7 @@ const NavMobile = ({ setIsShowNavMobile }) => {
                 <div className="flex items-center justify-between gap-6">
                     <Link href="/" className="max-mb:w-[120%] block">
                         <img
-                            src="/uploads/logo3.png"
+                            src="/uploads/logo4.png"
                             alt="logo"
                             className="object-contain"
                             loading="lazy"

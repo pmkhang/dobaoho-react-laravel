@@ -6,7 +6,7 @@ const HeaderLogo = ({ setIsShowNavMobile }) => {
         <div className="w-full flex items-center justify-between gap-6">
             <Link href="/" className="w-[65%] max-mb:w-[130%] block">
                 <img
-                    src="/uploads/logo3.png"
+                    src="/uploads/logo4.png"
                     alt="logo"
                     className="object-contain"
                 />
