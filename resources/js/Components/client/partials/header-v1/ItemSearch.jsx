@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 import { Rating } from "flowbite-react";
+import convertVietnameseString from "@/Utils/convertVietnameseString";
 const ItemSearch = ({ product, isMobile, onClick }) => {
     return (
         <li>
             <Link
-                href={route("product-detail", product.id)}
+                href={route("product-detail", [
+                    convertVietnameseString(product?.name),
+                    product?.id,
+                ])}
                 className="flex items-center justify-between  hover:bg-gray-200 p-2"
                 onClick={onClick && onClick}
             >

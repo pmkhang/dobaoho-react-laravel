@@ -1,12 +1,18 @@
-import formatCurrency from "@/Utils/formatCurrency";
+import convertVietnameseString from "@/Utils/convertVietnameseString";
 import { Link } from "@inertiajs/react";
 import { Rating } from "flowbite-react";
 
 const ProductCard = ({ id, img, rate_avg, name, price }) => {
+    const productNameWithoutDiacritics = convertVietnameseString(name);
     return (
         <div className="w-full rounded-lg hover:translate-y-[-8px] shadow-primary-darker hover:shadow-xl transition-all">
             <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
-                <Link href={route("product-detail", id)}>
+                <Link
+                    href={route("product-detail", [
+                        productNameWithoutDiacritics,
+                        id,
+                    ])}
+                >
                     <img
                         loading="lazy"
                         className="w-full h-[200px] max-mb:h-[120px] object-cover max-mb:object-contain rounded-t-lg p-3 rounded-lg"
@@ -29,7 +35,12 @@ const ProductCard = ({ id, img, rate_avg, name, price }) => {
                             {rate_avg + ".0"}
                         </span>
                     </div>
-                    <Link href={route("product-detail", id)}>
+                    <Link
+                        href={route("product-detail", [
+                            productNameWithoutDiacritics,
+                            id,
+                        ])}
+                    >
                         <h5 className="min-h-[60px] max-mb:text-sm font-semibold tracking-tight text-gray-900 mt-4">
                             {`${name?.substring(0, 40)} ${
                                 name?.length > 40 ? "..." : ""

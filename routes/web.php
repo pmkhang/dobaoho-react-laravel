@@ -55,7 +55,7 @@ Route::prefix('')->group(function () {
             Route::get("", function () {
                 return redirect()->route('home');
             });
-            Route::get('/{id}', 'productDetailPage')->name('product-detail');
+            Route::get('/{productName}-{id}', 'productDetailPage')->name('product-detail');
             Route::get('the-loai/{category_id}', 'productListByCategory')->name('productListByCategory');
         });
 

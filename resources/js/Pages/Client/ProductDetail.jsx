@@ -7,6 +7,7 @@ import ProductInfoDetail from "@/Components/client/products/ProductInfoDetail";
 import ProductRate from "@/Components/client/products/ProductRate";
 import ProductRateDetail from "@/Components/client/products/ProductRateDetail";
 import ClientLayout from "@/Layouts/ClientLayout";
+import convertVietnameseString from "@/Utils/convertVietnameseString";
 import { useState } from "react";
 
 const ProductDetail = ({ product, productsGroupByCategory }) => {
@@ -15,7 +16,10 @@ const ProductDetail = ({ product, productsGroupByCategory }) => {
         <ClientLayout
             title={product?.name}
             breadcrumb={product?.name}
-            breadcrumbLink={route("product-detail", product?.id)}
+            breadcrumbLink={route("product-detail", [
+                convertVietnameseString(product?.name),
+                product?.id,
+            ])}
         >
             <div className="min-h-fit bg-white rounded-xl shadow-lg border">
                 <div className="grid grid-cols-5 gap-4 p-4 items-start max-mb:p-0">

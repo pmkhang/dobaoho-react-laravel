@@ -1,6 +1,7 @@
 import formatCurrency from "@/Utils/formatCurrency";
 import { Table } from "flowbite-react";
 import { Link } from "@inertiajs/react";
+import convertVietnameseString from "@/Utils/convertVietnameseString";
 
 const CartTable = ({
     cartProducts,
@@ -25,7 +26,14 @@ const CartTable = ({
                     <Table.Row key={i?.id}>
                         <Table.Cell>{index + 1}</Table.Cell>
                         <Table.Cell>
-                            <Link href={route("product-detail", i?.product_id)}>
+                            <Link
+                                href={route("product-detail", [
+                                    convertVietnameseString(
+                                        i?.products[0]?.name
+                                    ),
+                                    i?.product_id,
+                                ])}
+                            >
                                 <img
                                     loading="lazy"
                                     src={
@@ -39,10 +47,12 @@ const CartTable = ({
                         <Table.Cell>
                             <p className="flex flex-col gap-3">
                                 <Link
-                                    href={route(
-                                        "product-detail",
-                                        i?.product_id
-                                    )}
+                                    href={route("product-detail", [
+                                        convertVietnameseString(
+                                            i?.products[0]?.name
+                                        ),
+                                        i?.product_id,
+                                    ])}
                                     className="text-base font-bold underline text-primary"
                                 >
                                     {i?.products[0]?.name}

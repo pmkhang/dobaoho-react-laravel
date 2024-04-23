@@ -15,14 +15,21 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function productDetailPage($id)
+    public function productDetailPage($productName, $id)
     {
+        $param = $productName . '-' . $id;
+        $parts = explode('-', $param);
+        $last_index = end($parts);
+        $prev_last_index = prev($parts);
+        $id = $prev_last_index . '-' . $last_index;
+
         $pSQL = "SELECT p.id, p.name, p.price, p.desc, p.sub_desc, p.rate_avg, p.category_id
                 FROM products p WHERE p.status = ? AND p.id = ? LIMIT 1";
         $p_imgSQL = "SELECT pi.id, pi.image FROM product_images pi WHERE pi.product_id = ?";
         $p_feedbackSQL = "SELECT * FROM product_feedbacks WHERE product_id = ?";
         $p_classifysSQL = "SELECT * FROM product_classifys WHERE product_id = ?";
         $p = DB::select($pSQL, [1, $id]);
+
         if (count($p) == 0) {
             return redirect()->route('home');
         }
